@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.CarMapper">
+	
+	<insert id="insert" parameterType="car">
+		INSERT INTO car VALUES (#{car_num},#{mem_id},#{in_time},null)	
+	</insert>
+	
+	<update id="update" parameterType="car">
+		UPDATE car SET out_time=#{out_time} WHERE car_num=#{car_num}
+	</update>
+	
+	<select id="select" parameterType="String" 
+	resultType="car">
+		SELECT * FROM car WHERE mem_id=#{mem_id}	
+	</select>
+	
+	<select id="selectall" resultType="car">
+		SELECT * FROM car
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

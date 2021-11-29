@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.MemberMapper">
+	
+	<insert id="insert" parameterType="member">
+		INSERT INTO member VALUES (#{mem_id},#{mem_pwd},#{mem_name},#{mem_tel},#{mem_money})	
+	</insert>
+	<delete id="delete" parameterType="String">
+		DELETE FROM member WHERE mem_id=#{mem_id}
+	</delete>
+	<select id="select" parameterType="String" 
+	resultType="member">
+		SELECT * FROM member WHERE mem_id=#{mem_id}	
+	</select>
+	
+	<select id="selectall" resultType="member">
+		SELECT * FROM member
+	</select>
+	<select id="login" resultType="member" parameterType="member">
+		select * from member where mem_id = #{mem_id} and mem_pwd=#{mem_pwd}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.P_AreaMapper">
+	<insert id="insert" parameterType="p_area">
+		INSERT INTO p_area VALUES (#{area_id},#{p_id},#{state})	
+	</insert>
+	
+	<update id="update" parameterType="p_area">
+		UPDATE p_area SET state=#{state} WHERE area_id=#{area_id}
+	</update>
+	
+	<select id="select" parameterType="String" 
+	resultType="p_area">
+		SELECT * FROM p_area WHERE area_id=#{area_id}	
+	</select>
+	
+	<select id="selectall" resultType="p_area">
+		SELECT * FROM p_area
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
