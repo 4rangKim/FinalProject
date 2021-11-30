@@ -106,28 +106,30 @@
 						$("#parkingTitle").text(p_id+'주차장');
 						//alert(p_id);
 						
-						$.ajax({
-							url:'p_areaAjax.mc',
-							type:"get",
-							data:{"p_id":p_id},
-							success:function(data){
-								//alert(data[0].state);
-								stateView="";
-								for(i=0;i<data.length;i++){
-									if(data[i].state==0){
-										stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: blue; margin: 5px;'></div>"
-									}else if(data[i].state==1){
-										stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: red; margin: 5px;'></div>"
+						setInterval(function(){
+							$.ajax({
+								url:'p_areaAjax.mc',
+								type:"get",
+								data:{"p_id":p_id},
+								success:function(data){
+									//alert(data[0].state);
+									stateView="";
+									for(i=0;i<data.length;i++){
+										if(data[i].state==0){
+											stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: blue; margin: 5px;'></div>"
+										}else if(data[i].state==1){
+											stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: red; margin: 5px;'></div>"
+										}
 									}
+									for(j=0;j<(45-(data.length));j++){
+										stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: #b1d284; margin: 5px;'></div>"
+									}
+									$(".spacebox").empty();
+						 			$(".spacebox").append(stateView);
+									
 								}
-								for(j=0;j<(45-(data.length));j++){
-									stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: #b1d284; margin: 5px;'></div>"
-								}
-								$(".spacebox").empty();
-					 			$(".spacebox").append(stateView);
-								
-							}
-						})
+							})
+						}, 500);
 					})
 				})
 			}
@@ -158,7 +160,7 @@
 					<img class="direcimg" alt="" src="img/direc.png">
 				</div>
 				<div class="col-sm-5 eachpark">
-					<p class="title" id="parkingTitle">주차장1 현황</p>
+					<p class="title" id="parkingTitle">선택 주차장 현황</p>
 					<div class="row spacebox">
 						<% for(int i=0;i<45;i++){ %>
 							<div class="col-sm-1 parkspace">
