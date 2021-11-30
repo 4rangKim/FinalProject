@@ -34,11 +34,19 @@ public class ParkingService implements Service<String, ParkingVO>{
 		return dao.select(k);
 	}
 
+	
 	@Override
 	public ArrayList<ParkingVO> get() throws Exception {
 		return dao.select();
 	}
-
+	
+	// 아래거 추가함==============================================
+	@Override
+	public ArrayList<ParkingVO> getstate(String P_id) throws Exception {
+		return null;
+	}
+	//=======================================================
+	
 	@Override
 	public ParkingVO login(ParkingVO v) {
 		// TODO Auto-generated method stub

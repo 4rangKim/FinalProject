@@ -44,6 +44,11 @@ public class P_AreaDao implements Dao<String, P_AreaVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ArrayList<P_AreaVO> getstate(String p_id) {
+		return pam.selectByP_id(p_id);
+	}
 	
 	
 }

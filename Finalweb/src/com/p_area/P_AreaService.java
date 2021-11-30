@@ -44,6 +44,12 @@ public class P_AreaService implements Service<String, P_AreaVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	// 아래거 추가함==============================================
+	@Override
+	public ArrayList<P_AreaVO> getstate(String p_id) throws Exception {
+		return dao.select();
+	}
 	
 	
 }

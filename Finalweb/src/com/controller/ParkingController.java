@@ -2,6 +2,7 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,10 +12,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.frame.Service;
 import com.vo.ManagerVO;
+import com.vo.P_AreaVO;
 import com.vo.ParkingVO;
 
 @Controller
@@ -22,31 +25,25 @@ public class ParkingController {
 	@Resource(name="ParkingService")
 	Service<String, ParkingVO> service;
 	
-	@RequestMapping("/parkajax.mc")
-	@ResponseBody
-	public void uu(HttpServletResponse response) throws IOException {
-		response.setContentType("text/json;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		JSONArray ja = new JSONArray();
+	@Resource(name="P_AreaService")
+	Service<String, P_AreaVO> service2;
+	
+	
+	@RequestMapping(value = "/parkajax.mc", method = RequestMethod.GET,
+			produces = "application/json;charset=utf-8" )
+	public @ResponseBody ArrayList<P_AreaVO> idCheck(String p_id) {
+		//System.out.println(p_id+"뷰에서 받아온값");
+		ArrayList<P_AreaVO> STATEListByP_id = null;
 		try {
-			List<ParkingVO> parklist = service.get();
-			System.out.println(parklist);
-			for(int i=0;i<parklist.size();i++) {
-				ParkingVO parkname = parklist.get(i);
-				
-				JSONObject jo = new JSONObject();
-				jo.put("parkname"+i, parkname.getP_id());
-				jo.put("parkE_num"+i, parkname.getE_num());
-				ja.add(jo);
-			}
-			
+			STATEListByP_id = (ArrayList<P_AreaVO>)service2.getstate(p_id);
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.println(ja.toJSONString());
-		out.print(ja.toJSONString());
-		out.close();
-		
+		//System.out.println(STATEListByP_id);
+	
+	return STATEListByP_id;
+	
 	}
 	
 }

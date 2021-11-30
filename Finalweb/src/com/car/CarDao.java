@@ -45,6 +45,12 @@ public class CarDao implements Dao<String, CarVO>{
 	public CarVO login(CarVO v) {
 		return null;
 	}
+
+	@Override
+	public ArrayList<CarVO> getstate(String k) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

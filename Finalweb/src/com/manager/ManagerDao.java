@@ -43,6 +43,12 @@ public class ManagerDao implements Dao<String, ManagerVO>{
 	public ManagerVO login(ManagerVO v) {
 		return mm.login(v);
 	}
+
+	@Override
+	public ArrayList<ManagerVO> getstate(String k) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

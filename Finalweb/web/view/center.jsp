@@ -73,20 +73,40 @@
 		 }
 		</style>
 		<script type="text/javascript">
-			$(".parkname").each(function() {
-				$(this).click(function() {
-					category = $(this).text();
-					$(this).attr("class","col-sm-4 active parkname");
-					$.ajax({
-						url:'/parkajax.mc',
-						success:function(data){
-							$(data).each(function(idx,item){
-								$('#parkname').html(item.parkname);
-								$('#E_num').html(item.parkE_num);
-							});
-						}
-					});
-				});
+			$(document).ready(function(){
+				$(".parkname").each(function() {
+					$(this).click(function() {
+						p_id = $.trim($(this).text());
+						
+						/* $(this).attr("class","col-sm-4 active parkname"); */
+						$(".parkname").css('color','');
+						$(this).css('color','red');
+						//alert(p_id);
+						
+						$.ajax({
+							url:'parkajax.mc',
+							type:"get",
+							data:{"p_id":p_id},
+							success:function(data){
+								//alert(data[0].state);
+								stateView="";
+								for(i=0;i<data.length;i++){
+									if(data[i].state==0){
+										stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: blue; margin: 5px;'></div>"
+									}else if(data[i].state==1){
+										stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: red; margin: 5px;'></div>"
+									}
+								}
+								for(j=0;j<(45-(data.length));j++){
+									stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: #b1d284; margin: 5px;'></div>"
+								}
+								$(".spacebox").empty();
+					 			$(".spacebox").append(stateView);
+								
+							}
+						})
+					})
+				})
 			});
 		</script>
 	</head>
@@ -96,10 +116,11 @@
 				<div class="col-sm-5 allpark">
 					<p class="title">전체 주차장 현황</p>
 					<div class="row parkbox">
-						<% for(char i='A';i<8;i++){ %>
+						<% for(char i='A';i<='H';i++){ %>
 							<div class="col-sm-4 parkname">
-								주차장<span id="parkname"></span>(<span id="E_num"></span>)
+								<%=i%>
 							</div>
+							<%-- <button class="btns"><%=i %></button> --%>
 						<%}%>
 					</div>
 				</div>

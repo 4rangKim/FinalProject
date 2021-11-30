@@ -10,6 +10,7 @@ public interface ParkingMapper {
 	public void update(ParkingVO obj);
 	public ParkingVO select(String obj);
 	public ArrayList<ParkingVO> selectall();
+	
 }
 
 
