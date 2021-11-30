@@ -46,7 +46,6 @@ public class MemberDao implements Dao<String, MemberVO>{
 
 	@Override
 	public ArrayList<MemberVO> getstate(String k) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

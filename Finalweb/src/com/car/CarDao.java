@@ -48,7 +48,6 @@ public class CarDao implements Dao<String, CarVO>{
 
 	@Override
 	public ArrayList<CarVO> getstate(String k) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

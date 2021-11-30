@@ -48,7 +48,6 @@ public class ManagerService implements Service<String, ManagerVO>{
 
 	@Override
 	public ArrayList<ManagerVO> getstate(String P_id) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

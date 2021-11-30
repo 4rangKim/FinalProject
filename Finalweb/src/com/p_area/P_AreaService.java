@@ -41,7 +41,6 @@ public class P_AreaService implements Service<String, P_AreaVO>{
 
 	@Override
 	public P_AreaVO login(P_AreaVO v) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

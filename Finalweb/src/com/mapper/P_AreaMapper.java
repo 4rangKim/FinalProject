@@ -12,6 +12,7 @@ public interface P_AreaMapper {
 	public P_AreaVO select(String obj);
 	public ArrayList<P_AreaVO> selectall();
 	public ArrayList<P_AreaVO> selectByP_id(String p_id);
+	
 }
 
 

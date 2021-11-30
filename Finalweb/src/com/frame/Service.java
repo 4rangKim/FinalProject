@@ -13,7 +13,6 @@ public interface Service<K,V> {
 	public void remove(K k) throws Exception;
 	@Transactional
 	public void modify(V v) throws Exception;
-	
 	public V get(K k) throws Exception;
 	public V login(V v);
 	public ArrayList<V> get() throws Exception;

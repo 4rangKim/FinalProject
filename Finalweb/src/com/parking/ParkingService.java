@@ -49,7 +49,6 @@ public class ParkingService implements Service<String, ParkingVO>{
 	
 	@Override
 	public ParkingVO login(ParkingVO v) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

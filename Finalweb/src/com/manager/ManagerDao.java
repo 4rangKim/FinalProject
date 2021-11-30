@@ -46,7 +46,6 @@ public class ManagerDao implements Dao<String, ManagerVO>{
 
 	@Override
 	public ArrayList<ManagerVO> getstate(String k) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

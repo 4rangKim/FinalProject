@@ -73,18 +73,41 @@
 		 }
 		</style>
 		<script type="text/javascript">
-			$(document).ready(function(){
-				$(".parkname").each(function() {
+			function AllParkinglotState(){
+				$.ajax({
+					url:'parkingajax.mc',
+					type:"get",
+					success:function(data){
+						parkingsituation='';
+						for(k=0;k<data.length;k++){
+							if(0<data[k].e_num && data[k].e_num<=10){
+								parkingsituation=parkingsituation+"<div class='col-sm-4 parkname2' style='text-align: center; height: 30px; background-color: yellow; color:white; margin: 10px; border-radius: 10px;'>"+data[k].p_id+"</div>"
+							}else if(10<data[k].e_num){
+								parkingsituation=parkingsituation+"<div class='col-sm-4 parkname2' style='text-align: center; height: 30px; background-color: blue; color:white; margin: 10px; border-radius: 10px;'>"+data[k].p_id+"</div>"
+							}else if(data[k].e_num<=0){
+								parkingsituation=parkingsituation+"<div class='col-sm-4 parkname2' style='text-align: center; height: 30px; background-color: red; color:white; margin: 10px; border-radius: 10px;'>"+data[k].p_id+"</div>"
+							}
+						}
+						$(".parkbox").empty();
+						$(".parkbox").append(parkingsituation);
+						ViewP_areaState();
+					}
+				})
+			}	
+			
+			function ViewP_areaState(){
+				$(".parkname2").each(function() {
 					$(this).click(function() {
 						p_id = $.trim($(this).text());
 						
 						/* $(this).attr("class","col-sm-4 active parkname"); */
-						$(".parkname").css('color','');
-						$(this).css('color','red');
+						//$(".parkname2").css('color','');
+						//$(this).css('color','purple');
+						$("#parkingTitle").text(p_id+'주차장');
 						//alert(p_id);
 						
 						$.ajax({
-							url:'parkajax.mc',
+							url:'p_areaAjax.mc',
 							type:"get",
 							data:{"p_id":p_id},
 							success:function(data){
@@ -107,6 +130,13 @@
 						})
 					})
 				})
+			}
+		
+			$(document).ready(function(){
+				
+				setInterval(function() {
+					AllParkinglotState();
+			       }, 1000);
 			});
 		</script>
 	</head>
@@ -128,7 +158,7 @@
 					<img class="direcimg" alt="" src="img/direc.png">
 				</div>
 				<div class="col-sm-5 eachpark">
-					<p class="title">주차장1 현황</p>
+					<p class="title" id="parkingTitle">주차장1 현황</p>
 					<div class="row spacebox">
 						<% for(int i=0;i<45;i++){ %>
 							<div class="col-sm-1 parkspace">

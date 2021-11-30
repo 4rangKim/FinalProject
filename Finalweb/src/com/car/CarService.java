@@ -46,7 +46,6 @@ public class CarService implements Service<String, CarVO>{
 
 	@Override
 	public ArrayList<CarVO> getstate(String P_id) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

@@ -29,7 +29,7 @@ public class ParkingController {
 	Service<String, P_AreaVO> service2;
 	
 	
-	@RequestMapping(value = "/parkajax.mc", method = RequestMethod.GET,
+	@RequestMapping(value = "/p_areaAjax.mc", method = RequestMethod.GET,
 			produces = "application/json;charset=utf-8" )
 	public @ResponseBody ArrayList<P_AreaVO> idCheck(String p_id) {
 		//System.out.println(p_id+"뷰에서 받아온값");
@@ -43,6 +43,22 @@ public class ParkingController {
 		//System.out.println(STATEListByP_id);
 	
 	return STATEListByP_id;
+	
+	}
+	
+	@RequestMapping(value = "/parkingajax.mc", method = RequestMethod.GET,
+			produces = "application/json;charset=utf-8" )
+	public @ResponseBody ArrayList<ParkingVO> SituationCheck() {
+		ArrayList<ParkingVO> ParkingState = null;
+		try {
+			ParkingState = (ArrayList<ParkingVO>)service.get();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(ParkingState);
+	
+	return ParkingState;
 	
 	}
 	

@@ -12,4 +12,5 @@ public interface Dao<K,V> {
 	public V login(V v);
 	public ArrayList<V> select() throws Exception;
 	public ArrayList<V> getstate(K k);
+	
 }
