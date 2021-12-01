@@ -43,6 +43,11 @@ public class MemberDao implements Dao<String, MemberVO>{
 	public MemberVO login(MemberVO v) {
 		return mem.login(v);
 	}
+
+	@Override
+	public ArrayList<MemberVO> getstate(String k) {
+		return null;
+	}
 	
 	
 }

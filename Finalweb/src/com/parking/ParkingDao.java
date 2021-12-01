@@ -41,7 +41,11 @@ public class ParkingDao implements Dao<String, ParkingVO>{
 
 	@Override
 	public ParkingVO login(ParkingVO v) {
-		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<ParkingVO> getstate(String k) {
 		return null;
 	}
 	

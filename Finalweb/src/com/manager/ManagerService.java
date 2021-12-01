@@ -45,6 +45,11 @@ public class ManagerService implements Service<String, ManagerVO>{
 		ManagerVO loginOkUser = dao.login(v);
 		return loginOkUser;
 	}
+
+	@Override
+	public ArrayList<ManagerVO> getstate(String P_id) throws Exception {
+		return null;
+	}
 	
 	
 }

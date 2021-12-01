@@ -44,6 +44,11 @@ public class MemberService implements Service<String, MemberVO>{
 		MemberVO loginOkUser = dao.login(v);
 		return loginOkUser;
 	}
+
+	@Override
+	public ArrayList<MemberVO> getstate(String P_id) throws Exception {
+		return null;
+	}
 	
 	
 }

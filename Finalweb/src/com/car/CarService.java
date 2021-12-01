@@ -43,5 +43,10 @@ public class CarService implements Service<String, CarVO>{
 	public CarVO login(CarVO v) {
 		return null;
 	}
+
+	@Override
+	public ArrayList<CarVO> getstate(String P_id) throws Exception {
+		return null;
+	}
 	
 }

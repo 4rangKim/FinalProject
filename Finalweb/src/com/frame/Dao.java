@@ -3,6 +3,7 @@ package com.frame;
 import java.util.ArrayList;
 
 import com.vo.CarVO;
+import com.vo.ParkingVO;
 
 public interface Dao<K,V> {
 	public void insert(V v) throws Exception;
@@ -11,4 +12,6 @@ public interface Dao<K,V> {
 	public V select(K k) throws Exception;
 	public V login(V v);
 	public ArrayList<V> select() throws Exception;
+	public ArrayList<V> getstate(K k);
+	
 }
