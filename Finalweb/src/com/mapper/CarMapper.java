@@ -6,6 +6,7 @@ import com.vo.CarVO;
 
 public interface CarMapper {
 	public void insert(CarVO obj);
+	public void add(CarVO obj);
 	public void delete(String obj);
 	public void update(CarVO obj);
 	public CarVO select(String obj);
