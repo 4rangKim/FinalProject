@@ -50,6 +50,12 @@ public class CarDao implements Dao<String, CarVO>{
 	public ArrayList<CarVO> getstate(String k) {
 		return null;
 	}
+
+	@Override
+	public ArrayList<CarVO> getstateBy_p_id() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

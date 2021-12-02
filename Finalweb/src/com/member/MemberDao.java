@@ -48,6 +48,12 @@ public class MemberDao implements Dao<String, MemberVO>{
 	public ArrayList<MemberVO> getstate(String k) {
 		return null;
 	}
+
+	@Override
+	public ArrayList<MemberVO> getstateBy_p_id() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

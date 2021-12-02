@@ -48,6 +48,13 @@ public class P_AreaDao implements Dao<String, P_AreaVO>{
 	public ArrayList<P_AreaVO> getstate(String p_id) {
 		return pam.selectByP_id(p_id);
 	}
+
+	// 아래거 추가함==============================================
+	@Override
+	public ArrayList<P_AreaVO> getstateBy_p_id() {
+		// TODO Auto-generated method stub
+		return pam.getstateBy_p_id();
+	}
 	
 	
 }

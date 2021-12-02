@@ -49,6 +49,12 @@ public class MemberService implements Service<String, MemberVO>{
 	public ArrayList<MemberVO> getstate(String P_id) throws Exception {
 		return null;
 	}
+
+	@Override
+	public ArrayList<MemberVO> getstateBy_p_id() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

@@ -48,6 +48,12 @@ public class ManagerDao implements Dao<String, ManagerVO>{
 	public ArrayList<ManagerVO> getstate(String k) {
 		return null;
 	}
+
+	@Override
+	public ArrayList<ManagerVO> getstateBy_p_id() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

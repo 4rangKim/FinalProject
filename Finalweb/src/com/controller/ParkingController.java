@@ -46,53 +46,113 @@ public class ParkingController {
 	
 	}
 	
-	@RequestMapping(value = "/parkingajax.mc", method = RequestMethod.GET,
+	@RequestMapping(value = "/parkingajax2.mc", method = RequestMethod.GET,
 			produces = "application/json;charset=utf-8" )
-	public @ResponseBody ArrayList<ParkingVO> SituationCheck() {
+	public @ResponseBody ArrayList<P_AreaVO> SituationCheck() {
 		
 		/* ===============vv랜덤수로 테스트 하는 코드vv================*/
-		Random random = new Random();
-		
-		int state = random.nextInt(2);
-		int ran_parea2 = random.nextInt(9)+1;
-		char ranalpha2 = (char) ((Math.random() * 2) + 65);
-		String ranAlpha3 = String.valueOf(ranalpha2);
-		
-		P_AreaVO randomvalueforP_erea = new P_AreaVO(ranAlpha3+"0"+ran_parea2+"", ranAlpha3, state);
-		
-		//System.out.println(ranAlpha3+"0"+ran_parea2+"");
-		//System.out.println(ranAlpha3);
-		//System.out.println(state);
-		
-		
-		int ran_e_num = random.nextInt(46);
-		char ranalpha = (char) ((Math.random() * 8) + 65);
-		String ranAlpha2 = String.valueOf(ranalpha);
-
-		//System.out.println(ran_e_num);
-		//System.out.println(ranAlpha2);
-		
-		ParkingVO randomvalue = new ParkingVO(ranAlpha2,0,ran_e_num,0);
+		for(char i = 'A'; i<='H'; i++) {
+			
+			String str_i = String.valueOf(i);
+			
+			Random random = new Random();
+			int state = random.nextInt(2);
+			int ran_parea = random.nextInt(2);
+			int ran_parea2 = random.nextInt(9)+1;
+			
+			//char ranalpha = (char) ((Math.random() * 8) + 65);
+			//String ranAlpha = String.valueOf(ranalpha);
+			
+			P_AreaVO randomvalueforP_erea = new P_AreaVO(str_i+ran_parea+""+ran_parea2+"", str_i, state);
+			
+			try {
+				service2.modify(randomvalueforP_erea);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		/* ===============^^랜덤수로 테스트 하는 코드^^================*/
 		
 		
-		ArrayList<ParkingVO> ParkingState = null;
+		ArrayList<P_AreaVO> ParkingState = null;
 		try {
-			
-			/* =======vv랜덤수로 테스트 하는 코드vv=======*/
-			service2.modify(randomvalueforP_erea);
-			service.modify(randomvalue);
-			/* =======^^랜덤수로 테스트 하는 코드^^========*/
-			
-			ParkingState = (ArrayList<ParkingVO>)service.get();
+			ParkingState = (ArrayList<P_AreaVO>)service2.getstateBy_p_id();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.println(ParkingState);
+		//System.out.println(ParkingState+"이거 맞쥬?");
 	
 	return ParkingState;
 	
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	@RequestMapping(value = "/parkingajax.mc", method = RequestMethod.GET,
+//			produces = "application/json;charset=utf-8" )
+//	public @ResponseBody ArrayList<ParkingVO> SituationCheck() {
+//		
+//		/* ===============vv랜덤수로 테스트 하는 코드vv================*/
+//		Random random = new Random();
+//		
+//		int state = random.nextInt(2);
+//		int ran_parea2 = random.nextInt(9)+1;
+//		char ranalpha2 = (char) ((Math.random() * 2) + 65);
+//		String ranAlpha3 = String.valueOf(ranalpha2);
+//		
+//		P_AreaVO randomvalueforP_erea = new P_AreaVO(ranAlpha3+"0"+ran_parea2+"", ranAlpha3, state);
+//		
+//		//System.out.println(ranAlpha3+"0"+ran_parea2+"");
+//		//System.out.println(ranAlpha3);
+//		//System.out.println(state);
+//		
+//		
+//		int ran_e_num = random.nextInt(46);
+//		char ranalpha = (char) ((Math.random() * 8) + 65);
+//		String ranAlpha2 = String.valueOf(ranalpha);
+//
+//		//System.out.println(ran_e_num);
+//		//System.out.println(ranAlpha2);
+//		
+//		ParkingVO randomvalue = new ParkingVO(ranAlpha2,0,ran_e_num,0);
+//		/* ===============^^랜덤수로 테스트 하는 코드^^================*/
+//		
+//		
+//		ArrayList<ParkingVO> ParkingState = null;
+//		try {
+//			
+//			/* =======vv랜덤수로 테스트 하는 코드vv=======*/
+//			service2.modify(randomvalueforP_erea);
+//			service.modify(randomvalue);
+//			/* =======^^랜덤수로 테스트 하는 코드^^========*/
+//			
+//			ParkingState = (ArrayList<ParkingVO>)service.get();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		//System.out.println(ParkingState);
+//	
+//	return ParkingState;
+//	
+//	}
+	
+	
+
+	
 	
 }

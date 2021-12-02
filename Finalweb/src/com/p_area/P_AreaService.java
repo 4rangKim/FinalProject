@@ -49,6 +49,12 @@ public class P_AreaService implements Service<String, P_AreaVO>{
 	public ArrayList<P_AreaVO> getstate(String p_id) throws Exception {
 		return dao.getstate(p_id);
 	}
+
+	@Override
+	public ArrayList<P_AreaVO> getstateBy_p_id() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getstateBy_p_id();
+	}
 	
 	
 }

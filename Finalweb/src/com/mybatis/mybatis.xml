@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
 		<typeAlias type="com.vo.MemberVO" alias="member"/>
 		<typeAlias type="com.vo.P_AreaVO" alias="p_area"/>
 		<typeAlias type="com.vo.ParkingVO" alias="parking"/>
+		<typeAlias type="com.vo.P_Area_ResultVo" alias="p_area_result"/>
 	</typeAliases>
 	
 	<mappers>
