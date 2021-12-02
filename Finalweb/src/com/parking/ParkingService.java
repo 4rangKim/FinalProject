@@ -51,6 +51,12 @@ public class ParkingService implements Service<String, ParkingVO>{
 	public ParkingVO login(ParkingVO v) {
 		return null;
 	}
-	
+
+	// 아래거 추가함==============================================
+	@Override
+	public ArrayList<ParkingVO> getstateBy_p_id() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

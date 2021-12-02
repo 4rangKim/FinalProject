@@ -23,13 +23,13 @@
 		 	text-align: center;
 		 }
 		 .allpark{
-		 	height: 300px;
+		 	height: 370px;
 		 	margin-top: 100px;
 		 	border: solid 3px #3e3e33;
 		 	border-radius: 20px;
 		 }
 		 .eachpark{
-		 	height: 300px;
+		 	height: 370px;
 		 	margin-top: 100px;
 		 	border: solid 3px #3e3e33;
 		 	border-radius: 20px;
@@ -73,18 +73,20 @@
 		 }
 		</style>
 		<script type="text/javascript">
+			
 			function AllParkinglotState(){
 				$.ajax({
-					url:'parkingajax.mc',
+					url:'parkingajax2.mc',
 					type:"get",
 					success:function(data){
+						//alert(data[0].p_id);
 						parkingsituation='';
 						for(k=0;k<data.length;k++){
-							if(0<data[k].e_num && data[k].e_num<=10){
+							if(0<data[k].count && data[k].count<=10){
 								parkingsituation=parkingsituation+"<div class='col-sm-4 parkname2' style='text-align: center; height: 30px; background-color: yellow; color:white; margin: 10px; border-radius: 10px;'>"+data[k].p_id+"</div>"
-							}else if(10<data[k].e_num){
+							}else if(10<data[k].count){
 								parkingsituation=parkingsituation+"<div class='col-sm-4 parkname2' style='text-align: center; height: 30px; background-color: blue; color:white; margin: 10px; border-radius: 10px;'>"+data[k].p_id+"</div>"
-							}else if(data[k].e_num<=0){
+							}else if(data[k].count<=0){
 								parkingsituation=parkingsituation+"<div class='col-sm-4 parkname2' style='text-align: center; height: 30px; background-color: red; color:white; margin: 10px; border-radius: 10px;'>"+data[k].p_id+"</div>"
 							}
 						}
@@ -93,7 +95,7 @@
 						ViewP_areaState();
 					}
 				})
-			}	
+			}
 			
 			function ViewP_areaState(){
 				$(".parkname2").each(function() {
@@ -114,11 +116,13 @@
 								success:function(data){
 									//alert(data[0].state);
 									stateView="";
+									statecount=0;
 									for(i=0;i<data.length;i++){
 										if(data[i].state==0){
 											stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: blue; margin: 5px;'></div>"
 										}else if(data[i].state==1){
 											stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: red; margin: 5px;'></div>"
+											statecount=statecount+1
 										}
 									}
 									for(j=0;j<(45-(data.length));j++){
@@ -126,19 +130,26 @@
 									}
 									$(".spacebox").empty();
 						 			$(".spacebox").append(stateView);
+						 			$("#usingspace").empty();
+						 			$("#usingspace").append('사용중 주차공간:'+statecount);
+						 			$("#usablespace").empty();
+						 			$("#usablespace").append('잔여 주차공간:'+(data.length-statecount));
 									
 								}
 							})
-						}, 500);
+						}, 1000);
 					})
 				})
 			}
 		
+			
 			$(document).ready(function(){
-				
 				setInterval(function() {
 					AllParkinglotState();
 			       }, 1000);
+				
+				
+				
 			});
 		</script>
 	</head>
@@ -167,11 +178,27 @@
 							</div>
 						<%}%>
 					</div>
+					<div class="row" >
+						
+						<!-- vv----div 크기 확인용 보더 코드 -->
+						<!-- style="text-align: center; border: solid; balck; 2px; " -->
+					
+						<div class="col-sm-1"></div>
+						<div class="col-sm-5" id="usingspace">
+							사용중 주차공간:
+						</div>
+						
+						<div class="col-sm-5" id="usablespace">
+							잔여 주차공간:
+						</div>
+						
+					</div>
 				</div>
 			</div>
 			<div class="parkchart">
 				<p class="title">월별 이용자 현황</p>
 			</div>
+			
 		</div>
 	</body>
 </html>

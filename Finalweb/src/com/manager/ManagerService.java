@@ -50,6 +50,11 @@ public class ManagerService implements Service<String, ManagerVO>{
 	public ArrayList<ManagerVO> getstate(String P_id) throws Exception {
 		return null;
 	}
-	
+
+	@Override
+	public ArrayList<ManagerVO> getstateBy_p_id() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
