@@ -57,5 +57,4 @@ public class ManagerService implements Service<String, ManagerVO>{
 		return null;
 	}
 	
-	
 }

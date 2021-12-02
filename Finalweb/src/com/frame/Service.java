@@ -20,7 +20,6 @@ public interface Service<K,V> {
 	
 	public ArrayList<V> getstateBy_p_id() throws Exception;
 	
-	
 }
 
 

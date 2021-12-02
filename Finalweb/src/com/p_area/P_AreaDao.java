@@ -56,5 +56,4 @@ public class P_AreaDao implements Dao<String, P_AreaVO>{
 		return pam.getstateBy_p_id();
 	}
 	
-	
 }

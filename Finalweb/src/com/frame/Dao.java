@@ -15,5 +15,4 @@ public interface Dao<K,V> {
 	public ArrayList<V> getstate(K k);
 	
 	public ArrayList<V> getstateBy_p_id();
-	
 }

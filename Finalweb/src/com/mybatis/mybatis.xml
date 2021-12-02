@@ -19,6 +19,7 @@ PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
 		<mapper resource="com/mybatis/p_areamapper.xml"/>
 		<mapper resource="com/mybatis/parkingmapper.xml"/>
 	</mappers>
+	
 </configuration>
 
 

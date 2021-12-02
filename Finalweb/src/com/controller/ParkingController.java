@@ -103,7 +103,6 @@ public class ParkingController {
 	
 	
 	
-	
 //	@RequestMapping(value = "/parkingajax.mc", method = RequestMethod.GET,
 //			produces = "application/json;charset=utf-8" )
 //	public @ResponseBody ArrayList<ParkingVO> SituationCheck() {

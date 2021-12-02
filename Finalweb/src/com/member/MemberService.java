@@ -56,5 +56,4 @@ public class MemberService implements Service<String, MemberVO>{
 		return null;
 	}
 	
-	
 }

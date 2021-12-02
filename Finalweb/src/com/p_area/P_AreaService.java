@@ -56,5 +56,4 @@ public class P_AreaService implements Service<String, P_AreaVO>{
 		return dao.getstateBy_p_id();
 	}
 	
-	
 }

@@ -55,5 +55,4 @@ public class MemberDao implements Dao<String, MemberVO>{
 		return null;
 	}
 	
-	
 }

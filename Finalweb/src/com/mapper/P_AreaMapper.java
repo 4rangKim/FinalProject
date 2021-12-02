@@ -13,6 +13,7 @@ public interface P_AreaMapper {
 	public ArrayList<P_AreaVO> selectall();
 	public ArrayList<P_AreaVO> selectByP_id(String p_id);
 	public ArrayList<P_AreaVO> getstateBy_p_id();
+	
 }
 
 

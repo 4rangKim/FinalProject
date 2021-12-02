@@ -28,6 +28,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		select p_id, count(state) as count from p_area where state=0 group by p_id order by p_id asc
 	</select>
 	
+	
 </mapper>
 
 

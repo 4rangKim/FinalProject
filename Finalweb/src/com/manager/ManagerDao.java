@@ -55,5 +55,4 @@ public class ManagerDao implements Dao<String, ManagerVO>{
 		return null;
 	}
 	
-	
 }
