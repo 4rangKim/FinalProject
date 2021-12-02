@@ -15,6 +15,12 @@ public class P_AreaVO {
 		this.p_id = p_id;
 		this.state = state;
 	}
+	
+	public P_AreaVO(String area_id, int state) {
+		super();
+		this.area_id = area_id;
+		this.state = state;
+	}
 
 	public String getArea_id() {
 		return area_id;

@@ -25,6 +25,8 @@ import com.vo.ParkingVO;
 
 @Controller
 public class ParkingController {
+	String previous = "A10";
+	
 	@Resource(name="ParkingService")
 	Service<String, ParkingVO> service;
 	
@@ -95,6 +97,22 @@ public class ParkingController {
 	
 	return ParkingState;
 	
+	}
+	
+	@RequestMapping("/parkingArea.mc")
+	@ResponseBody
+	public void parkingArea(HttpServletRequest request) throws Exception {
+		String data = request.getParameter("parking");
+		System.out.println(data);
+		if(!data.equals(previous)) {
+			System.out.println("데이터 변경됨!!");
+			String area_id = data.substring(0,2); // A1
+			int state = Integer.parseInt(data.substring(2)); // 0
+			P_AreaVO changed = new P_AreaVO(area_id, state);
+			service2.modify(changed);
+			System.out.println("DB업데이트 완료");
+		}
+		previous = data;
 	}
 	
 }

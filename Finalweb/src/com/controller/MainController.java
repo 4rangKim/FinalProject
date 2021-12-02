@@ -70,11 +70,11 @@ public class MainController {
 		if(data == 1) {
 			CarVO car = new CarVO("38À°4104", "member");
 			carservice.register(car);
-			publish.send("final", data+"");
 			System.out.println("DBÀÔ·Â ¿Ï·á!!");
-		}else if(data == 0) {
-			publish.send("final", data+"");
-		}		
+		}else if(data == 0){
+			// OUT_TIME UPDATE
+		}
+		publish.send("final", data+"");
 	}
 }
 

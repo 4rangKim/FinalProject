@@ -1,4 +1,4 @@
-package exitGate;
+package exitGateAndParking;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -23,7 +23,7 @@ public class ConnectionServer {
 					ReceiveInputThread receive = new ReceiveInputThread(serialIn);
 					receive.connect();
 					try {
-						Thread.sleep(1000);
+						Thread.sleep(2000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
