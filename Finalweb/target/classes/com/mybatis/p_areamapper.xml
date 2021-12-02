@@ -20,6 +20,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM p_area
 	</select>
 	
+	<select id="selectByP_id" parameterType="String" resultType="p_area">
+		SELECT * FROM p_area WHERE p_id=#{p_id}	
+	</select>
+	
 </mapper>
 
 

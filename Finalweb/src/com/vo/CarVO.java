@@ -19,6 +19,11 @@ public class CarVO {
 		this.in_time = in_time;
 		this.out_time = out_time;
 	}
+	public CarVO(String car_num, String mem_id) {
+		super();
+		this.car_num = car_num;
+		this.mem_id = mem_id;
+	}
 
 	public String getCar_num() {
 		return car_num;

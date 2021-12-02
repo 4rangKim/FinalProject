@@ -22,20 +22,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.frame.Service;
 import com.manager.ManagerService;
+import com.vo.CarVO;
 import com.vo.ManagerVO;
 
 @Controller
 public class MainController {
+	Mqtt_Pub publish;
+	public MainController() {
+		publish = new Mqtt_Pub();
+	}
+	
 	@Resource(name="ManagerService")
 	Service<String, ManagerVO> service;
-//	MyMqtt_Pub_client client;
-//	private Logger data_log = 
-//			Logger.getLogger("data");
-//	
-//	public MainController() {
-//		client = new MyMqtt_Pub_client();
-//		
-//	}
+	
+	@Resource(name="CarService")
+	Service<String, CarVO> carservice;
 	
 	@RequestMapping("/login.mc")
 	public ModelAndView login() {
@@ -59,6 +60,21 @@ public class MainController {
 		mv.addObject("center", "Appmanage");
 		mv.setViewName("main");
 		return mv;
+	}
+	
+	@RequestMapping("/car.mc")
+	@ResponseBody
+	public void carin(HttpServletRequest request) throws Exception {
+		int data = Integer.parseInt(request.getParameter("car"));
+		System.out.println("data: "+data);
+		if(data == 1) {
+			CarVO car = new CarVO("38À°4104", "member");
+			carservice.register(car);
+			publish.send("final", data+"");
+			System.out.println("DBÀÔ·Â ¿Ï·á!!");
+		}else if(data == 0) {
+			publish.send("final", data+"");
+		}		
 	}
 }
 

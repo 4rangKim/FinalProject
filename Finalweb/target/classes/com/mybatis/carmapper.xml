@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.mapper.CarMapper">
 	
 	<insert id="insert" parameterType="car">
-		INSERT INTO car VALUES (#{car_num},#{mem_id},#{in_time},null)	
+		INSERT INTO car VALUES (#{car_num},#{mem_id},sysdate,null)	
 	</insert>
 	
 	<update id="update" parameterType="car">

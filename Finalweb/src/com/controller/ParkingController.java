@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.frame.Service;
+import com.vo.CarVO;
 import com.vo.ManagerVO;
 import com.vo.P_AreaVO;
 import com.vo.ParkingVO;
