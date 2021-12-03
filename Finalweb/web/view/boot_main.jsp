@@ -307,8 +307,8 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                <a class="navbar-brand" href="./"><img src="img/parkingpanda_font_logo.png" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./"><img src="img/logo_transparent.png" alt="Logo"></a>
                 <!-- <p class="navbar-brand" href="./"><h3 style="color: white;">Parking Admin</h3></p>
                 <p class="navbar-brand hidden" href="./"><h3 style="color: white;">P</h3></p> -->
             </div>
