@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ import com.vo.ParkingVO;
 @Controller
 public class ParkingController {
 	String previous = "A10";
+	private Logger parking_log = Logger.getLogger("data");
 	
 	@Resource(name="ParkingService")
 	Service<String, ParkingVO> service;
@@ -104,6 +106,7 @@ public class ParkingController {
 			P_AreaVO changed = new P_AreaVO(area_id, state);
 			service2.modify(changed);
 			System.out.println("DB업데이트 완료");
+			parking_log.debug(area_id+","+state);
 		}
 		previous = data;
 	}
