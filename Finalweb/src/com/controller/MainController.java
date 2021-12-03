@@ -49,8 +49,7 @@ public class MainController {
 	@RequestMapping("/main.mc")
 	public ModelAndView main(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("center", "center");
-		mv.setViewName("main");
+		mv.setViewName("boot_main");
 		return mv;
 	}
 	
