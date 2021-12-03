@@ -5,11 +5,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.mapper.CarMapper">
 	
 	<insert id="insert" parameterType="car">
-		INSERT INTO car VALUES (#{car_num},#{mem_id},sysdate,null)	
+		INSERT INTO car VALUES (car_seq.nextval,(select mem_id from member where mem_car1 = #{car_num}),#{p_id},#{car_num},sysdate,null,null,null)	
 	</insert>
 	
 	<update id="update" parameterType="car">
-		UPDATE car SET out_time=#{out_time} WHERE car_num=#{car_num}
+		UPDATE car SET out_time=sysdate WHERE car_num=#{car_num} AND out_time is null
 	</update>
 	
 	<select id="select" parameterType="String" 

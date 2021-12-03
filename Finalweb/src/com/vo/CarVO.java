@@ -5,6 +5,7 @@ import java.util.Date;
 public class CarVO {
 	public String car_num;
 	public String mem_id;
+	public String p_id;
 	public Date in_time;
 	public Date out_time;
 	
@@ -19,10 +20,16 @@ public class CarVO {
 		this.in_time = in_time;
 		this.out_time = out_time;
 	}
-	public CarVO(String car_num, String mem_id) {
+	
+	public CarVO(String p_id, String car_num) {
 		super();
-		this.car_num = car_num;
-		this.mem_id = mem_id;
+		this.p_id = p_id;
+		this.car_num = car_num;		
+	}
+	
+	public CarVO(String car_num) {
+		super();
+		this.car_num = car_num;		
 	}
 
 	public String getCar_num() {
