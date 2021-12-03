@@ -11,6 +11,8 @@ public interface MemberMapper {
 	public MemberVO select(String k);
 	public MemberVO login(MemberVO v);
 	public ArrayList<MemberVO> selectall();
+	public MemberVO idcheck(MemberVO v);
+	public MemberVO pwdcheck(MemberVO v);
 }
 
 

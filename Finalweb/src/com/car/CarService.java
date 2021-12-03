@@ -54,4 +54,17 @@ public class CarService implements Service<String, CarVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public CarVO idcheck(CarVO v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CarVO pwdcheck(CarVO v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

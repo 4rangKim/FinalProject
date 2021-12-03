@@ -54,5 +54,15 @@ public class MemberDao implements Dao<String, MemberVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public MemberVO idcheck(MemberVO v) {
+		return mem.idcheck(v);
+	}
+
+	@Override
+	public MemberVO pwdcheck(MemberVO v) {
+		return mem.pwdcheck(v);
+	}
 	
 }
