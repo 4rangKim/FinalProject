@@ -55,5 +55,17 @@ public class MemberService implements Service<String, MemberVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public MemberVO idcheck(MemberVO v) {
+		MemberVO idOk = dao.idcheck(v);
+		return idOk;
+	}
+
+	@Override
+	public MemberVO pwdcheck(MemberVO v) {
+		MemberVO pwdOk = dao.pwdcheck(v);
+		return pwdOk;
+	}
 	
 }

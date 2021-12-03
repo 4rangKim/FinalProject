@@ -55,5 +55,17 @@ public class P_AreaDao implements Dao<String, P_AreaVO>{
 		// TODO Auto-generated method stub
 		return pam.getstateBy_p_id();
 	}
+
+	@Override
+	public P_AreaVO idcheck(P_AreaVO v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public P_AreaVO pwdcheck(P_AreaVO v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

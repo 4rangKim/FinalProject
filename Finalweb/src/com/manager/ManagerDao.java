@@ -54,5 +54,17 @@ public class ManagerDao implements Dao<String, ManagerVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ManagerVO idcheck(ManagerVO v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ManagerVO pwdcheck(ManagerVO v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
