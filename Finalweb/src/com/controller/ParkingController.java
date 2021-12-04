@@ -103,11 +103,15 @@ public class ParkingController {
 			System.out.println("데이터 변경됨!!");
 			String area_id = data.substring(0,2); // A1
 			int state = Integer.parseInt(data.substring(2)); // 0
+			if(state == 0) {
+				
+			}
 			P_AreaVO changed = new P_AreaVO(area_id, state);
 			service2.modify(changed);
 			System.out.println("DB업데이트 완료");
 			parking_log.debug(area_id+","+state);
 		}
+		
 		previous = data;
 	}
 	

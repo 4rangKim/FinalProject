@@ -64,16 +64,20 @@ public class MainController {
 	@RequestMapping("/car.mc")
 	@ResponseBody
 	public void carin(HttpServletRequest request) throws Exception {
-		int data = Integer.parseInt(request.getParameter("car"));
+		String data = request.getParameter("car");
 		System.out.println("data: "+data);
-		if(data == 1) {
-			CarVO car = new CarVO("38육4104", "member");
+		if(data.substring(1).equals("In")) {
+			CarVO car = new CarVO(data.substring(0,1),"01가1234");
 			carservice.register(car);
 			System.out.println("DB입력 완료!!");
-		}else if(data == 0){
-			// OUT_TIME UPDATE
+			publish.send("final", 1+"");
+		}else if(data.equals("AOut")){
+			CarVO car = new CarVO("01가1234");
+			carservice.modify(car);
+			System.out.println("Out_time 업뎃 완료");
+			publish.send("final", 0+"");
 		}
-		publish.send("final", data+"");
+		
 	}
 }
 

@@ -19,13 +19,13 @@ public class Mqtt_Pub {
 		MqttMessage message = new MqttMessage();
 		message.setPayload(msg.getBytes()); 
 		try {
-			client.publish(topic, message); 
+			client.publish(topic, message);
+			System.out.println("Message Published");
 		} catch (MqttPersistenceException e) {
 			e.printStackTrace();
 		} catch (MqttException e) {
 			e.printStackTrace();
-		} 
-		System.out.println("Message Published");
+		} 		
 		return true;
 	}
 	

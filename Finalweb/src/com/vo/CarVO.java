@@ -29,12 +29,16 @@ public class CarVO {
 		this.in_photo = in_photo;
 		this.out_photo = out_photo;
 	}
-
-
-	public CarVO(String car_num, String mem_id) {
+	
+	public CarVO(String p_id, String car_num) {
 		super();
-		this.car_num = car_num;
-		this.mem_id = mem_id;
+		this.p_id = p_id;
+		this.car_num = car_num;		
+	}
+	
+	public CarVO(String car_num) {
+		super();
+		this.car_num = car_num;		
 	}
 
 	public int getCar_seq() {
