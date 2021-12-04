@@ -57,27 +57,27 @@ public class ParkingController {
 	public @ResponseBody ArrayList<P_AreaVO> SituationCheck() {
 		
 		/* ===============vv랜덤수로 테스트 하는 코드vv================*/
-//		for(char i = 'A'; i<='H'; i++) {
-//			
-//			String str_i = String.valueOf(i);
-//			
-//			Random random = new Random();
-//			int state = random.nextInt(2);
-//			int ran_parea = random.nextInt(2);
-//			int ran_parea2 = random.nextInt(9)+1;
-//			
-//			//char ranalpha = (char) ((Math.random() * 8) + 65);
-//			//String ranAlpha = String.valueOf(ranalpha);
-//			
-//			P_AreaVO randomvalueforP_erea = new P_AreaVO(str_i+ran_parea+""+ran_parea2+"", str_i, state);
-//			
-//			try {
-//				service2.modify(randomvalueforP_erea);
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
+		for(char i = 'A'; i<='H'; i++) {
+			
+			String str_i = String.valueOf(i);
+			
+			Random random = new Random();
+			int state = random.nextInt(2);
+			int ran_parea = random.nextInt(2);
+			int ran_parea2 = random.nextInt(9)+1;
+			
+			//char ranalpha = (char) ((Math.random() * 8) + 65);
+			//String ranAlpha = String.valueOf(ranalpha);
+			
+			P_AreaVO randomvalueforP_erea = new P_AreaVO(str_i+ran_parea+""+ran_parea2+"", str_i, state);
+			
+			try {
+				service2.modify(randomvalueforP_erea);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		/* ===============^^랜덤수로 테스트 하는 코드^^================*/
 		
 		
