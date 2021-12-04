@@ -39,7 +39,7 @@
 						//$(".parkname2").css('color','');
 						//$(this).css('color','purple');
 						$("#parkingTitle").text(p_id+'주차장');
-						$("#SelectedParkinglot").text('선택된 주차장: '+p_id);
+						//$("#SelectedParkinglot").text('선택된 주차장: '+p_id);
 						//alert(p_id);
 						
 						setInterval(function(){
@@ -77,14 +77,14 @@
 									
 								}
 							})
-						}, 1000);
+						}, 2000);
 					})
 				})
 			}
 			
 			
 			
-			function drawchart(){
+			function displaychart(){
 				
 				var colors = Highcharts.getOptions().colors;
 
@@ -224,13 +224,15 @@
 			
 			
 			function getdataforCHART(){
-				drawchart();
+				/* $.ajax({
+					url:'trafficChart.mc',
+					success:function(d){
+						displaychart(d);
+					}
+				}) */
+				
+				displaychart();
 			}
-		
-			
-			
-			
-			
 			
 			
 			$(document).ready(function(){
@@ -239,9 +241,7 @@
 				
 				setInterval(function() {
 					AllParkinglotState();
-			       }, 1000);
-				
-				
+			       },2000);
 				
 			});
 		</script>
