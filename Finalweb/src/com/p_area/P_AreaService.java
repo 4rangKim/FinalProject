@@ -67,5 +67,15 @@ public class P_AreaService implements Service<String, P_AreaVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void pointcharge(P_AreaVO v) {
+	}
+
+	@Override
+	public String pointselect(String k) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

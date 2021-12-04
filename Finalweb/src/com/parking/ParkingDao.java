@@ -66,5 +66,15 @@ public class ParkingDao implements Dao<String, ParkingVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void pointcharge(ParkingVO v) {
+	}
+
+	@Override
+	public String pointselect(String k) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

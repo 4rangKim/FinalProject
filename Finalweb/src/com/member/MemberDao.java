@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.frame.Dao;
 import com.mapper.MemberMapper;
 import com.vo.MemberVO;
+import com.vo.PayVO;
 
 @Repository("MemberDao")
 public class MemberDao implements Dao<String, MemberVO>{
@@ -63,6 +64,16 @@ public class MemberDao implements Dao<String, MemberVO>{
 	@Override
 	public MemberVO pwdcheck(MemberVO v) {
 		return mem.pwdcheck(v);
+	}
+
+	@Override
+	public void pointcharge(MemberVO v) {
+	}
+
+	@Override
+	public String pointselect(String k) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

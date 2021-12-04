@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.vo.ParkingVO;
 
 public interface Service<K,V> {
 	@Transactional
@@ -20,7 +19,8 @@ public interface Service<K,V> {
 	public ArrayList<V> getstateBy_p_id() throws Exception;
 	public V idcheck(V v);
 	public V pwdcheck(V v);
-	
+	public void pointcharge(V v);
+	public K pointselect(K k);
 }
 
 

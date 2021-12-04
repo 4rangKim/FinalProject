@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
 		<typeAlias type="com.vo.P_AreaVO" alias="p_area"/>
 		<typeAlias type="com.vo.ParkingVO" alias="parking"/>
 		<typeAlias type="com.vo.P_Area_ResultVo" alias="p_area_result"/>
+		<typeAlias type="com.vo.PayVO" alias="pay"/>
 	</typeAliases>
 	
 	<mappers>
@@ -18,6 +19,7 @@ PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
 		<mapper resource="com/mybatis/membermapper.xml"/>
 		<mapper resource="com/mybatis/p_areamapper.xml"/>
 		<mapper resource="com/mybatis/parkingmapper.xml"/>
+		<mapper resource="com/mybatis/paymapper.xml"/>
 	</mappers>
 	
 </configuration>

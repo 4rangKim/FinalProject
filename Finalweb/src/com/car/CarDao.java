@@ -68,6 +68,16 @@ public class CarDao implements Dao<String, CarVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void pointcharge(CarVO v) {
+	}
+
+	@Override
+	public String pointselect(String k) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

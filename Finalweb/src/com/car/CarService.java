@@ -66,5 +66,15 @@ public class CarService implements Service<String, CarVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void pointcharge(CarVO v) {
+	}
+
+	@Override
+	public String pointselect(String k) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

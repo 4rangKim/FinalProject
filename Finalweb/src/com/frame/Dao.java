@@ -2,8 +2,6 @@ package com.frame;
 
 import java.util.ArrayList;
 
-import com.vo.CarVO;
-import com.vo.ParkingVO;
 
 public interface Dao<K,V> {
 	public void insert(V v) throws Exception;
@@ -16,4 +14,6 @@ public interface Dao<K,V> {
 	public ArrayList<V> getstateBy_p_id();
 	public V idcheck(V v);
 	public V pwdcheck(V v);
+	public void pointcharge(V v);
+	public K pointselect(K k);
 }
