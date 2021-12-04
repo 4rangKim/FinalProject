@@ -35,7 +35,7 @@ public class ManagerController {
 		ManagerVO managerOk = service.login(v);
 		System.out.println(managerOk);
 		if(managerOk!=null) {
-			mv.setViewName("boot_main");
+			mv.setViewName("mainpage");
 		}else {
 			mv.setViewName("login");
 		}

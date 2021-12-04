@@ -45,19 +45,36 @@ public class MainController {
 		return mv;
 	}
 	
+	@RequestMapping("/logout.mc")
+	public ModelAndView loggout(HttpSession ses) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		if(ses!=null) {
+			//세션객체가 있으면 세션객체를 없애기
+			ses.invalidate();
+		}
+		mv.setViewName("login");
+		return mv;
+	}
 	
 	@RequestMapping("/main.mc")
 	public ModelAndView main(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("boot_main");
+		mv.setViewName("mainpage");
 		return mv;
 	}
 	
-	@RequestMapping("/user.mc")
-	public ModelAndView userdetail(HttpServletRequest request) {
+	@RequestMapping("/pkuser.mc")
+	public ModelAndView pkuserdetail(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("center", "Appmanage");
-		mv.setViewName("main");
+		mv.addObject("center", "pkuser");
+		mv.setViewName("mainpage");
+		return mv;
+	}
+	@RequestMapping("/appuser.mc")
+	public ModelAndView appuserdetail(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("center", "appuser");
+		mv.setViewName("mainpage");
 		return mv;
 	}
 	
@@ -78,6 +95,19 @@ public class MainController {
 			publish.send("final", 0+"");
 		}
 		
+	}
+	@RequestMapping("/CarInImg.mc")
+	public ModelAndView carInImg(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("ImgPopup");
+		return mv;
+	}
+	
+	@RequestMapping("/CarOutImg.mc")
+	public ModelAndView carOutImg(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("ImgPopup");
+		return mv;
 	}
 }
 
