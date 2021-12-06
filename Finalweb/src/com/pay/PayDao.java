@@ -83,7 +83,7 @@ public class PayDao implements Dao<String, PayVO>{
 
 	@Override
 	public void pay(PayVO v) {
-		pm.pay(v);		
+		pm.pay(v);
 	}
 	
 

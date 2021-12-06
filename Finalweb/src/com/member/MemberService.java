@@ -14,8 +14,6 @@ public class MemberService implements Service<String, MemberVO>{
 
 	@Resource(name="MemberDao")
 	Dao<String,MemberVO> dao;
-	@Resource(name="PayDao")
-	Dao<String,PayVO> dao1;
 
 	@Override
 	public void register(MemberVO v) throws Exception {

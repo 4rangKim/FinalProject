@@ -52,6 +52,13 @@ public class MemberVO {
 		this.mem_id = mem_id;
 		this.mem_pwd = mem_pwd;
 	}
+	
+	public MemberVO(String mem_id, String mem_pwd, String car_num) {
+		super();
+		this.mem_id = mem_id;
+		this.mem_pwd = mem_pwd;
+		this.mem_car2 = car_num;
+	}
 
 	public String getMem_car1() {
 		return mem_car1;

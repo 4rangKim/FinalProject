@@ -25,9 +25,10 @@ public class MemberDao implements Dao<String, MemberVO>{
 		mem.delete(k);
 	}
 
+	
 	@Override
 	public void update(MemberVO v) throws Exception {
-		mem.update(v);
+		mem.carinsert(v);
 	}
 
 	@Override
