@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.mapper.CarMapper">
 	
 	<insert id="insert" parameterType="car">
-		INSERT INTO car VALUES (car_seq.nextval,(select mem_id from member where mem_car1 = #{car_num}),#{p_id},#{car_num},sysdate,null,null,null)	
+		INSERT INTO car VALUES (car_seq.nextval,(select mem_id from member where mem_car1 = #{car_num}),#{p_id},#{car_num},sysdate,null,null,null,3000)	
 	</insert>
 	
 	<update id="update" parameterType="car">
@@ -19,6 +19,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	
 	<select id="selectall" resultType="car">
 		SELECT * FROM car
+	</select>
+	
+	<select id="seePayment" parameterType="String" resultType="int">
+		SELECT ceil((sysdate - in_time)*24*60) FROM CAR WHERE MEM_ID = #{mem_id} and out_time is null
 	</select>
 	
 </mapper>

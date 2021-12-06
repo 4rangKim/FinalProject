@@ -22,12 +22,18 @@ public class SendHttpThread {
 			
 			@Override
 			public void run() {
-				if(data != null && data != "") {
+				if(data.length()<=3) {
 					System.out.println("쓰레드안의 데이터: "+data);
 					try {					
 						if(data.equals("0")) {
-							urlmapping = "http://192.168.0.140/Finalweb/car.mc";
-							url = new URL(urlmapping+"?car=AOut");
+							urlmapping = "http://192.168.0.140/Finalweb/seePayment.mc";
+							url = new URL(urlmapping);
+							connect = (HttpURLConnection) url.openConnection();
+							connect.setReadTimeout(5000);
+							connect.setRequestMethod("POST");
+							br = new BufferedReader(new InputStreamReader(connect.getInputStream()));
+//							urlmapping = "http://192.168.0.140/Finalweb/car.mc";
+//							url = new URL(urlmapping+"?car=AOut");
 						}else if(data.equals("A10") || data.equals("A11")) {
 							urlmapping = "http://192.168.0.140/Finalweb/parkingArea.mc";
 							url = new URL(urlmapping+"?parking="+data);						

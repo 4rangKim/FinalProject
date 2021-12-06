@@ -66,5 +66,11 @@ public class CarService implements Service<String, CarVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int seePayment(String k) {
+		return dao.seePayment(k);
+	}
+
 	
 }

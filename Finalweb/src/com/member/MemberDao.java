@@ -64,5 +64,13 @@ public class MemberDao implements Dao<String, MemberVO>{
 	public MemberVO pwdcheck(MemberVO v) {
 		return mem.pwdcheck(v);
 	}
+
+	@Override
+	public int seePayment(String k) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 	
 }

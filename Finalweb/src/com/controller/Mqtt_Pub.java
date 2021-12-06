@@ -9,8 +9,9 @@ public class Mqtt_Pub {
 	private MqttClient client;
 	public Mqtt_Pub(){
 		try {
-			client = new MqttClient("tcp://192.168.0.140:1883", "final");
+			client = new MqttClient("tcp://192.168.0.140:1883", "PC_Publishing");
 			client.connect();
+			System.out.println("MQTT Connected");
 		} catch (MqttException e) {
 			e.printStackTrace();
 		}

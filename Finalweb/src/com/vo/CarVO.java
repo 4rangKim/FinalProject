@@ -11,6 +11,8 @@ public class CarVO {
 	public Date out_time;
 	public String in_photo;
 	public String out_photo;
+	public int payment;
+	
 	
 	public CarVO() {
 		
@@ -29,18 +31,18 @@ public class CarVO {
 		this.in_photo = in_photo;
 		this.out_photo = out_photo;
 	}
-	
+	//차 들어왔을 때 register용
 	public CarVO(String p_id, String car_num) {
 		super();
 		this.p_id = p_id;
 		this.car_num = car_num;		
 	}
-	
+	//차 나갈때 Out_time 업데이트용
 	public CarVO(String car_num) {
 		super();
 		this.car_num = car_num;		
 	}
-
+	
 	public int getCar_seq() {
 		return car_seq;
 	}
@@ -112,7 +114,14 @@ public class CarVO {
 	public void setOut_time(Date out_time) {
 		this.out_time = out_time;
 	}
+	
+	public int getPayment() {
+		return payment;
+	}
 
+	public void setPayment(int payment) {
+		this.payment = payment;
+	}
 
 	@Override
 	public String toString() {

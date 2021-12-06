@@ -11,6 +11,7 @@ public interface CarMapper {
 	public void update(CarVO obj);
 	public CarVO select(String obj);
 	public ArrayList<CarVO> selectall();
+	public int seePayment(String id);
 }
 
 

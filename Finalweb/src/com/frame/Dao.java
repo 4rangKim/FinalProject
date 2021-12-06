@@ -16,4 +16,5 @@ public interface Dao<K,V> {
 	public ArrayList<V> getstateBy_p_id();
 	public V idcheck(V v);
 	public V pwdcheck(V v);
+	public int seePayment(K k);
 }

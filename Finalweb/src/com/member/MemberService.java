@@ -67,5 +67,13 @@ public class MemberService implements Service<String, MemberVO>{
 		MemberVO pwdOk = dao.pwdcheck(v);
 		return pwdOk;
 	}
+
+	@Override
+	public int seePayment(String k) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 	
 }

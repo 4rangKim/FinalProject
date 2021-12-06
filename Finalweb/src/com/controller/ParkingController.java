@@ -39,15 +39,14 @@ public class ParkingController {
 	@RequestMapping(value = "/p_areaAjax.mc", method = RequestMethod.GET,
 			produces = "application/json;charset=utf-8" )
 	public @ResponseBody ArrayList<P_AreaVO> idCheck(String p_id) {
-		System.out.println(p_id);
+//		System.out.println(p_id);
 		ArrayList<P_AreaVO> STATEListByP_id = null;
 		try {
 			STATEListByP_id = (ArrayList<P_AreaVO>)service2.getstate(p_id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(STATEListByP_id);
+//		System.out.println(STATEListByP_id);
 	return STATEListByP_id;
 	
 	}
@@ -85,7 +84,6 @@ public class ParkingController {
 		try {
 			ParkingState = (ArrayList<P_AreaVO>)service2.getstateBy_p_id();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//System.out.println(ParkingState+"이거 맞쥬?");
@@ -98,14 +96,11 @@ public class ParkingController {
 	@ResponseBody
 	public void parkingArea(HttpServletRequest request) throws Exception {
 		String data = request.getParameter("parking");
-		System.out.println(data);
+		System.out.println("parking컨트롤러의 data: "+data);
 		if(!data.equals(previous)) {
 			System.out.println("데이터 변경됨!!");
 			String area_id = data.substring(0,2); // A1
 			int state = Integer.parseInt(data.substring(2)); // 0
-			if(state == 0) {
-				
-			}
 			P_AreaVO changed = new P_AreaVO(area_id, state);
 			service2.modify(changed);
 			System.out.println("DB업데이트 완료");

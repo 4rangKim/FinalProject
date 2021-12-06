@@ -20,7 +20,7 @@ public interface Service<K,V> {
 	public ArrayList<V> getstateBy_p_id() throws Exception;
 	public V idcheck(V v);
 	public V pwdcheck(V v);
-	
+	public int seePayment(K k);
 }
 
 

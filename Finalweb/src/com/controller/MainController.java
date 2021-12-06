@@ -2,6 +2,7 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -78,6 +79,18 @@ public class MainController {
 			publish.send("final", 0+"");
 		}
 		
+	}
+	@RequestMapping("/seePayment.mc")
+	@ResponseBody
+	public int payment(String mem_id) {
+		int charge = 3000;
+		int time = carservice.seePayment(mem_id);
+		if(time > 30) {
+			time -= 30;
+			int extra = (int)Math.ceil((double)time/10);
+			charge += extra * 500;
+		}
+		return charge;
 	}
 }
 

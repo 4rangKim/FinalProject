@@ -11,6 +11,7 @@ public class ConnectionServer {
 	public ConnectionServer() {
 		serialObj = new ArduinoSerial();
 		serialObj.connect("COM4");
+		serialOut = serialObj.getOutput();
 	}
 	
 	public void connect() {
@@ -20,10 +21,10 @@ public class ConnectionServer {
 			public void run() {
 				while(true) {
 					InputStream serialIn = serialObj.getInput();
-					ReceiveInputThread receive = new ReceiveInputThread(serialIn);
+					ReceiveInputThread receive = new ReceiveInputThread(serialIn, serialOut);
 					receive.connect();
 					try {
-						Thread.sleep(2000);
+						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}

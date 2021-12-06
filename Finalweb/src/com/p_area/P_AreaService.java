@@ -67,5 +67,13 @@ public class P_AreaService implements Service<String, P_AreaVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int seePayment(String k) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 	
 }

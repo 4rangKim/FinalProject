@@ -70,5 +70,13 @@ public class ParkingService implements Service<String, ParkingVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int seePayment(String k) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 	
 }
