@@ -6,6 +6,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="member">
 		INSERT INTO member VALUES (#{mem_id},#{mem_pwd},#{mem_name},#{mem_tel},#{mem_money},#{mem_car1},#{mem_car2})	
 	</insert>
+	<update id="carinsert" parameterType="member">
+		update member set mem_car2=#{mem_car2} where mem_id=#{mem_id}
+	</update>
 	<delete id="delete" parameterType="String">
 		DELETE FROM member WHERE mem_id=#{mem_id}
 	</delete>

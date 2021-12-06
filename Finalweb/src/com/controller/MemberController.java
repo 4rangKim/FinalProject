@@ -35,9 +35,9 @@ public class MemberController {
 		String mem_name = request.getParameter("name");
 		int mem_tel = Integer.parseInt(request.getParameter("tel")); 
 		int mem_money=0;
-		String mem_carnum = request.getParameter("carNum");
-		String mem_carnum2 = "";
-		MemberVO v = new MemberVO(mem_id, mem_pwd, mem_name, mem_tel, mem_money, mem_carnum, mem_carnum2);
+		String mem_car = request.getParameter("carNum");
+		String mem_car2 = "";
+		MemberVO v = new MemberVO(mem_id, mem_pwd, mem_name, mem_tel, mem_money, mem_car, mem_car2);
 		System.out.println(v);
 		try {
 			service.register(v);
@@ -48,18 +48,25 @@ public class MemberController {
 	
 	@RequestMapping("/userlogin.mc")
 	@ResponseBody
-	public int login(HttpServletRequest request) {
+	public String login(HttpServletRequest request) {
 		String mem_id = request.getParameter("id"); 
 		String mem_pwd = request.getParameter("pwd");
 		MemberVO v = new MemberVO(mem_id, mem_pwd);
 		System.out.println(v);
 		MemberVO userOk = service.login(v);
 		System.out.println(userOk);
-		int result;
+		MemberVO user = null;
+		String result ="";
 		if(userOk!=null) {
-			result = 1;
+			try {
+				user = service.get(mem_id);
+				result = "[{'mem_id':'"+user.getMem_id()+"','mem_pwd':'"+user.getMem_pwd()+"','mem_name':'"+user.getMem_name()+"','mem_tel':'"+user.getMem_tel()+"','mem_money':'"+user.getMem_money()+"','mem_car1':'"+user.getMem_car1()+"','mem_car2':'"+user.getMem_car2()+"'}]";
+				System.out.println(result);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else {
-			result =0;
+			result = null;
 		}
 		return result;
 	}
@@ -121,6 +128,25 @@ public class MemberController {
 			result = pwdOk.getMem_pwd();
 		}else {
 			result = "fail";
+		}
+		return result;
+	}
+	
+	@RequestMapping("/carinsert.mc")
+	@ResponseBody
+	public MemberVO carinsert(HttpServletRequest request) {
+		System.out.println("carinsert»£√‚");
+		String mem_id = request.getParameter("id"); 
+		String mem_pwd = request.getParameter("pwd");
+		String mem_car2 = request.getParameter("carNum");
+		MemberVO v = new MemberVO(mem_id, mem_pwd , mem_car2);
+		System.out.println(v);
+		MemberVO result = null;
+		try {
+			service.modify(v);
+			result = service.get(mem_id);
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 		return result;
 	}

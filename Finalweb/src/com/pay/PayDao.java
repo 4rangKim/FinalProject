@@ -74,6 +74,12 @@ public class PayDao implements Dao<String, PayVO>{
 	public String pointselect(String k) {
 		return pm.pointselect(k);
 	}
+
+	@Override
+	public int seePayment(String k) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 	

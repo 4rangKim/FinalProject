@@ -71,6 +71,12 @@ public class PayService implements Service<String, PayVO>{
 	public String pointselect(String k) {
 		return dao.pointselect(k);
 	}
+
+	@Override
+	public int seePayment(String k) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 }
