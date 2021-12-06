@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.vo.ParkingVO;
 
 public interface Service<K,V> {
 	@Transactional
@@ -21,6 +20,8 @@ public interface Service<K,V> {
 	public V idcheck(V v);
 	public V pwdcheck(V v);
 	public int seePayment(K k);
+	public void pointcharge(V v);
+	public K pointselect(K k);
 }
 
 

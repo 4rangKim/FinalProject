@@ -72,5 +72,13 @@ public class CarService implements Service<String, CarVO>{
 		return dao.seePayment(k);
 	}
 
+	public void pointcharge(CarVO v) {
+	}
+
+	@Override
+	public String pointselect(String k) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

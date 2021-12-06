@@ -7,12 +7,15 @@ import javax.annotation.Resource;
 import com.frame.Dao;
 import com.frame.Service;
 import com.vo.MemberVO;
+import com.vo.PayVO;
 
 @org.springframework.stereotype.Service("MemberService")
 public class MemberService implements Service<String, MemberVO>{
 
 	@Resource(name="MemberDao")
 	Dao<String,MemberVO> dao;
+	@Resource(name="PayDao")
+	Dao<String,PayVO> dao1;
 
 	@Override
 	public void register(MemberVO v) throws Exception {
@@ -74,6 +77,12 @@ public class MemberService implements Service<String, MemberVO>{
 		return 0;
 	}
 
-	
-	
+	public void pointcharge(MemberVO v) {
+	}
+
+	@Override
+	public String pointselect(String k) {
+		// TODO Auto-generated method stub
+		return null;
+	}	
 }

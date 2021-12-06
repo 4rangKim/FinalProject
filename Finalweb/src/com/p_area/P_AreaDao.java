@@ -74,4 +74,13 @@ public class P_AreaDao implements Dao<String, P_AreaVO>{
 		return 0;
 	}
 
+	public void pointcharge(P_AreaVO v) {
+	}
+
+	@Override
+	public String pointselect(String k) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

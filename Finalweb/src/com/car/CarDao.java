@@ -74,4 +74,13 @@ public class CarDao implements Dao<String, CarVO>{
 		return cm.seePayment(k);
 	}
 	
+	public void pointcharge(CarVO v) {
+	}
+
+	@Override
+	public String pointselect(String k) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

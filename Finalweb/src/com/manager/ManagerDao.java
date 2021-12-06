@@ -73,5 +73,13 @@ public class ManagerDao implements Dao<String, ManagerVO>{
 		return 0;
 	}
 
-		
+	public void pointcharge(ManagerVO v) {
+	}
+
+	@Override
+	public String pointselect(String k) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

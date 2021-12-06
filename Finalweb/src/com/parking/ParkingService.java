@@ -77,6 +77,13 @@ public class ParkingService implements Service<String, ParkingVO>{
 		return 0;
 	}
 
-	
+	public void pointcharge(ParkingVO v) {
+	}
+
+	@Override
+	public String pointselect(String k) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
