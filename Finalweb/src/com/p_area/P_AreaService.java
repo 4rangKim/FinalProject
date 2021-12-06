@@ -51,35 +51,36 @@ public class P_AreaService implements Service<String, P_AreaVO>{
 	}
 
 	@Override
-	public ArrayList<P_AreaVO> getstateBy_p_id() throws Exception {
-		// TODO Auto-generated method stub
+	public ArrayList<P_AreaVO> getstateBy_p_id() throws Exception {		
 		return dao.getstateBy_p_id();
 	}
 
 	@Override
-	public P_AreaVO idcheck(P_AreaVO v) {
-		// TODO Auto-generated method stub
+	public P_AreaVO idcheck(P_AreaVO v) {		
 		return null;
 	}
 
 	@Override
-	public P_AreaVO pwdcheck(P_AreaVO v) {
-		// TODO Auto-generated method stub
+	public P_AreaVO pwdcheck(P_AreaVO v) {		
 		return null;
 	}
 
 	@Override
-	public int seePayment(String k) {
-		// TODO Auto-generated method stub
-		return 0;
+	public String seePayment(String k) {		
+		return null;
+	}
+	
+	@Override
+	public void pay(P_AreaVO v) {		
+		
 	}
 
 	public void pointcharge(P_AreaVO v) {
+		
 	}
 
 	@Override
-	public String pointselect(String k) {
-		// TODO Auto-generated method stub
+	public String pointselect(String k) {		
 		return null;
 	}
 

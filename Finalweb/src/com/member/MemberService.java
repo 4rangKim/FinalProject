@@ -54,8 +54,7 @@ public class MemberService implements Service<String, MemberVO>{
 	}
 
 	@Override
-	public ArrayList<MemberVO> getstateBy_p_id() throws Exception {
-		// TODO Auto-generated method stub
+	public ArrayList<MemberVO> getstateBy_p_id() throws Exception {		
 		return null;
 	}
 
@@ -72,17 +71,21 @@ public class MemberService implements Service<String, MemberVO>{
 	}
 
 	@Override
-	public int seePayment(String k) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public void pointcharge(MemberVO v) {
+	public String seePayment(String k) {		
+		return null;
 	}
 
 	@Override
-	public String pointselect(String k) {
-		// TODO Auto-generated method stub
+	public void pay(MemberVO v) {
+			
+	}
+
+	public void pointcharge(MemberVO v) {
+		
+	}
+
+	@Override
+	public String pointselect(String k) {		
 		return null;
 	}	
 }

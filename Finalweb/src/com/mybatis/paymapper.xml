@@ -9,27 +9,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="pointselect" parameterType="String" resultType="String">
 		SELECT mem_money FROM member where mem_id=#{mem_id}
 	</select>
-	
+	<update id="pay" parameterType="pay">
+		update member set mem_money=mem_money-#{mem_money} where mem_id=#{mem_id}
+	</update>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

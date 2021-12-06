@@ -1,30 +1,19 @@
 package com.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.frame.Service;
-import com.manager.ManagerService;
 import com.vo.CarVO;
 import com.vo.ManagerVO;
+import com.vo.MemberVO;
+import com.vo.PayVO;
 
 @Controller
 public class MainController {
@@ -33,11 +22,14 @@ public class MainController {
 		publish = new Mqtt_Pub();
 	}
 	
+	@Resource(name="PayService")
+	Service<String, PayVO> payService;
+	
 	@Resource(name="ManagerService")
 	Service<String, ManagerVO> service;
 	
 	@Resource(name="CarService")
-	Service<String, CarVO> carservice;
+	Service<String, CarVO> carService;
 	
 	@RequestMapping("/login.mc")
 	public ModelAndView login() {
@@ -86,28 +78,15 @@ public class MainController {
 		System.out.println("data: "+data);
 		if(data.substring(1).equals("In")) {
 			CarVO car = new CarVO(data.substring(0,1),"01가1234");
-			carservice.register(car);
+			carService.register(car);
 			System.out.println("DB입력 완료!!");
 			publish.send("final", 1+"");
 		}else if(data.equals("AOut")){
 			CarVO car = new CarVO("01가1234");
-			carservice.modify(car);
+			carService.modify(car);
 			System.out.println("Out_time 업뎃 완료");
 			publish.send("final", 0+"");
-		}
-		
-	}
-	@RequestMapping("/seePayment.mc")
-	@ResponseBody
-	public int payment(String mem_id) {
-		int charge = 3000;
-		int time = carservice.seePayment(mem_id);
-		if(time > 30) {
-			time -= 30;
-			int extra = (int)Math.ceil((double)time/10);
-			charge += extra * 500;
-		}
-		return charge;
+		}		
 	}
 	
 	@RequestMapping("/CarInImg.mc")

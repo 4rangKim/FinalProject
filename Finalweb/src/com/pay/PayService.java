@@ -17,14 +17,17 @@ public class PayService implements Service<String, PayVO>{
 
 	@Override
 	public void register(PayVO v) throws Exception {
+		
 	}
 
 	@Override
 	public void remove(String k) throws Exception {
+		
 	}
 
 	@Override
 	public void modify(PayVO v) throws Exception {
+		
 	}
 
 	@Override
@@ -70,6 +73,16 @@ public class PayService implements Service<String, PayVO>{
 	@Override
 	public String pointselect(String k) {
 		return dao.pointselect(k);
+	}
+
+	@Override
+	public String seePayment(String k) {		
+		return null;
+	}
+
+	@Override
+	public void pay(PayVO v) {
+		dao.pay(v);		
 	}
 	
 	

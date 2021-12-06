@@ -51,8 +51,7 @@ public class MemberDao implements Dao<String, MemberVO>{
 	}
 
 	@Override
-	public ArrayList<MemberVO> getstateBy_p_id() {
-		// TODO Auto-generated method stub
+	public ArrayList<MemberVO> getstateBy_p_id() {		
 		return null;
 	}
 
@@ -67,17 +66,21 @@ public class MemberDao implements Dao<String, MemberVO>{
 	}
 
 	@Override
-	public int seePayment(String k) {
-		// TODO Auto-generated method stub
-		return 0;
+	public String seePayment(String k) {		
+		return null;
 	}
 	
+	@Override
+	public void pay(MemberVO v) {
+		
+	}
+
 	public void pointcharge(MemberVO v) {
+		
 	}
 
 	@Override
-	public String pointselect(String k) {
-		// TODO Auto-generated method stub
+	public String pointselect(String k) {		
 		return null;
 	}
 	

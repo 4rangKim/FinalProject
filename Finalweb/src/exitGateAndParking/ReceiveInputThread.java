@@ -23,7 +23,7 @@ public class ReceiveInputThread {
 					if((len=serialIn.read(buffer)) > 0){
 						String data = new String(buffer, 0 ,len);
 						System.out.println("data:"+data);
-						SendHttpThread send = new SendHttpThread(data.trim());
+						SendHttpThread send = new SendHttpThread(data.trim(), serialOut);
 						send.sendHttp();					
 					}
 				} catch (IOException e) {

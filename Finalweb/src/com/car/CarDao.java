@@ -52,34 +52,36 @@ public class CarDao implements Dao<String, CarVO>{
 	}
 
 	@Override
-	public ArrayList<CarVO> getstateBy_p_id() {
-		// TODO Auto-generated method stub
+	public ArrayList<CarVO> getstateBy_p_id() {		
 		return null;
 	}
 
 	@Override
-	public CarVO idcheck(CarVO v) {
-		// TODO Auto-generated method stub
+	public CarVO idcheck(CarVO v) {		
 		return null;
 	}
 
 	@Override
-	public CarVO pwdcheck(CarVO v) {
-		// TODO Auto-generated method stub
+	public CarVO pwdcheck(CarVO v) {		
 		return null;
 	}
 
 	@Override
-	public int seePayment(String k) {
+	public String seePayment(String k) {
 		return cm.seePayment(k);
 	}
 	
+	@Override
+	public void pay(CarVO v) {		
+		
+	}
+
 	public void pointcharge(CarVO v) {
+		
 	}
 
 	@Override
-	public String pointselect(String k) {
-		// TODO Auto-generated method stub
+	public String pointselect(String k) {		
 		return null;
 	}
 	

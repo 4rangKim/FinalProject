@@ -19,7 +19,8 @@ public interface Service<K,V> {
 	public ArrayList<V> getstateBy_p_id() throws Exception;
 	public V idcheck(V v);
 	public V pwdcheck(V v);
-	public int seePayment(K k);
+	public String seePayment(K k);
+	public void pay(V v);
 	public void pointcharge(V v);
 	public K pointselect(K k);
 }

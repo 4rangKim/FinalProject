@@ -50,35 +50,36 @@ public class ManagerDao implements Dao<String, ManagerVO>{
 	}
 
 	@Override
-	public ArrayList<ManagerVO> getstateBy_p_id() {
-		// TODO Auto-generated method stub
+	public ArrayList<ManagerVO> getstateBy_p_id() {		
 		return null;
 	}
 
 	@Override
-	public ManagerVO idcheck(ManagerVO v) {
-		// TODO Auto-generated method stub
+	public ManagerVO idcheck(ManagerVO v) {		
 		return null;
 	}
 
 	@Override
-	public ManagerVO pwdcheck(ManagerVO v) {
-		// TODO Auto-generated method stub
+	public ManagerVO pwdcheck(ManagerVO v) {		
 		return null;
 	}
 
 	@Override
-	public int seePayment(String k) {
-		// TODO Auto-generated method stub
-		return 0;
+	public String seePayment(String k) {		
+		return null;
+	}
+	
+	@Override
+	public void pay(ManagerVO v) {		
+		
 	}
 
 	public void pointcharge(ManagerVO v) {
+		
 	}
 
 	@Override
-	public String pointselect(String k) {
-		// TODO Auto-generated method stub
+	public String pointselect(String k) {		
 		return null;
 	}
 	

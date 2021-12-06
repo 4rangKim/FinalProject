@@ -23,6 +23,7 @@ public class PayDao implements Dao<String, PayVO>{
 
 	@Override
 	public void delete(String k) throws Exception {
+		
 	}
 
 	@Override
@@ -42,7 +43,8 @@ public class PayDao implements Dao<String, PayVO>{
 
 	@Override
 	public PayVO login(PayVO v) {
-		return null;	}
+		return null;
+	}
 
 	@Override
 	public ArrayList<PayVO> getstate(String k) {
@@ -50,8 +52,7 @@ public class PayDao implements Dao<String, PayVO>{
 	}
 
 	@Override
-	public ArrayList<PayVO> getstateBy_p_id() {
-		// TODO Auto-generated method stub
+	public ArrayList<PayVO> getstateBy_p_id() {		
 		return null;
 	}
 
@@ -73,6 +74,16 @@ public class PayDao implements Dao<String, PayVO>{
 	@Override
 	public String pointselect(String k) {
 		return pm.pointselect(k);
+	}
+
+	@Override
+	public String seePayment(String k) {		
+		return null;
+	}
+
+	@Override
+	public void pay(PayVO v) {
+		pm.pay(v);		
 	}
 	
 

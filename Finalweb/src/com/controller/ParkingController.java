@@ -88,8 +88,7 @@ public class ParkingController {
 		}
 		//System.out.println(ParkingState+"ÀÌ°Å ¸ÂÁê?");
 	
-	return ParkingState;
-	
+	return ParkingState;	
 	}
 	
 	@RequestMapping("/parkingArea.mc")

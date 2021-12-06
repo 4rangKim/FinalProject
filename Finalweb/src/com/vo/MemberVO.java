@@ -34,8 +34,6 @@ public class MemberVO {
 		this.mem_id = mem_id;
 	}
 
-
-
 	public MemberVO(String mem_id, String mem_name, int mem_tel) {
 		super();
 		this.mem_id = mem_id;
@@ -43,16 +41,11 @@ public class MemberVO {
 		this.mem_tel = mem_tel;
 	}
 
-
-
-
 	public MemberVO(String mem_name, int mem_tel) {
 		super();
 		this.mem_name = mem_name;
 		this.mem_tel = mem_tel;
 	}
-
-
 
 	public MemberVO(String mem_id, String mem_pwd) {
 		super();
@@ -60,31 +53,21 @@ public class MemberVO {
 		this.mem_pwd = mem_pwd;
 	}
 
-
-
 	public String getMem_car1() {
 		return mem_car1;
 	}
-
-
 
 	public void setMem_car1(String mem_car1) {
 		this.mem_car1 = mem_car1;
 	}
 
-
-
 	public String getMem_car2() {
 		return mem_car2;
 	}
 
-
-
 	public void setMem_car2(String mem_car2) {
 		this.mem_car2 = mem_car2;
 	}
-
-
 
 	public String getMem_id() {
 		return mem_id;
@@ -125,7 +108,6 @@ public class MemberVO {
 	public void setMem_money(int mem_money) {
 		this.mem_money = mem_money;
 	}
-
 
 
 	@Override

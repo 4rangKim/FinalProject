@@ -50,35 +50,36 @@ public class ParkingDao implements Dao<String, ParkingVO>{
 	}
 
 	@Override
-	public ArrayList<ParkingVO> getstateBy_p_id() {
-		// TODO Auto-generated method stub
+	public ArrayList<ParkingVO> getstateBy_p_id() {		
 		return null;
 	}
 
 	@Override
-	public ParkingVO idcheck(ParkingVO v) {
-		// TODO Auto-generated method stub
+	public ParkingVO idcheck(ParkingVO v) {		
 		return null;
 	}
 
 	@Override
-	public ParkingVO pwdcheck(ParkingVO v) {
-		// TODO Auto-generated method stub
+	public ParkingVO pwdcheck(ParkingVO v) {		
 		return null;
 	}
 
 	@Override
-	public int seePayment(String k) {
-		// TODO Auto-generated method stub
-		return 0;
+	public String seePayment(String k) {		
+		return null;
+	}
+
+	@Override
+	public void pay(ParkingVO v) {		
+		
 	}
 
 	public void pointcharge(ParkingVO v) {
+		
 	}
 
 	@Override
-	public String pointselect(String k) {
-		// TODO Auto-generated method stub
+	public String pointselect(String k) {		
 		return null;
 	}
 
