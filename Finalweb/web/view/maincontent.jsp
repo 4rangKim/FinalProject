@@ -7,6 +7,10 @@
 <title>Insert title here</title>
     <script type="text/javascript">
     
+    		function functiontest(){
+    			alert("선택완료");
+    		}
+    
 			function AllParkinglotState(){
 				$.ajax({
 					url:'parkingajax2.mc',
@@ -84,10 +88,9 @@
 			
 			
 			
-			function displaychart(){
-				
+			function displaychart(d){
 				var colors = Highcharts.getOptions().colors;
-
+				container2
 				Highcharts.chart('chart_container', {
 				    chart: {
 				        type: 'spline'
@@ -98,7 +101,7 @@
 				    },
 
 				    title: {
-				        text: '주차장별 이용 차량수(월)'
+				        text: '주차장별 이용 차량수 / '+d.Xdate
 				    },
 
 				    /* subtitle: {
@@ -116,16 +119,16 @@
 
 				    xAxis: {
 				        title: {
-				            text: '월(month)'
+				            text: d.Xdate
 				        },
 				        accessibility: {
 				            description: 'Time from December 2010 to September 2019'
 				        },
-				        categories: ['December 2010', 'May 2012', 'January 2014', 'July 2015', 'October 2017', 'September 2019']
+				        categories: d.month
 				    },
 
 				    tooltip: {
-				        valueSuffix: '%'
+				        valueSuffix: '대'
 				    },
 
 				    plotOptions: {
@@ -143,56 +146,56 @@
 
 				    series: [
 				        {
-				            name: 'NVDA',
-				            data: [34.8, 43.0, 51.2, 41.4, 64.9, 72.4],
+				            name: 'A 주차장',
+				            data: d.Ap,
 				            website: 'https://www.nvaccess.org',
 				            color: colors[2],
 				            accessibility: {
 				                description: 'This is the most used screen reader in 2019'
 				            }
 				        }, {
-				            name: 'JAWS',
-				            data: [69.6, 63.7, 63.9, 43.7, 66.0, 61.7],
+				            name: 'B 주차장',
+				            data: d.Bp,
 				            website: 'https://www.freedomscientific.com/Products/Blindness/JAWS',
 				            dashStyle: 'ShortDashDot',
 				            color: colors[0]
 				        }, {
-				            name: 'JAWS2',
-				            data: [89.6, 93.7, 23.9, 73.7, 46.0, 91.7],
+				            name: 'C 주차장',
+				            data: d.Cp,
 				            website: 'https://www.freedomscientific.com/Products/Blindness/JAWS',
 				            dashStyle: 'ShortDashDot',
 				            color: colors[4]
 				        },{
-				            name: 'JAWS3',
-				            data: [19.6, 23.7, 93.9, 33.7, 26.0, 61.7],
+				            name: 'D 주차장',
+				            data: d.Dp,
 				            website: 'https://www.freedomscientific.com/Products/Blindness/JAWS',
 				            dashStyle: 'ShortDashDot',
 				            color: colors[7]
 				        },{
-				            name: 'VoiceOver',
-				            data: [20.2, 30.7, 36.8, 30.9, 39.6, 47.1],
+				            name: 'E 주차장',
+				            data: d.Ep,
 				            website: 'http://www.apple.com/accessibility/osx/voiceover',
 				            dashStyle: 'ShortDot',
 				            color: colors[1]
 				        }, {
-				            name: 'Narrator',
-				            data: [null, null, null, null, 21.4, 30.3],
+				            name: 'F 주차장',
+				            data: d.Fp,
 				            website: 'https://support.microsoft.com/en-us/help/22798/windows-10-complete-guide-to-narrator',
 				            dashStyle: 'Dash',
 				            color: colors[9]
 				        }, {
-				            name: 'ZoomText/Fusion',
-				            data: [6.1, 6.8, 5.3, 27.5, 6.0, 5.5],
+				            name: 'G 주차장',
+				            data: d.Gp,
 				            website: 'http://www.zoomtext.com/products/zoomtext-magnifierreader',
 				            dashStyle: 'ShortDot',
 				            color: colors[5]
 				        }, {
-				            name: 'Other',
-				            data: [42.6, 51.5, 54.2, 45.8, 20.2, 15.4],
+				            name: 'H 주차장',
+				            data: d.Hp,
 				            website: 'http://www.disabled-world.com/assistivedevices/computer/screen-readers.php',
 				            dashStyle: 'ShortDash',
 				            color: colors[3]
-				        }
+				        } 
 				    ],
 
 				    responsive: {
@@ -209,7 +212,7 @@
 				                    itemWidth: 150
 				                },
 				                xAxis: {
-				                    categories: ['Dec. 2010', 'May 2012', 'Jan. 2014', 'July 2015', 'Oct. 2017', 'Sep. 2019'],
+				                    categories: ['Dec. 2010', 'May 2012', 'Jan. 2014', 'July 2015', 'Oct. 2017', 'Sep. 2019', 'Sep. 2020'],
 				                    title: ''
 				                },
 				                yAxis: {
@@ -219,29 +222,55 @@
 				        }]
 				    }
 				});
-				
 			}
+				
 			
 			
-			function getdataforCHART(){
-				/* $.ajax({
-					url:'trafficChart.mc',
+			function getdataforMCHART(){
+				$.ajax({
+					url:'parkingChart.mc',
+					type:"get",
+					data:{"date":'month'},
 					success:function(d){
 						displaychart(d);
 					}
-				}) */
-				
-				displaychart();
+						
+				})
 			}
 			
+			function getdataforYCHART(){
+				$.ajax({
+					url:'parkingChart.mc',
+					type:"get",
+					data:{"date":'year'},
+					success:function(d){
+						displaychart(d);
+					}
+						
+				})
+			}
+			
+			function getdataforDCHART(){
+				$.ajax({
+					url:'parkingChart.mc',
+					type:"get",
+					data:{"date":'day'},
+					success:function(d){
+						displaychart(d);
+					}
+						
+				})
+			}
 			
 			$(document).ready(function(){
 				
-				getdataforCHART();
+				getdataforDCHART();
 				
 				setInterval(function() {
 					AllParkinglotState();
 			       },2000);
+				
+				
 				
 			});
 		</script>
@@ -337,7 +366,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <h4 class="card-title mb-0">Traffic</h4>
-                                <div class="small text-muted">October 2017</div>
+                                <div class="small text-muted">ParkingPanda</div>
                             </div>
                             <!--/.col-->
                             <div class="col-sm-8 hidden-sm-down">
@@ -345,13 +374,13 @@
                                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
                                     <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
                                         <label class="btn btn-outline-secondary">
-                                            <input type="radio" name="options" id="option1"> Day
+                                            <input type="radio" name="options" id="option1" checked="" onchange="getdataforDCHART()"> Day
                                         </label>
                                         <label class="btn btn-outline-secondary active">
-                                            <input type="radio" name="options" id="option2" checked=""> Month
+                                            <input type="radio" name="options" id="option2"  onchange="getdataforMCHART()"> Month
                                         </label>
                                         <label class="btn btn-outline-secondary">
-                                            <input type="radio" name="options" id="option3"> Year
+                                            <input type="radio" name="options" id="option3" onchange="getdataforYCHART()"> Year
                                         </label>
                                     </div>
                                 </div>
@@ -533,6 +562,9 @@
             </div>
             <!-- ^^==========================카드4(미정/ 전세계 지도)========================================================== -->
 
+			<div id="container2" style="width: 100%; height: 600px;"> 
+			
+			</div>
 
        <!-- .content -->
 </body>

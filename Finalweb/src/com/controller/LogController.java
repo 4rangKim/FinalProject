@@ -4,6 +4,7 @@ package com.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -35,85 +36,140 @@ public class LogController {
 //	private Logger data_log = 
 //			Logger.getLogger("data"); 
 	
-	private Logger ran_traffic_log = 
-			Logger.getLogger("ran_traffic");
+	private Logger ran_traffic_test_log = 
+			Logger.getLogger("ran_traffic_test");
 	
+	private Logger ran_test_log = Logger.getLogger("data");
 	
 	//================VV 랜덤 로그를 만드는 컨트롤러 코드========================================================================
 	@RequestMapping("/trafficTest.mc")
 	@ResponseBody
 	public void iotdata(HttpServletRequest request) throws IOException {
-		String Atraffic_num = request.getParameter("Atraffic_num");
-		String Btraffic_num = request.getParameter("Btraffic_num");
-		int f_Atraffic_num = Integer.parseInt(Atraffic_num);
-		int f_Btraffic_num = Integer.parseInt(Btraffic_num);
-		System.out.println("traffic:"+f_Atraffic_num+" : "+f_Btraffic_num);
+		String random_state = request.getParameter("state");
 		
-		ran_traffic_log.debug(f_Atraffic_num+","+f_Btraffic_num);
+		int f_random_state = Integer.parseInt(random_state);
+		for(char j='A'; j<='H';j++) {
+			Random r = new Random();
+			int r_state = r.nextInt(2);
+			ran_test_log.debug(j+","+1);
+			ran_test_log.debug(j+","+r_state);
+		}
+		
 		
 	}
 	//================^^ 랜덤 로그를 만드는 컨트롤러 코드========================================================================
 	
 	
-	//=================VV boot_main에서 AJAX요청을 받고 로그 데이터를 json 형태로 변환하는 코드==========================================
-	@RequestMapping("/trafficChart.mc")
+	//=================VV maincontent에서 AJAX요청을 받고 로그 데이터를 json 형태로 변환하는 코드==========================================
+	@RequestMapping("/parkingChart.mc")
 	@ResponseBody
-	public void ruu(HttpServletResponse response) throws IOException, RserveException, REXPMismatchException {
+	public void ruu(HttpServletResponse response, HttpServletRequest request) throws IOException, RserveException, REXPMismatchException {
 		response.setContentType("text/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		RList list = null;
+		String xAxis = "";
+		
+		
+		
+		String date = request.getParameter("date");
+		
 		RConnection rconn = new RConnection("192.168.0.143");
 		rconn.setStringEncoding("utf8");
 
-		rconn.eval("source('C:/logs/test1.R',encoding='UTF-8')");
+		rconn.eval("source('C:/logs/parking_test.R',encoding='UTF-8')");
 		// R의 계산 결과를 리스트로 리턴 받음
-		RList list = rconn.eval("a3()").asList();
+		if(date.equals("month")) {
+			list = rconn.eval("bymonth()").asList();
+			xAxis = "월(month)";
+		}else if(date.equals("year")) {
+			list = rconn.eval("byyear()").asList();
+			xAxis = "년(year)";
+		}else if(date.equals("day")) {
+			xAxis = "일(day)";
+			list = rconn.eval("byday()").asList();
+		}
+		
 
-		// 리스트의 첫 번째 요소(컬럼) 두번째 요소(컬럼), 세번째 요소(컬럼) 를 double 배열로 리턴
-		double[] n1 = list.at(0).asDoubles();
-		double[] n2 = list.at(1).asDoubles();
-		double[] n3 = list.at(2).asDoubles();
+		int[] n1 = list.at(0).asIntegers(); //년,월,일
+		int[] n2 = list.at(1).asIntegers(); //A주차장
+		int[] n3 = list.at(2).asIntegers(); //B주차장
+		int[] n4 = list.at(3).asIntegers(); //C주차장
+		int[] n5 = list.at(4).asIntegers(); //D주차장
+		int[] n6 = list.at(5).asIntegers(); //E주차장
+		int[] n7 = list.at(6).asIntegers(); //F주차장
+		int[] n8 = list.at(7).asIntegers(); //G주차장
+		int[] n9 = list.at(8).asIntegers(); //H주차장
 		
-		
-//		{
-//			"time":[8,9,10,11],
-//			"data":[
-//			        {"name":"temp","data":[9,20,10,11,22]},
-//			        {"name":"humi","data":[9,20,10,11,22]}
-//			        ]
-//		}
-		
-//		^이런 형태임
 		
 		JSONObject jo = new JSONObject();
-		JSONArray tdata = new JSONArray();
-		for(double num:n1) {
-			tdata.add(num);
+		JSONArray Mdata = new JSONArray();
+		for(int num:n1) {
+			Mdata.add(num);
 		}
-		jo.put("time",tdata);
+		jo.put("month",Mdata);
 		
+		System.out.println(Mdata);
 		
-		JSONObject jo2 = new JSONObject();
+		JSONArray Apdata= new JSONArray();
 		
-		JSONArray ja2 = new JSONArray();
-		JSONObject jj = new JSONObject();
-		jj.put("name", "temp");
-		JSONArray tdata2 = new JSONArray();
-		for(double num:n2) {
-			tdata2.add(num);
+		for(int num:n2) {
+			Apdata.add(num);
 		}
-		jj.put("data", tdata2);
-		ja2.add(jj);
-		JSONObject jj2 = new JSONObject();
-		jj2.put("name", "humi");
-		JSONArray tdata3 = new JSONArray();
-		for(double num:n3) {
-			tdata3.add(num);
+		jo.put("Ap",Apdata);
+		
+		JSONArray Bpdata= new JSONArray();
+		
+		for(int num:n3) {
+			Bpdata.add(num);
 		}
-		jj2.put("data", tdata3);
-		ja2.add(jj2);
+		jo.put("Bp",Bpdata);
 		
-		jo.put("data", ja2);
+		JSONArray Cpdata= new JSONArray();
 		
+		for(int num:n4) {
+			Cpdata.add(num);
+		}
+		jo.put("Cp",Cpdata);
+		
+		JSONArray Dpdata= new JSONArray();
+		
+		for(int num:n5) {
+			Dpdata.add(num);
+		}
+		jo.put("Dp",Dpdata);
+		
+		JSONArray Epdata= new JSONArray();
+		
+		for(int num:n6) {
+			Epdata.add(num);
+		}
+		jo.put("Ep",Epdata);
+		
+		JSONArray Fpdata= new JSONArray();
+		
+		for(int num:n7) {
+			Fpdata.add(num);
+		}
+		jo.put("Fp",Fpdata);
+		
+		JSONArray Gpdata= new JSONArray();
+		
+		for(int num:n8) {
+			Gpdata.add(num);
+		}
+		jo.put("Gp",Gpdata);
+		
+		JSONArray Hpdata= new JSONArray();
+		
+		for(int num:n9) {
+			Hpdata.add(num);
+		}
+		jo.put("Hp",Hpdata);
+		
+		jo.put("Xdate", xAxis);
+		
+		System.out.println(jo);
+
 		
 		out.print(jo.toJSONString());
 		out.close();
