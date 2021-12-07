@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import com.frame.Dao;
 import com.frame.Service;
 import com.vo.ParkingVO;
+import com.vo.payAmountcheck_result_VO;
 
 @org.springframework.stereotype.Service("ParkingService")
 public class ParkingService implements Service<String, ParkingVO>{
@@ -84,6 +85,12 @@ public class ParkingService implements Service<String, ParkingVO>{
 
 	@Override
 	public String pointselect(String k) {		
+		return null;
+	}
+
+	@Override
+	public payAmountcheck_result_VO getTodayInfo(String k) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

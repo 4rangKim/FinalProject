@@ -11,6 +11,7 @@ PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
 		<typeAlias type="com.vo.ParkingVO" alias="parking"/>
 		<typeAlias type="com.vo.P_Area_ResultVo" alias="p_area_result"/>
 		<typeAlias type="com.vo.PayVO" alias="pay"/>
+		<typeAlias type="com.vo.payAmountcheck_result_VO" alias="today_count"/>
 	</typeAliases>
 	
 	<mappers>

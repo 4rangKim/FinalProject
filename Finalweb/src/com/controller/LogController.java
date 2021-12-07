@@ -168,8 +168,6 @@ public class LogController {
 		
 		jo.put("Xdate", xAxis);
 		
-		System.out.println(jo);
-
 		
 		out.print(jo.toJSONString());
 		out.close();

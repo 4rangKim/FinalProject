@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import com.frame.Dao;
 import com.frame.Service;
 import com.vo.P_AreaVO;
+import com.vo.payAmountcheck_result_VO;
 
 @org.springframework.stereotype.Service("P_AreaService")
 public class P_AreaService implements Service<String, P_AreaVO>{
@@ -81,6 +82,12 @@ public class P_AreaService implements Service<String, P_AreaVO>{
 
 	@Override
 	public String pointselect(String k) {		
+		return null;
+	}
+
+	@Override
+	public payAmountcheck_result_VO getTodayInfo(String k) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

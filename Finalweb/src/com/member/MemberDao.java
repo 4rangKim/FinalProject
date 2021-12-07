@@ -9,6 +9,7 @@ import com.frame.Dao;
 import com.mapper.MemberMapper;
 import com.vo.MemberVO;
 import com.vo.PayVO;
+import com.vo.payAmountcheck_result_VO;
 
 @Repository("MemberDao")
 public class MemberDao implements Dao<String, MemberVO>{
@@ -82,6 +83,12 @@ public class MemberDao implements Dao<String, MemberVO>{
 
 	@Override
 	public String pointselect(String k) {		
+		return null;
+	}
+
+	@Override
+	public payAmountcheck_result_VO getTodayInfo(String k) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

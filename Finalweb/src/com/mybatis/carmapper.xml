@@ -25,6 +25,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT ceil((sysdate - in_time)*24*60) FROM CAR WHERE MEM_ID = #{mem_id} and out_time is null
 	</select>
 	
+	<select id="getTodayInfo" parameterType="String" resultType="today_count">
+		select count(p_id) as count, sum(payment) as totalIncome from car where to_date(in_time,'YY/MM/DD') =TO_CHAR(SYSDATE, 'YYYY/MM/DD') and p_id =#{p_id}
+	</select>
+	
 </mapper>
 
 

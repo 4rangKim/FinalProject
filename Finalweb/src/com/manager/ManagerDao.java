@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.frame.Dao;
 import com.mapper.ManagerMapper;
 import com.vo.ManagerVO;
+import com.vo.payAmountcheck_result_VO;
 
 @Repository("ManagerDao")
 public class ManagerDao implements Dao<String, ManagerVO>{
@@ -80,6 +81,12 @@ public class ManagerDao implements Dao<String, ManagerVO>{
 
 	@Override
 	public String pointselect(String k) {		
+		return null;
+	}
+
+	@Override
+	public payAmountcheck_result_VO getTodayInfo(String k) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

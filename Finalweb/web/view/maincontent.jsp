@@ -7,9 +7,19 @@
 <title>Insert title here</title>
     <script type="text/javascript">
     
-    		function functiontest(){
-    			alert("선택완료");
-    		}
+			function InfoFromEachParkname2(){
+				//alert('hi');
+				$("#selectedP").text(p_id+'주차장');
+				$.ajax({
+					url:'payAmountbyP_id.mc',
+					type:"get",
+					data:{"p_id":p_id},
+					success:function(data){
+						$("#T_income").text(data.todayIncome+'원');
+						$("#T_count").text(data.todayCount+'대')
+					}
+				})
+			}    
     
 			function AllParkinglotState(){
 				$.ajax({
@@ -39,11 +49,11 @@
 					$(this).click(function() {
 						p_id = $.trim($(this).text());
 						
+						InfoFromEachParkname2();
 						/* $(this).attr("class","col-sm-4 active parkname"); */
 						//$(".parkname2").css('color','');
 						//$(this).css('color','purple');
 						$("#parkingTitle").text(p_id+'주차장');
-						//$("#SelectedParkinglot").text('선택된 주차장: '+p_id);
 						//alert(p_id);
 						
 						setInterval(function(){
@@ -82,6 +92,10 @@
 								}
 							})
 						}, 2000);
+						
+						//InfoFromEachParkname2();
+						
+						
 					})
 				})
 			}
@@ -459,13 +473,13 @@
                         </div>
                         <div class="fa fa-twitter wtt-mark"></div>
 
-                        <div class="media">
-                            <a href="#">
+                        <div class="media" style="text-align: center;">
+                            <!-- <a href="#">
                                 <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
-                            </a>
+                            </a> -->
                             <div class="media-body">
-                                <h2 class="text-white display-6">Jim Doe</h2>
-                                <p class="text-light">Project Manager</p>
+                                <h2 class="text-white display-6" id="selectedP">주차장</h2>
+                                <p class="text-light" id="selectePsub">상세 현황 조회</p>
                             </div>
                         </div>
                     </div>
@@ -504,11 +518,14 @@
             <div class="col-xl-3 col-lg-6"  >
                 <div class="card">
                     <div class="card-body">
-                        <div class="stat-widget-one">
-                            <div class="stat-icon dib"><i class="ti-money text-success border-success"></i></div>
-                            <div class="stat-content dib">
-                                <div class="stat-text">Total Profit</div>
-                                <div class="stat-digit">1,012</div>
+                        <div class=" stat-widget-one">
+                            <div style="float : left; width: 30%;">
+                            	<!-- <i class="ti-money text-success border-success"></i> -->
+                            	<img alt="dallar" src="img/dollar.png" style="width: 73%; height: 73%" >
+                            </div>
+                            <div style="float : left; width: 65%;">
+                                <div class="stat-text">금일 총 매출</div>
+                                <div class="stat-digit"><h5 id = "T_income">0원</h5></div>
                             </div>
                         </div>
                     </div>
@@ -521,10 +538,13 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="stat-widget-one">
-                            <div class="stat-icon dib"><i class="ti-user text-primary border-primary"></i></div>
-                            <div class="stat-content dib">
-                                <div class="stat-text">New Customer</div>
-                                <div class="stat-digit">961</div>
+                            <div style="float : left; width: 30%;">
+                            	<!-- <i class="ti-user text-primary border-primary"></i> -->
+                            	<img alt="dallar" src="img/car_graph_icon.png" style="width: 73%; height: 73%" >
+                            </div>
+                            <div style="float : left; width: 65%;">
+                                <div class="stat-text">금일 주차 차량수</div>
+                                <div class="stat-digit"><h5 id = "T_count">0대</h5></div>
                             </div>
                         </div>
                     </div>

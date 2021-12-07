@@ -17,10 +17,10 @@ import com.vo.PayVO;
 
 @Controller
 public class MainController {
-	Mqtt_Pub publish;
-	public MainController() {
-		publish = new Mqtt_Pub();
-	}
+//	Mqtt_Pub publish;
+//	public MainController() {
+//		publish = new Mqtt_Pub();
+//	}
 	
 	@Resource(name="PayService")
 	Service<String, PayVO> payService;
@@ -71,23 +71,23 @@ public class MainController {
 		return mv;
 	}
 	
-	@RequestMapping("/car.mc")
-	@ResponseBody
-	public void carin(HttpServletRequest request) throws Exception {
-		String data = request.getParameter("car");
-		System.out.println("data: "+data);
-		if(data.substring(1).equals("In")) {
-			CarVO car = new CarVO(data.substring(0,1),"01가1234");
-			carService.register(car);
-			System.out.println("DB입력 완료!!");
-			publish.send("final", 1+"");
-		}else if(data.equals("AOut")){
-			CarVO car = new CarVO("01가1234");
-			carService.modify(car);
-			System.out.println("Out_time 업뎃 완료");
-			publish.send("final", 0+"");
-		}		
-	}
+//	@RequestMapping("/car.mc")
+//	@ResponseBody
+//	public void carin(HttpServletRequest request) throws Exception {
+//		String data = request.getParameter("car");
+//		System.out.println("data: "+data);
+//		if(data.substring(1).equals("In")) {
+//			CarVO car = new CarVO(data.substring(0,1),"01가1234");
+//			carService.register(car);
+//			System.out.println("DB입력 완료!!");
+//			publish.send("final", 1+"");
+//		}else if(data.equals("AOut")){
+//			CarVO car = new CarVO("01가1234");
+//			carService.modify(car);
+//			System.out.println("Out_time 업뎃 완료");
+//			publish.send("final", 0+"");
+//		}		
+//	}
 	
 	@RequestMapping("/CarInImg.mc")
 	public ModelAndView carInImg(HttpServletRequest request) {

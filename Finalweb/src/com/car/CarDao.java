@@ -10,6 +10,7 @@ import com.mapper.CarMapper;
 import com.mapper.ParkingMapper;
 import com.vo.CarVO;
 import com.vo.ParkingVO;
+import com.vo.payAmountcheck_result_VO;
 
 @Repository("CarDao")
 public class CarDao implements Dao<String, CarVO>{
@@ -83,6 +84,11 @@ public class CarDao implements Dao<String, CarVO>{
 	@Override
 	public String pointselect(String k) {		
 		return null;
+	}
+
+	@Override
+	public payAmountcheck_result_VO getTodayInfo(String p_id) {
+		return cm.getTodayInfo(p_id);
 	}
 	
 }

@@ -8,6 +8,7 @@ import com.frame.Dao;
 import com.frame.Service;
 import com.vo.MemberVO;
 import com.vo.PayVO;
+import com.vo.payAmountcheck_result_VO;
 
 @org.springframework.stereotype.Service("MemberService")
 public class MemberService implements Service<String, MemberVO>{
@@ -84,6 +85,12 @@ public class MemberService implements Service<String, MemberVO>{
 
 	@Override
 	public String pointselect(String k) {		
+		return null;
+	}
+
+	@Override
+	public payAmountcheck_result_VO getTodayInfo(String k) {
+		// TODO Auto-generated method stub
 		return null;
 	}	
 }

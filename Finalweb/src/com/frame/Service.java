@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.vo.CarVO;
+import com.vo.payAmountcheck_result_VO;
+
 
 public interface Service<K,V> {
 	@Transactional
@@ -23,6 +26,7 @@ public interface Service<K,V> {
 	public void pay(V v);
 	public void pointcharge(V v);
 	public K pointselect(K k);
+	public payAmountcheck_result_VO getTodayInfo(K k);
 }
 
 

@@ -3,6 +3,7 @@ package com.mapper;
 import java.util.ArrayList;
 
 import com.vo.CarVO;
+import com.vo.payAmountcheck_result_VO;
 
 public interface CarMapper {
 	public void insert(CarVO obj);
@@ -12,6 +13,7 @@ public interface CarMapper {
 	public CarVO select(String obj);
 	public ArrayList<CarVO> selectall();
 	public String seePayment(String id);
+	public payAmountcheck_result_VO getTodayInfo(String p_id);
 }
 
 

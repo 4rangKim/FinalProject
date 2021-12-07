@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.frame.Dao;
 import com.mapper.P_AreaMapper;
 import com.vo.P_AreaVO;
+import com.vo.payAmountcheck_result_VO;
 
 @Repository("P_AreaDao")
 public class P_AreaDao implements Dao<String, P_AreaVO>{
@@ -81,6 +82,12 @@ public class P_AreaDao implements Dao<String, P_AreaVO>{
 
 	@Override
 	public String pointselect(String k) {		
+		return null;
+	}
+
+	@Override
+	public payAmountcheck_result_VO getTodayInfo(String k) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	
