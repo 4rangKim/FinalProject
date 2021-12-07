@@ -13,6 +13,7 @@ public interface MemberMapper {
 	public ArrayList<MemberVO> selectall();
 	public MemberVO idcheck(MemberVO v);
 	public MemberVO pwdcheck(MemberVO v);
+	public void carinsert(MemberVO v);
 }
 
 
