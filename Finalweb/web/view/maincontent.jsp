@@ -91,7 +91,7 @@
 									
 								}
 							})
-						}, 2000);
+						}, 1000);
 						
 						//InfoFromEachParkname2();
 						
@@ -300,14 +300,51 @@
 			}
 			
 			
+			function makingRandomLog(){
+				$("#MKrandomLog").click(function(){
+					obj2=$("#MKrandomLog").text();
+					if(obj2=='Random_Log_On'){
+						alert('랜덤 로그 생성을 시작합니다.');
+						$("#MKrandomLog").empty();
+			 			$("#MKrandomLog").append("<i class='menu-icon fa fa-table'></i>"+'Random_Log_Off');
+		 				$.ajax({
+			 				url:'randomLogTest1.mc',
+			 				success:function(da){
+			 					//alert('log1 success');
+			 					logInterval=setInterval(function(){
+			 						$.ajax({
+			 							url:'randomLogTest2.mc',
+			 							success:function(da2){
+			 								//alert('log2 success');
+			 								
+			 							}
+			 						})
+			 					},5000);
+			 				}
+			 			});
+			 			
+			 			
+					}else{
+						alert('랜덤 로그 생성을 종료합니다.');
+						$("#MKrandomLog").empty();
+			 			$("#MKrandomLog").append("<i class='menu-icon fa fa-table'></i>"+'Random_Log_On');
+			 			clearInterval(logInterval);
+					}
+				});
+			}
+			
+			
+		/*==================vv================도큐먼트 레디========================================  */
 			$(document).ready(function(){
 				makingRandomUpdate();
+				
+				makingRandomLog();
 				
 				getdataforDCHART();
 				
 				setInterval(function() {
 					AllParkinglotState();
-			       },2000);
+			       },1000);
 				
 				
 				

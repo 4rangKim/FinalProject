@@ -43,6 +43,42 @@ public class LogController {
 	
 	
 	//================VV 랜덤 로그를 만드는 컨트롤러 코드========================================================================
+	
+	
+	
+	@RequestMapping("/randomLogTest1.mc")
+	@ResponseBody
+	public void MakingRandomLog1(HttpServletResponse response)throws IOException{
+		response.setContentType("application/text;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		for(char j='A'; j<='H';j++) {
+			ran_test_log.debug(j+","+1);
+		}
+		
+		out.print("랜덤로그생성테스트1완료");
+		out.close();
+	}
+	
+	
+	@RequestMapping("/randomLogTest2.mc")
+	@ResponseBody
+	public void MakingRandomLog2(HttpServletResponse response)throws IOException{
+		response.setContentType("application/text;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		char ranAlpha = (char) ((Math.random()*8)+65);
+		//Random r = new Random();
+		//int r_state = r.nextInt(2);
+		ran_test_log.debug(ranAlpha+","+1);
+		
+		out.print("랜덤로그생성테스트2완료");
+		out.close();
+	}
+	
+	
+	
+	//**********V 랜덤 로그를 만드는 컨트롤러 (안쓰지만 혹시 모르니 보관)*************
 	@RequestMapping("/trafficTest.mc")
 	@ResponseBody
 	public void iotdata(HttpServletRequest request) throws IOException {
