@@ -101,7 +101,6 @@
 			}
 			
 			
-			
 			function displaychart(d){
 				var colors = Highcharts.getOptions().colors;
 				container2

@@ -147,7 +147,6 @@ public class ParkingController {
 	/* ===============^^랜덤수 업데이트 테스트 하는 컨트롤러 코드^^================================================*/
 	
 	
-	
 		
 //	@RequestMapping(value = "/parkingajax.mc", method = RequestMethod.GET,
 //			produces = "application/json;charset=utf-8" )

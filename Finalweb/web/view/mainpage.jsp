@@ -53,7 +53,6 @@
 	
 	
     
-    
 </head>
 <body>
     <aside id="left-panel" class="left-panel" >

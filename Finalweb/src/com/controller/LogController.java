@@ -42,7 +42,6 @@ public class LogController {
 	private Logger ran_test_log = Logger.getLogger("data");
 	
 	
-	
 	//================VV 랜덤 로그를 만드는 컨트롤러 코드========================================================================
 	@RequestMapping("/trafficTest.mc")
 	@ResponseBody
