@@ -21,9 +21,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM car
 	</select>
 	
-	<select id="selectList" parameterType="String" 
-	resultType="car">
+	<select id="selectList" parameterType="String" resultType="car">
 		SELECT * FROM car WHERE mem_id=#{mem_id}	
+	</select>
+	
+	<select id="nowPayment" parameterType="String" resultType="car">
+		SELECT * FROM car WHERE mem_id=#{mem_id} and out_time is null
 	</select>
 	
 	<select id="seePayment" parameterType="String" resultType="String">

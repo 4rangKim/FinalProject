@@ -53,7 +53,7 @@ public class CarDao implements Dao<String, CarVO>{
 	
 	@Override
 	public ArrayList<CarVO> getstate(String k) {
-		return null;
+		return cm.nowPayment(k);
 	}
 
 	@Override

@@ -71,45 +71,79 @@ public class PayController {
 		
 	}
 	
+	@RequestMapping(value = "/nowPayment.mc", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String nowpayment(HttpServletRequest request) {
+		String mem_id = request.getParameter("id");
+		String data = carService.seePayment(mem_id);
+		if(data != null) {
+			int time = Integer.parseInt(data);
+			System.out.println("time: "+time);
+			int hour = time/60;
+			int minute = time - hour*60;
+			int amount = 3000;
+			if(hour >=1 || minute > 30){
+				amount += Math.ceil((float)(((hour*60)+(minute-30))/5))*500;
+			}
+			CarVO fee = new CarVO(mem_id, amount);
+			carService.updatePayment(fee);
+		}
+		JSONArray ja = new JSONArray();
+		List<CarVO> carList = null;
+		try {
+			carList = carService.getstate(mem_id);
+			System.out.println(carList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		JSONObject jo = new JSONObject();
+		CarVO mycar = carList.get(0);
+		Date in_time = mycar.getIn_time();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		jo.put("carNum", mycar.getCar_num());
+		jo.put("mem_id", mycar.getMem_id());
+		jo.put("in_time",format.format(in_time));
+		jo.put("out_time", mycar.getOut_time());
+		jo.put("payment", mycar.getPayment());
+		ja.add(jo);
+		String result = ja.toJSONString();
+		System.out.println(ja.toJSONString());
+		return result;
+	}
+	
+	
 	@RequestMapping("/pay.mc")
 	@ResponseBody
-	public String pay(HttpServletRequest request) {
+	public void pay(HttpServletRequest request) {
 		System.out.println("pay메소드 호출");
 		String id = request.getParameter("id");
 		int amount = Integer.parseInt(request.getParameter("amount"));
 		PayVO pay = new PayVO(id, amount);
 		payService.pay(pay);
 		System.out.println("지불 완료!!");
-		JSONArray ja = new JSONArray();
-		List<CarVO> carList = null;
-		try {
-			carList = carService.selectList(id);
-			System.out.println(carList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		for(int i=0;i<carList.size();i++) {
-			JSONObject jo = new JSONObject();
-			CarVO mycar = carList.get(i);
-			jo.put("carNum", mycar.getCar_num());
-			jo.put("mem_id", mycar.getMem_id());
-			jo.put("in_time", mycar.getIn_time());
-			jo.put("out_time", mycar.getOut_time());
-			jo.put("payment", mycar.getPayment());
-			ja.add(jo);
-		}
-		String result = ja.toJSONString();
-		System.out.println(ja.toJSONString());
-		return result;
+//		JSONArray ja = new JSONArray();
+//		List<CarVO> carList = null;
+//		try {
+//			carList = carService.selectList(id);
+//			System.out.println(carList);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		for(int i=0;i<carList.size();i++) {
+//			JSONObject jo = new JSONObject();
+//			CarVO mycar = carList.get(i);
+//			jo.put("carNum", mycar.getCar_num());
+//			jo.put("mem_id", mycar.getMem_id());
+//			jo.put("in_time", mycar.getIn_time());
+//			jo.put("out_time", mycar.getOut_time());
+//			jo.put("payment", mycar.getPayment());
+//			ja.add(jo);
+//		}
+//		String result = ja.toJSONString();
+//		System.out.println(ja.toJSONString());
+//		return result;
 		
 	}
-	
-//	@RequestMapping(value = "/payAmountbyP_id.mc", method = RequestMethod.GET,
-//			produces = "application/json;charset=utf-8")
-//	public @ResponseBody ArrayList<CarVO> payAmountcheck(){
-//		
-//		return null;
-//	}
 	
 	@RequestMapping("/payAmountbyP_id.mc")
 	@ResponseBody
@@ -126,6 +160,8 @@ public class PayController {
 		out.print(jo.toJSONString());
 		out.close();
 	}
+
+	
 	
 	@RequestMapping(value="/paylist.mc",produces = "application/json; charset=utf8")
 	@ResponseBody

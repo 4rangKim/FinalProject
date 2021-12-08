@@ -52,28 +52,6 @@
 			}
 		</style>
 		<script type="text/javascript">
-		/* 
-	       var openWin;
-	       $( document ).ready(function() {
-		       $('#imgopen2').click(function(){
-		    	   openChild();
-		    	   send();
-		       });
-	       });
-	        function openChild()
-	        {
-	            openWin = window.open("/Finalweb/CarImg.mc",
-	                    "childForm", "width=570, height=350, left=500, top=200, resizable = no, scrollbars = no");    
-	        }
-
-	        function send(){
-	        	$("#imgopen2").attr("action", "ImgPopup.jsp").submit();
-	        	
-	        	// openWin.document.getElementById("imgbtn").value = document.getElementById("imgbtn2").value;
-	        	//$("#imgbtn").attr("action", "ImgPopup.jsp").submit();
-	        } */
-
-		
 		$( document ).ready(function() {
 			$('#inImg').click(function(){
 				window.open("/Finalweb/CarInImg.mc?inImg="+$(this).val(), "", "width=600, height=400, left=500, top=200");
@@ -83,11 +61,6 @@
 			});
 		}); 
 		
-/* 		function send(){
-            openWin.document.getElementById("cInput").value = document.getElementById("imgname").value;
-        } */
-
-
 		</script> 
 	</head>
 	<body>
@@ -120,14 +93,20 @@
 					Date in_time = mycar.getIn_time();
 					Date out_time = mycar.getOut_time();
 					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					String outResult ="";
+					if(out_time==null){
+						outResult = "-";
+					}else{
+						outResult = format.format(out_time);
+					}
 					%>
 				<tr>
 					<td><%=mycar.getCar_seq() %></td>
 					<td><%=mycar.getP_id() %></td>
 					<td><%=mycar.getMem_id()%></td>
 					<td><%=mycar.getCar_num()%></td>
-					<td><%=format.format(in_time)%><button class="imgbtn" name ="inImg" id="inImg" value="<%=mycar.getIn_photo()%>">조회</button></td>
-					<td><%=format.format(out_time)%><button class="imgbtn" name ="outImg" id="outImg" value="<%=mycar.getOut_photo()%>">조회</button></td>
+					<td><%=format.format(in_time)%><button class="imgbtn" name ="inImg" id="inImg<%=i %>" value="<%=mycar.getIn_photo()%>">조회</button></td>
+					<td><%=outResult %><button class="imgbtn" name ="outImg" id="outImg<%=i %>" value="<%=mycar.getOut_photo()%>">조회</button></td>
 				</tr>
 				<%} %>
 			</table>

@@ -8,11 +8,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.frame.Service;
 import com.vo.CarVO;
 import com.vo.ManagerVO;
+import com.vo.P_AreaVO;
 import com.vo.PayVO;
 
 @Controller
@@ -56,21 +58,35 @@ public class MainController {
 		return mv;
 	}
 	
-	@RequestMapping("/pkuser.mc")
-	public ModelAndView pkuserdetail(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
-	      ArrayList<CarVO> pkuserList = null;
-	  	try {
-	  		pkuserList = carService.get();
-	  		System.out.println(pkuserList);
-	  	} catch (Exception e) {
-	  		e.printStackTrace();
-	  	}
-	    mv.addObject("pkuserList", pkuserList);
-		mv.addObject("center", "pkuser");
-		mv.setViewName("mainpage");
-		return mv;
+//	@RequestMapping("/pkuser.mc")
+//	public ModelAndView pkuserdetail(HttpServletRequest request) {
+//		ModelAndView mv = new ModelAndView();
+//	      ArrayList<CarVO> pkuserList = null;
+//	  	try {
+//	  		pkuserList = carService.get();
+//	  		System.out.println(pkuserList);
+//	  	} catch (Exception e) {
+//	  		e.printStackTrace();
+//	  	}
+//	    mv.addObject("pkuserList", pkuserList);
+//		mv.addObject("center", "pkuser");
+//		mv.setViewName("mainpage");
+//		return mv;
+//	}
+	
+	
+	@RequestMapping(value = "/pkuser.mc", produces = "application/json;charset=utf-8" )
+	public @ResponseBody ArrayList<CarVO> parealist(HttpServletRequest request) {
+		ArrayList<CarVO> pkuserList = null;
+		try {
+			pkuserList = carService.get();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	return pkuserList;	
 	}
+	
+	
 	
 	@RequestMapping("/appuser.mc")
 	public ModelAndView appuserdetail(HttpServletRequest request) {

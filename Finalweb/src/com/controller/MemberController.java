@@ -46,7 +46,7 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping("/userlogin.mc")
+	@RequestMapping(value = "/userlogin.mc" ,produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String login(HttpServletRequest request) {
 		String mem_id = request.getParameter("id"); 

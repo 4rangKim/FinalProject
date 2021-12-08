@@ -53,8 +53,8 @@ public class CarService implements Service<String, CarVO>{
 	}
 
 	@Override
-	public ArrayList<CarVO> getstate(String P_id) throws Exception {
-		return null;
+	public ArrayList<CarVO> getstate(String k) throws Exception {
+		return dao.getstate(k);
 	}
 
 	@Override
