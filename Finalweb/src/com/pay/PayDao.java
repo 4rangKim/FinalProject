@@ -80,6 +80,11 @@ public class PayDao implements Dao<String, PayVO>{
 	public String seePayment(String k) {		
 		return null;
 	}
+	
+	@Override
+	public void updatePayment(PayVO v) {
+		
+	}
 
 	@Override
 	public void pay(PayVO v) {

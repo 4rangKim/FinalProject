@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="update" parameterType="car">
-		UPDATE car SET out_time=sysdate WHERE car_num=#{car_num} AND out_time is null
+		UPDATE car SET out_time=sysdate WHERE car_num=#{car_num} AND out_time IS NULL
 	</update>
 	
 	<select id="select" parameterType="String" 
@@ -22,9 +22,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="seePayment" parameterType="String" resultType="String">
-		SELECT ceil((sysdate - in_time)*24*60) FROM CAR WHERE MEM_ID = #{mem_id} and out_time is null
+		SELECT ceil((sysdate - in_time)*24*60) FROM CAR WHERE MEM_ID = #{mem_id} AND OUT_TIME IS NULL
 	</select>
 	
+	<update id="updatePayment">
+		UPDATE CAR SET payment=#{payment} WHERE mem_id=#{mem_id} AND out_time IS NULL
+	</update>
 </mapper>
 
 

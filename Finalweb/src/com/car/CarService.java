@@ -69,7 +69,11 @@ public class CarService implements Service<String, CarVO>{
 		return dao.seePayment(k);
 	}
 	
-	
+	@Override
+	public void updatePayment(CarVO v) {
+		dao.updatePayment(v);
+	}
+
 	@Override
 	public void pay(CarVO v) {
 		

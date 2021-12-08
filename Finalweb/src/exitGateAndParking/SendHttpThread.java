@@ -42,20 +42,24 @@ public class SendHttpThread {
 							int data = Integer.parseInt(charge.readLine());
 							System.out.println("SendHttpThread의 data: "+data);
 							int hour = data/60;
-							int minute = data - hour*60;							
+							int minute = data - hour*60;	
+							System.out.println("Total hour: "+hour);
+							System.out.println("Total minute: "+minute);
 							serialOut.write(hour);
 							serialOut.write(minute);
 							int amount = 3000;
 							if(hour >=1 || minute > 30){
-								amount += Math.ceil((float)(((hour*60)+(minute-30))/5))*500;
+								System.out.println("추가 요금!!");
+								amount += Math.ceil(((float)((hour*60)+(minute-30))/5))*500;
 							}
+							System.out.println("Total Amount: "+amount);
 							urlmapping = "http://192.168.0.140/Finalweb/pay.mc";
 							url = new URL(urlmapping+"?id=HAN"+"&amount="+amount);
 							connect = (HttpURLConnection) url.openConnection();
 							connect.setReadTimeout(5000);
 							connect.setRequestMethod("POST");
 							br = new BufferedReader(new InputStreamReader(connect.getInputStream()));
-							Thread.sleep(1000);
+							Thread.sleep(2000);
 							
 							//Car OUT
 							serialOut.write(1);

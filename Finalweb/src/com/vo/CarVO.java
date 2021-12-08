@@ -18,7 +18,6 @@ public class CarVO {
 		
 	}
 	
-	
 	public CarVO(int car_seq, String mem_id, String p_id, String car_num, Date in_time, Date out_time, String in_photo,
 			String out_photo) {
 		super();
@@ -41,6 +40,12 @@ public class CarVO {
 	public CarVO(String car_num) {
 		super();
 		this.car_num = car_num;		
+	}
+	
+	public CarVO(String mem_id, int payment) {
+		super();
+		this.mem_id = mem_id;
+		this.payment = payment;
 	}
 	
 	public int getCar_seq() {

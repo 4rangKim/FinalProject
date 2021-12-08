@@ -74,6 +74,11 @@ public class ParkingService implements Service<String, ParkingVO>{
 	}
 	
 	@Override
+	public void updatePayment(ParkingVO v) {
+		
+	}
+
+	@Override
 	public void pay(ParkingVO v) {		
 		
 	}

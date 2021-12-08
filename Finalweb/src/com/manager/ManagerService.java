@@ -84,5 +84,10 @@ public class ManagerService implements Service<String, ManagerVO>{
 	public String pointselect(String k) {		
 		return null;
 	}
+
+	@Override
+	public void updatePayment(ManagerVO v) {
+		
+	}
 	
 }

@@ -98,28 +98,18 @@ public class ParkingController {
 		System.out.println("parking컨트롤러의 data: "+data);
 		if(!data.equals(previous)) {
 			System.out.println("데이터 변경됨!!");
+			String parking_id = data.substring(0,1); // A
 			String area_id = data.substring(0,2); // A1
 			int state = Integer.parseInt(data.substring(2)); // 0
 			P_AreaVO changed = new P_AreaVO(area_id, state);
 			service2.modify(changed);
 			System.out.println("DB업데이트 완료");
-			parking_log.debug(area_id+","+state);
+			parking_log.debug(parking_id+","+area_id+","+state);
 		}
 		
 		previous = data;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 //	@RequestMapping(value = "/parkingajax.mc", method = RequestMethod.GET,
 //			produces = "application/json;charset=utf-8" )
 //	public @ResponseBody ArrayList<ParkingVO> SituationCheck() {

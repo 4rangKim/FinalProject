@@ -42,11 +42,18 @@ public class PayController {
 	@RequestMapping("/seePayment.mc")
 	@ResponseBody
 	public int payment(String mem_id) {
-		System.out.println("¹ÞÀº mem_id: "+mem_id);
 		String data = carService.seePayment("HAN");
 		if(data != null) {
 			int time = Integer.parseInt(data);
 			System.out.println("time: "+time);
+			int hour = time/60;
+			int minute = time - hour*60;
+			int amount = 3000;
+			if(hour >=1 || minute > 30){
+				amount += Math.ceil((float)(((hour*60)+(minute-30))/5))*500;
+			}
+			CarVO fee = new CarVO("HAN", amount);
+			carService.updatePayment(fee);
 			return time;
 		}else {
 			return 0;

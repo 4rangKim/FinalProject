@@ -82,5 +82,10 @@ public class ManagerDao implements Dao<String, ManagerVO>{
 	public String pointselect(String k) {		
 		return null;
 	}
+
+	@Override
+	public void updatePayment(ManagerVO v) {
+		
+	}
 	
 }

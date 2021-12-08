@@ -20,6 +20,7 @@ public interface Service<K,V> {
 	public V idcheck(V v);
 	public V pwdcheck(V v);
 	public String seePayment(K k);
+	public void updatePayment(V v);
 	public void pay(V v);
 	public void pointcharge(V v);
 	public K pointselect(K k);

@@ -74,6 +74,11 @@ public class MemberService implements Service<String, MemberVO>{
 	}
 
 	@Override
+	public void updatePayment(MemberVO v) {
+		
+	}
+
+	@Override
 	public void pay(MemberVO v) {
 			
 	}

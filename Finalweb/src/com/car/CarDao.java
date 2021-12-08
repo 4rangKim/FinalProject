@@ -72,6 +72,11 @@ public class CarDao implements Dao<String, CarVO>{
 	}
 	
 	@Override
+	public void updatePayment(CarVO v) {
+		
+	}
+
+	@Override
 	public void pay(CarVO v) {		
 		
 	}

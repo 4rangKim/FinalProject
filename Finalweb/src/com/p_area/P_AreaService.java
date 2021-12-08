@@ -71,6 +71,11 @@ public class P_AreaService implements Service<String, P_AreaVO>{
 	}
 	
 	@Override
+	public void updatePayment(P_AreaVO v) {
+		
+	}
+
+	@Override
 	public void pay(P_AreaVO v) {		
 		
 	}

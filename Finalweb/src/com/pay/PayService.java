@@ -81,6 +81,11 @@ public class PayService implements Service<String, PayVO>{
 	}
 
 	@Override
+	public void updatePayment(PayVO v) {
+		
+	}
+
+	@Override
 	public void pay(PayVO v) {
 		dao.pay(v);		
 	}

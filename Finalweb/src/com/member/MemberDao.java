@@ -24,7 +24,6 @@ public class MemberDao implements Dao<String, MemberVO>{
 	public void delete(String k) throws Exception {
 		mem.delete(k);
 	}
-
 	
 	@Override
 	public void update(MemberVO v) throws Exception {
@@ -71,6 +70,11 @@ public class MemberDao implements Dao<String, MemberVO>{
 		return null;
 	}
 	
+	@Override
+	public void updatePayment(MemberVO v) {
+		
+	}
+
 	@Override
 	public void pay(MemberVO v) {
 		

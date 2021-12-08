@@ -15,6 +15,7 @@ public interface Dao<K,V> {
 	public V idcheck(V v);
 	public V pwdcheck(V v);
 	public K seePayment(K k);
+	public void updatePayment(V v);
 	public void pay(V v);
 	public void pointcharge(V v);
 	public K pointselect(K k);
