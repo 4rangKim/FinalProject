@@ -1,18 +1,18 @@
 package com.controller;
 
+import java.util.ArrayList;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.frame.Service;
 import com.vo.CarVO;
 import com.vo.ManagerVO;
-import com.vo.MemberVO;
 import com.vo.PayVO;
 
 @Controller
@@ -59,10 +59,19 @@ public class MainController {
 	@RequestMapping("/pkuser.mc")
 	public ModelAndView pkuserdetail(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
+	      ArrayList<CarVO> pkuserList = null;
+	  	try {
+	  		pkuserList = carService.get();
+	  		System.out.println(pkuserList);
+	  	} catch (Exception e) {
+	  		e.printStackTrace();
+	  	}
+	    mv.addObject("pkuserList", pkuserList);
 		mv.addObject("center", "pkuser");
 		mv.setViewName("mainpage");
 		return mv;
 	}
+	
 	@RequestMapping("/appuser.mc")
 	public ModelAndView appuserdetail(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
@@ -92,6 +101,9 @@ public class MainController {
 	@RequestMapping("/CarInImg.mc")
 	public ModelAndView carInImg(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
+		String inImg = request.getParameter("inImg");
+		System.out.println(inImg);
+		mv.addObject("Img", inImg);
 		mv.setViewName("ImgPopup");
 		return mv;
 	}
@@ -99,6 +111,9 @@ public class MainController {
 	@RequestMapping("/CarOutImg.mc")
 	public ModelAndView carOutImg(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
+		String outImg = request.getParameter("outImg");
+		System.out.println(outImg);
+		mv.addObject("Img", outImg);
 		mv.setViewName("ImgPopup");
 		return mv;
 	}

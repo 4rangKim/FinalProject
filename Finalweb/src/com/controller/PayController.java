@@ -2,16 +2,18 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.frame.Service;
@@ -71,12 +73,35 @@ public class PayController {
 	
 	@RequestMapping("/pay.mc")
 	@ResponseBody
-	public void pay(HttpServletRequest request) {
+	public String pay(HttpServletRequest request) {
+		System.out.println("pay메소드 호출");
 		String id = request.getParameter("id");
 		int amount = Integer.parseInt(request.getParameter("amount"));
 		PayVO pay = new PayVO(id, amount);
 		payService.pay(pay);
 		System.out.println("지불 완료!!");
+		JSONArray ja = new JSONArray();
+		List<CarVO> carList = null;
+		try {
+			carList = carService.selectList(id);
+			System.out.println(carList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		for(int i=0;i<carList.size();i++) {
+			JSONObject jo = new JSONObject();
+			CarVO mycar = carList.get(i);
+			jo.put("carNum", mycar.getCar_num());
+			jo.put("mem_id", mycar.getMem_id());
+			jo.put("in_time", mycar.getIn_time());
+			jo.put("out_time", mycar.getOut_time());
+			jo.put("payment", mycar.getPayment());
+			ja.add(jo);
+		}
+		String result = ja.toJSONString();
+		System.out.println(ja.toJSONString());
+		return result;
+		
 	}
 	
 //	@RequestMapping(value = "/payAmountbyP_id.mc", method = RequestMethod.GET,
@@ -100,5 +125,37 @@ public class PayController {
 		
 		out.print(jo.toJSONString());
 		out.close();
+	}
+	
+	@RequestMapping(value="/paylist.mc",produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String paylist(HttpServletRequest request) {
+		System.out.println("pay메소드 호출");
+		String mem_id = request.getParameter("id");
+		JSONArray ja = new JSONArray();
+		List<CarVO> carList = null;
+		try {
+			carList = carService.selectList(mem_id);
+			System.out.println(carList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		for(int i=0;i<carList.size();i++) {
+			JSONObject jo = new JSONObject();
+			CarVO mycar = carList.get(i);
+			Date in_time = mycar.getIn_time();
+			Date out_time = mycar.getOut_time();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			jo.put("carNum", mycar.getCar_num());
+			jo.put("mem_id", mycar.getMem_id());
+			jo.put("in_time", format.format(in_time));
+			jo.put("out_time", format.format(out_time));
+			jo.put("payment", mycar.getPayment());
+			ja.add(jo);
+		}
+		String result = ja.toJSONString();
+		System.out.println(ja.toJSONString());
+		return result;
+		
 	}
 }

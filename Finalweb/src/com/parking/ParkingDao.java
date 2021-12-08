@@ -1,6 +1,7 @@
 package com.parking;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -94,5 +95,10 @@ public class ParkingDao implements Dao<String, ParkingVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	@Override
+	public List<ParkingVO> selectList(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<img alt="" src="img/car.jpg" style="width: 700px; height: 400px;">
+	<%
+		String img = (String)request.getAttribute("Img"); 
+	%>
+	<img alt="" src="img/<%=img %>" style="width: 700px; height: 400px;">
 </body>
 </html>

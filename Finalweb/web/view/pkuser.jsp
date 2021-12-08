@@ -1,3 +1,7 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="com.vo.CarVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -48,18 +52,48 @@
 			}
 		</style>
 		<script type="text/javascript">
+		/* 
+	       var openWin;
+	       $( document ).ready(function() {
+		       $('#imgopen2').click(function(){
+		    	   openChild();
+		    	   send();
+		       });
+	       });
+	        function openChild()
+	        {
+	            openWin = window.open("/Finalweb/CarImg.mc",
+	                    "childForm", "width=570, height=350, left=500, top=200, resizable = no, scrollbars = no");    
+	        }
 
+	        function send(){
+	        	$("#imgopen2").attr("action", "ImgPopup.jsp").submit();
+	        	
+	        	// openWin.document.getElementById("imgbtn").value = document.getElementById("imgbtn2").value;
+	        	//$("#imgbtn").attr("action", "ImgPopup.jsp").submit();
+	        } */
+
+		
 		$( document ).ready(function() {
-			$('#imgopen').click(function(){
-				window.open("/Finalweb/CarInImg.mc", "CarImg", "width=600, height=400, left=500, top=200");
+			$('#inImg').click(function(){
+				window.open("/Finalweb/CarInImg.mc?inImg="+$(this).val(), "", "width=600, height=400, left=500, top=200");
 			});
-			$('#imgopen2').click(function(){
-				window.open("/Finalweb/CarOutImg.mc", "CarImg", "width=600, height=400, left=500, top=200");
+			$('#outImg').click(function(){
+				window.open("/Finalweb/CarOutImg.mc?outImg="+$(this).val(), "", "width=600, height=400, left=500, top=200");
 			});
-		});
+		}); 
+		
+/* 		function send(){
+            openWin.document.getElementById("cInput").value = document.getElementById("imgname").value;
+        } */
+
+
 		</script> 
 	</head>
 	<body>
+	<% ArrayList<CarVO> pkuserList = (ArrayList<CarVO>)request.getAttribute("pkuserList"); 
+		int size = pkuserList.size();
+	%>
 	
 		<div class="breadcrumbs" >
             <div class="col-sm-4">
@@ -81,14 +115,21 @@
 					<th>입차 시간</th>
 					<th>출차 시간</th>
 				</tr>
+				<%for(int i=0;i<size;i++){ 
+					CarVO mycar = pkuserList.get(i);
+					Date in_time = mycar.getIn_time();
+					Date out_time = mycar.getOut_time();
+					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					%>
 				<tr>
-					<td>1</td>
-					<td>A</td>
-					<td>lee</td>
-					<td>12가 3456</td>
-					<td>2021-11-29 13:00:00<button class="imgbtn" id="imgopen">조회</button></td>
-					<td>2021-11-29 17:00:00<button class="imgbtn" id="imgopen2">조회</button></td>
+					<td><%=mycar.getCar_seq() %></td>
+					<td><%=mycar.getP_id() %></td>
+					<td><%=mycar.getMem_id()%></td>
+					<td><%=mycar.getCar_num()%></td>
+					<td><%=format.format(in_time)%><button class="imgbtn" name ="inImg" id="inImg" value="<%=mycar.getIn_photo()%>">조회</button></td>
+					<td><%=format.format(out_time)%><button class="imgbtn" name ="outImg" id="outImg" value="<%=mycar.getOut_photo()%>">조회</button></td>
 				</tr>
+				<%} %>
 			</table>
 		</div>
 	</body>

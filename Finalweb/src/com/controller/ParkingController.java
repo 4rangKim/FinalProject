@@ -172,5 +172,30 @@ public class ParkingController {
 //	
 //	}
 	
+	@RequestMapping(value = "/parealist.mc", produces = "application/json;charset=utf-8" )
+	public @ResponseBody ArrayList<P_AreaVO> parealist(HttpServletRequest request) {
+		ArrayList<P_AreaVO> ParkingState = null;
+		try {
+			ParkingState = (ArrayList<P_AreaVO>)service2.getstateBy_p_id();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	
+	return ParkingState;	
+	}
+	
+	@RequestMapping(value = "/pareaState.mc", produces = "application/json;charset=utf-8" )
+	public @ResponseBody ArrayList<P_AreaVO> pareaState(HttpServletRequest request) {
+		ArrayList<P_AreaVO> PareaState = null;
+		String P_id = request.getParameter("p_id"); 
+		try {
+			PareaState = service2.getstate(P_id);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	return PareaState;	
+	}
 }

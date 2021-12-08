@@ -1,13 +1,13 @@
 package com.manager;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
 import com.frame.Dao;
 import com.frame.Service;
 import com.vo.ManagerVO;
-import com.vo.MemberVO;
 import com.vo.payAmountcheck_result_VO;
 
 @org.springframework.stereotype.Service("ManagerService")
@@ -93,5 +93,9 @@ public class ManagerService implements Service<String, ManagerVO>{
 	public payAmountcheck_result_VO getTodayInfo(String k) {
 		return null;
 	}
-	
+	@Override
+	public List<ManagerVO> selectList(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

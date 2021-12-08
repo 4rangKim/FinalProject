@@ -1,10 +1,10 @@
 package com.frame;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.vo.CarVO;
 import com.vo.payAmountcheck_result_VO;
 
 
@@ -28,6 +28,7 @@ public interface Service<K,V> {
 	public void pointcharge(V v);
 	public K pointselect(K k);
 	public payAmountcheck_result_VO getTodayInfo(K k);
+	public List<V> selectList(K k) throws Exception;
 }
 
 

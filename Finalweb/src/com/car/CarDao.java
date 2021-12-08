@@ -1,15 +1,14 @@
 package com.car;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.frame.Dao;
 import com.mapper.CarMapper;
-import com.mapper.ParkingMapper;
 import com.vo.CarVO;
-import com.vo.ParkingVO;
 import com.vo.payAmountcheck_result_VO;
 
 @Repository("CarDao")
@@ -47,6 +46,11 @@ public class CarDao implements Dao<String, CarVO>{
 		return null;
 	}
 
+	@Override
+	public List<CarVO> selectList(String k) throws Exception {
+		return cm.selectList(k);
+	}
+	
 	@Override
 	public ArrayList<CarVO> getstate(String k) {
 		return null;

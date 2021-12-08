@@ -1,6 +1,7 @@
 package com.car;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -29,6 +30,12 @@ public class CarService implements Service<String, CarVO>{
 	public void modify(CarVO v) throws Exception {
 		dao.update(v);
 	}
+	
+	@Override
+	public List<CarVO> selectList(String k) throws Exception {
+		return dao.selectList(k);
+	}
+
 
 	@Override
 	public CarVO get(String k) throws Exception {

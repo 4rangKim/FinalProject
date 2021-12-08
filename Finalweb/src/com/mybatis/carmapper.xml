@@ -21,6 +21,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM car
 	</select>
 	
+	<select id="selectList" parameterType="String" 
+	resultType="car">
+		SELECT * FROM car WHERE mem_id=#{mem_id}	
+	</select>
+	
 	<select id="seePayment" parameterType="String" resultType="String">
 		SELECT ceil((sysdate - in_time)*24*60) FROM CAR WHERE MEM_ID = #{mem_id} AND OUT_TIME IS NULL
 	</select>

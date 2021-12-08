@@ -1,6 +1,7 @@
 package com.p_area;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -93,6 +94,11 @@ public class P_AreaService implements Service<String, P_AreaVO>{
 	@Override
 	public payAmountcheck_result_VO getTodayInfo(String k) {
 		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public List<P_AreaVO> selectList(String k) throws Exception {
 		return null;
 	}
 
