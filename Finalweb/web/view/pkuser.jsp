@@ -52,19 +52,20 @@
 			}
 		</style>
 		<script type="text/javascript">
-		$( document ).ready(function() {
-			$('#inImg').click(function(){
-				window.open("/Finalweb/CarInImg.mc?inImg="+$(this).val(), "", "width=600, height=400, left=500, top=200");
-			});
-			$('#outImg').click(function(){
-				window.open("/Finalweb/CarOutImg.mc?outImg="+$(this).val(), "", "width=600, height=400, left=500, top=200");
-			});
-		}); 
+		function inImg(btn){
+			var img = $("#"+btn).val();
+			window.open("/Finalweb/CarInImg.mc?inImg="+img, "", "width=600, height=400, left=500, top=200");
+		}
+		function outImg(btn){
+			var img = $("#"+btn).val();
+			alert(img);
+			window.open("/Finalweb/CarOutImg.mc?outImg="+img, "", "width=600, height=400, left=500, top=200");
+		}
 		
 		</script> 
 	</head>
 	<body>
-	<% ArrayList<CarVO> pkuserList = (ArrayList<CarVO>)request.getAttribute("pkuserList"); 
+	 <% ArrayList<CarVO> pkuserList = (ArrayList<CarVO>)request.getAttribute("pkuserList"); 
 		int size = pkuserList.size();
 	%>
 	
@@ -79,8 +80,8 @@
         </div>
 
 		<div class="container">
-			<table class="usertable">
-				<tr>
+			<table class="usertable" id="usertable">
+ 				<tr>
 					<th>순번</th>
 					<th>주차장 번호</th>
 					<th>ID</th>
@@ -105,8 +106,8 @@
 					<td><%=mycar.getP_id() %></td>
 					<td><%=mycar.getMem_id()%></td>
 					<td><%=mycar.getCar_num()%></td>
-					<td><%=format.format(in_time)%><button class="imgbtn" name ="inImg" id="inImg<%=i %>" value="<%=mycar.getIn_photo()%>">조회</button></td>
-					<td><%=outResult %><button class="imgbtn" name ="outImg" id="outImg<%=i %>" value="<%=mycar.getOut_photo()%>">조회</button></td>
+					<td><%=format.format(in_time)%><button class="imgbtn" name ="inImg" id="inImg<%=i %>" onclick="inImg('inImg<%=i%>')" value="<%=mycar.getIn_photo()%>">조회</button></td>
+					<td><%=outResult %><button class="imgbtn" name ="outImg" id="outImg<%=i%>" onclick="outImg('outImg<%=i%>')" value="<%=mycar.getOut_photo()%>">조회</button></td>
 				</tr>
 				<%} %>
 			</table>
