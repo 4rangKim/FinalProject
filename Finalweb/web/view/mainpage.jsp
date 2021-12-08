@@ -50,6 +50,8 @@
 		cursor: pointer;
 	}
 	</style>    
+	
+	
     
     
 </head>
@@ -84,6 +86,10 @@
                     <h3 class="menu-title">APP 관리</h3><!-- /.menu-title -->
 					<li>
                         <a href="/Finalweb/appuser.mc"> <i class="menu-icon fa fa-table"></i>사용자 조회</a>
+                    </li>
+                    <li>
+                        <a href="#" id="MKrandom"><i class="menu-icon fa fa-table"></i>Random_On</a>
+                    	<!-- <a href="/Finalweb/appuser.mc" id="MKrandom"> <i class="menu-icon fa fa-table"></i>Random_On</a> -->
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->

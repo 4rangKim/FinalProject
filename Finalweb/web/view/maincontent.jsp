@@ -248,7 +248,6 @@
 					success:function(d){
 						displaychart(d);
 					}
-						
 				})
 			}
 			
@@ -260,7 +259,6 @@
 					success:function(d){
 						displaychart(d);
 					}
-						
 				})
 			}
 			
@@ -272,11 +270,39 @@
 					success:function(d){
 						displaychart(d);
 					}
-						
 				})
 			}
 			
+			function makingRandomUpdate(){
+				//var obj=0;
+				$("#MKrandom").click(function(){
+					//obj=!obj
+					obj2=$("#MKrandom").text();
+					if(obj2=='Random_On'){
+						alert('주차장 DB에 랜덤 업데이트를 시작합니다.');
+						$("#MKrandom").empty();
+			 			$("#MKrandom").append("<i class='menu-icon fa fa-table'></i>"+'Random_Off');
+			 			timerId = setInterval(function(){
+			 				$.ajax({
+				 				url:'MakingRandomValue.mc',
+				 				success:function(da){
+				 					//alert('success');
+				 				}
+				 			});
+			 			},2000);
+			 			
+					}else{
+						alert('주차장 DB에 랜덤 업데이트를 종료합니다.');
+						$("#MKrandom").empty();
+			 			$("#MKrandom").append("<i class='menu-icon fa fa-table'></i>"+'Random_On');
+			 			clearInterval(timerId);
+					}
+				});
+			}
+			
+			
 			$(document).ready(function(){
+				makingRandomUpdate();
 				
 				getdataforDCHART();
 				
@@ -323,7 +349,7 @@
 					</div>
 				</div>
 				<div  style="width:100%; background: #FFFFFF; height: 100px; display: flex;" >
-					<div style="margin: auto;"><h3 id="SelectedParkinglot">선택된 주차장</h3></div><span>안녕!</span>
+					<div style="margin: auto;"><h3 id="SelectedParkinglot">선택된 주차장</h3></div>
 				</div>
 			</div>
 					

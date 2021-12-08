@@ -109,6 +109,45 @@ public class ParkingController {
 		
 		previous = data;
 	}
+	
+	
+	/* ===============vv랜덤수 업데이트 테스트 하는 컨트롤러 코드vv================================================*/
+	@RequestMapping("/MakingRandomValue.mc")
+	@ResponseBody
+	public void MakingRandomValue(HttpServletResponse response)throws IOException {
+		response.setContentType("application/text;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		for(char i = 'A'; i<='H'; i++) {
+			
+			String str_i = String.valueOf(i);
+			
+			Random random = new Random();
+			int state = random.nextInt(2);
+			int ran_parea = random.nextInt(2);
+			int ran_parea2 = random.nextInt(9)+1;
+			
+			//char ranalpha = (char) ((Math.random() * 8) + 65);
+			//String ranAlpha = String.valueOf(ranalpha);
+			
+			P_AreaVO randomvalueforP_erea = new P_AreaVO(str_i+ran_parea+""+ran_parea2+"", str_i, state);
+			
+			try {
+				service2.modify(randomvalueforP_erea);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		out.print("랜덤스테이트 구동 완료");
+		out.close();
+		
+	}
+	/* ===============^^랜덤수 업데이트 테스트 하는 컨트롤러 코드^^================================================*/
+	
+	
+	
 		
 //	@RequestMapping(value = "/parkingajax.mc", method = RequestMethod.GET,
 //			produces = "application/json;charset=utf-8" )
