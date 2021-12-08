@@ -10,6 +10,8 @@
 			function InfoFromEachParkname2(){
 				//alert('hi');
 				$("#selectedP").text(p_id+'주차장');
+				$("#imgdiv").empty();
+				$("#imgdiv").append("<img alt='' src='img/parkinglot_IMG/"+p_id+".jpg' style='width: 100%; height: 210px;'>");
 				$.ajax({
 					url:'payAmountbyP_id.mc',
 					type:"get",
@@ -529,39 +531,35 @@
 			<!-- VV==========================매니저 현황========================================================== -->
             <div class="col-xl-3 col-lg-6" >
                 <section class="card">
-                    <div class="twt-feed blue-bg">
-                        <div class="corner-ribon black-ribon">
-                            <i class="fa fa-twitter"></i>
-                        </div>
-                        <div class="fa fa-twitter wtt-mark"></div>
+                    <!-- <div class="twt-feed blue-bg" style="border: solid red 2px;"> -->
+                    <div id="imgdiv">
+                    	<img alt="" src="img/parkinglot_IMG/default.jpg" style="width: 100%; height: 210px;">
 
-                        <div class="media" style="text-align: center;">
-                            <!-- <a href="#">
+                        <!-- <div class="media" style="text-align: center;">
+                            <a href="#">
                                 <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
-                            </a> -->
+                            </a>
                             <div class="media-body">
                                 <h2 class="text-white display-6" id="selectedP">주차장</h2>
                                 <p class="text-light" id="selectePsub">상세 현황 조회</p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
-                    <div class="weather-category twt-category">
+                    <div class="weather-category twt-category"style="height: 135px;">
                         <ul>
-                            <li class="active">
-                                <h5>750</h5>
-                                Tweets
-                            </li>
-                            <li>
-                                <h5>865</h5>
-                                Following
-                            </li>
-                            <li>
-                                <h5>3645</h5>
-                                Followers
-                            </li>
+                            <div class="media" style="text-align: center;">
+	                            <div class="media-body">
+	                                <!-- <h2 class="text-white display-6" id="selectedP" style="color: black">주차장</h2>
+	                                <p class="text-light" id="selectePsub"style="color: black">상세 현황 조회</p> -->
+	                                <h2 class="display-6" id="selectedP" style="color: #343a40;">주차장</h2>
+	                                <p  id="selectePsub"style="color: #343a40;">상세 현황 조회</p>
+	                                <textarea placeholder="메세지를 남기세요." rows="1" class="form-control t-text-area"></textarea>
+	                               
+	                            </div>
+	                        </div>
                         </ul>
                     </div>
-                    <div class="twt-write col-sm-12">
+                    <!-- <div class="twt-write col-sm-12" style="border: solid black 2px;">
                         <textarea placeholder="Write your Tweet and Enter" rows="1" class="form-control t-text-area"></textarea>
                     </div>
                     <footer class="twt-footer">
@@ -571,7 +569,7 @@
                         <span class="pull-right">
                             32
                         </span>
-                    </footer>
+                    </footer> -->
                 </section>
             </div>
 			<!-- ^^==========================매니저 현황========================================================== -->
@@ -587,7 +585,7 @@
                             </div>
                             <div style="float : left; width: 65%;">
                                 <div class="stat-text">금일 총 매출</div>
-                                <div class="stat-digit"><h5 id = "T_income">0원</h5></div>
+                                <div class="stat-digit" style="margin-top: 10px"><h5 id = "T_income">0원</h5></div>
                             </div>
                         </div>
                     </div>
@@ -606,7 +604,7 @@
                             </div>
                             <div style="float : left; width: 65%;">
                                 <div class="stat-text">금일 주차 차량수</div>
-                                <div class="stat-digit"><h5 id = "T_count">0대</h5></div>
+                                <div class="stat-digit" style="margin-top: 10px"><h5 id = "T_count">0대</h5></div>
                             </div>
                         </div>
                     </div>
