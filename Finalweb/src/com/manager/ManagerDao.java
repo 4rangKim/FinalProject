@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.frame.Dao;
 import com.mapper.ManagerMapper;
 import com.vo.ManagerVO;
+import com.vo.payAmountcheck_result_VO;
 
 @Repository("ManagerDao")
 public class ManagerDao implements Dao<String, ManagerVO>{
@@ -86,6 +87,9 @@ public class ManagerDao implements Dao<String, ManagerVO>{
 	@Override
 	public void updatePayment(ManagerVO v) {
 		
+	}
+	public payAmountcheck_result_VO getTodayInfo(String k) {
+		return null;
 	}
 	
 }

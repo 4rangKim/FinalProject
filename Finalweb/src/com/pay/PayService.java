@@ -8,6 +8,7 @@ import com.frame.Dao;
 import com.frame.Service;
 import com.vo.MemberVO;
 import com.vo.PayVO;
+import com.vo.payAmountcheck_result_VO;
 
 @org.springframework.stereotype.Service("PayService")
 public class PayService implements Service<String, PayVO>{
@@ -88,6 +89,12 @@ public class PayService implements Service<String, PayVO>{
 	@Override
 	public void pay(PayVO v) {
 		dao.pay(v);		
+	}
+
+	@Override
+	public payAmountcheck_result_VO getTodayInfo(String k) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

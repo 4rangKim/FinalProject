@@ -8,6 +8,7 @@ import com.frame.Dao;
 import com.frame.Service;
 import com.vo.ManagerVO;
 import com.vo.MemberVO;
+import com.vo.payAmountcheck_result_VO;
 
 @org.springframework.stereotype.Service("ManagerService")
 public class ManagerService implements Service<String, ManagerVO>{
@@ -88,6 +89,9 @@ public class ManagerService implements Service<String, ManagerVO>{
 	@Override
 	public void updatePayment(ManagerVO v) {
 		
+	}
+	public payAmountcheck_result_VO getTodayInfo(String k) {
+		return null;
 	}
 	
 }

@@ -28,6 +28,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<update id="updatePayment">
 		UPDATE CAR SET payment=#{payment} WHERE mem_id=#{mem_id} AND out_time IS NULL
 	</update>
+	
+	<select id="getTodayInfo" parameterType="String" resultType="today_count">
+		select count(p_id) as count, sum(payment) as totalIncome from car where to_date(in_time,'YY/MM/DD') =TO_CHAR(SYSDATE, 'YYYY/MM/DD') and p_id =#{p_id}
+	</select>
+	
 </mapper>
 
 

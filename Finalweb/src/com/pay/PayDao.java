@@ -10,6 +10,7 @@ import com.mapper.MemberMapper;
 import com.mapper.PayMapper;
 import com.vo.MemberVO;
 import com.vo.PayVO;
+import com.vo.payAmountcheck_result_VO;
 
 @Repository("PayDao")
 public class PayDao implements Dao<String, PayVO>{
@@ -89,6 +90,12 @@ public class PayDao implements Dao<String, PayVO>{
 	@Override
 	public void pay(PayVO v) {
 		pm.pay(v);
+	}
+
+	@Override
+	public payAmountcheck_result_VO getTodayInfo(String k) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

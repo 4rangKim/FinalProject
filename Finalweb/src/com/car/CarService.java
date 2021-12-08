@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import com.frame.Dao;
 import com.frame.Service;
 import com.vo.CarVO;
+import com.vo.payAmountcheck_result_VO;
 
 @org.springframework.stereotype.Service("CarService")
 public class CarService implements Service<String, CarVO>{
@@ -86,6 +87,11 @@ public class CarService implements Service<String, CarVO>{
 	@Override
 	public String pointselect(String k) {		
 		return null;
+	}
+
+	@Override
+	public payAmountcheck_result_VO getTodayInfo(String p_id) {
+		return dao.getTodayInfo(p_id);
 	}
 	
 }
