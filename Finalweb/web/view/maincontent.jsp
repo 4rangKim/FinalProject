@@ -122,7 +122,7 @@
 									
 								}
 							})
-						}, 1000);
+						}, 1500);
 						
 						//InfoFromEachParkname2();
 						
@@ -134,7 +134,7 @@
 			
 			function displaychart(d){
 				var colors = Highcharts.getOptions().colors;
-				container2
+				/* container2 */
 				Highcharts.chart('chart_container', {
 				    chart: {
 				        type: 'spline'
@@ -375,7 +375,7 @@
 				
 				setInterval(function() {
 					AllParkinglotState();
-			       },1000);
+			       },1500);
 				
 				
 				
@@ -480,6 +480,9 @@
                                 
                                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
                                     <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
+                                    	<label class="btn btn-outline-secondary">
+                                            <input type="radio" name="options" id="option0"> Hour
+                                        </label>
                                         <label class="btn btn-outline-secondary">
                                             <input type="radio" name="options" id="option1" checked="" onchange="getdataforDCHART()"> Day
                                         </label>
@@ -558,11 +561,17 @@
 
 
 			<!-- VV==========================매니저 현황========================================================== -->
-            <div class="col-xl-3 col-lg-6" >
+            <div class="col-lg-6" >
                 <section class="card">
                     <!-- <div class="twt-feed blue-bg" style="border: solid red 2px;"> -->
                     <div id="imgdiv">
-                    	<img alt="" src="img/parkinglot_IMG/default.jpg" style="width: 100%; height: 210px;">
+                    	<!-- <img alt="" src="img/parkinglot_IMG/default.jpg" style="width: 100%; height: 420px;"> -->
+                    	
+                    	
+                    	<iframe src="http://192.168.0.15:81/stream" frameborder="0" width="100%" height="420px" scrolling="no" style="margin: 0 auto;">
+                    
+						</iframe>
+                    	
 
                         <!-- <div class="media" style="text-align: center;">
                             <a href="#">
@@ -642,7 +651,7 @@
             <!-- ^^==========================카드2(금일 방문 차량 수 현황)========================================================== -->
             
 			<!-- VV==========================카드3(미정)========================================================== -->
-            <div class="col-xl-3 col-lg-6">
+            <!-- <div class="col-xl-3 col-lg-6">
                 <div class="card">
                     <div class="card-body">
                         <div class="stat-widget-one">
@@ -654,11 +663,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- ^^==========================카드3(미정)========================================================== -->
             
 			<!-- VV==========================카드4(미정/ 전세계 지도)========================================================== -->
-            <div class="col-xl-6">
+           <!--  <div class="col-xl-6">
                 <div class="card">
                     <div class="card-header">
                         <h4>World</h4>
@@ -667,13 +676,17 @@
                         <div id="vmap" class="vmap" style="height: 265px;"></div>
                     </div>
                 </div>
-                <!-- /# card -->
-            </div>
+                /# card
+            </div> -->
             <!-- ^^==========================카드4(미정/ 전세계 지도)========================================================== -->
+            
+            
 
-			<div id="container2" style="width: 100%; height: 600px;" > 
+			<!-- <div id="container2" style="width: 100%; height: 600px; background-color: red;" > 
 			
-			</div>
+			</div> -->
+			
+			
 
        <!-- .content -->
 </body>
