@@ -22,15 +22,17 @@
 							$("#T_income_div").append("<div style='font-size: 14px;'>정산된 요금이 없습니다.</div>");
 						}else{
 							$("#T_income_div").empty();
-							$("#T_income_div").append("<div style='font-size: 30px; color:black;'>"+data.todayIncome+"&nbsp;원</div>");
+							$("#T_income_div").append("<div style='font-size: 30px; color:black;'><h5>"+data.todayIncome+"&nbsp;원</h5></div>");
 						}
 						if(data.todayCount==0){
 							$("#T_count_div").empty();
 							$("#T_count_div").append("<div style='font-size: 14px;'>주차한 차량이 없습니다.</div>");
 						}else{
 							$("#T_count_div").empty();
-							$("#T_count_div").append("<div style='font-size: 30px; color:black;'>"+data.todayCount+"&nbsp;대</div>");
+							$("#T_count_div").append("<div style='font-size: 30px; color:black;'><h5>"+data.todayCount+"&nbsp;대</hd></div>");
 						}
+						
+						
 					}
 				})
 				
@@ -55,18 +57,18 @@
 							if(0<data[k].count && data[k].count<=10){
 								parkingsituation=
 									parkingsituation+
-										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: yellow; color:blue; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:35px;'>"
-											+data[k].p_id +"</div><div style='float:left'>&nbsp;보통</div></div>"
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: yellow; color:blue; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+												+data[k].p_id +"</div><div style='float:left'>&nbsp;보통</div></div></div>"
 							}else if(10<data[k].count){
 								parkingsituation=
 									parkingsituation+
-										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: blue; color:white; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:35px;'>"
-											+data[k].p_id +"</div><div style='float:left'>&nbsp;여유</div></div>"
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: blue; color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+											+data[k].p_id +"</div><div style='float:left'>&nbsp;여유</div></div></div>"
 							}else if(data[k].count<=0){
 								parkingsituation=
 									parkingsituation+
-										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: red; color:white; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:35px;'>"
-											+data[k].p_id +"</div><div style='float:left'>&nbsp;만차</div></div>"
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: red; color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+											+data[k].p_id +"</div><div style='float:left'>&nbsp;만차</div></div></div>"
 							}
 						}
 						$(".parkbox").empty();
@@ -79,7 +81,7 @@
 			function ViewP_areaState(){
 				$(".parkname2").each(function() {
 					$(this).click(function() {
-						p_id = $.trim($(this).children(".parkname3").text());
+						p_id = $.trim($(this).children(".parkname2_chi1").children(".parkname2_chi2").text());
 						
 						InfoFromEachParkname2();
 						/* $(this).attr("class","col-sm-4 active parkname"); */
@@ -415,7 +417,7 @@
 						<div class="title" >주차장 별 현황</div>
 						<div class="row parkbox">
 							<% for(char i='A';i<='H';i++){ %>
-								<div class="col-sm-5 parkname" style="text-align: center;height: 30px;background-color: #83AFE0;margin: 5px;border-radius: 5px; color: white;">
+								<div class="col-sm-5 parkname" style="text-align: center;height: 30px;background-color: #83AFE0;margin: 5px;border-radius: 5px; ">
 									<%=i%>
 								</div>
 							<%}%>
