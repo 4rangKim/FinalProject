@@ -17,8 +17,20 @@
 					type:"get",
 					data:{"p_id":p_id},
 					success:function(data){
-						$("#T_income").text(data.todayIncome+'원');
-						$("#T_count").text(data.todayCount+'대')
+						if(data.todayIncome==0){
+							$("#T_income_div").empty();
+							$("#T_income_div").append("<div style='font-size: 14px;'>정산된 요금이 없습니다.</div>");
+						}else{
+							$("#T_income").text(data.todayIncome+'원');
+						}
+						if(data.todayCount==0){
+							$("#T_count_div").empty();
+							$("#T_count_div").append("<div style='font-size: 14px;'>주차한 차량이 없습니다.</div>");
+						}else{
+							$("#T_count").text(data.todayCount+'대')
+						}
+						
+						
 					}
 				})
 			}    
@@ -32,11 +44,20 @@
 						parkingsituation='';
 						for(k=0;k<data.length;k++){
 							if(0<data[k].count && data[k].count<=10){
-								parkingsituation=parkingsituation+"<div class='col-sm-5 parkname2' style='text-align: center; height: 30px; background-color: yellow; color:blue; margin: 5px; border-radius: 5px;'>"+data[k].p_id+"</div>"
+								parkingsituation=
+									parkingsituation+
+										"<div class='col-sm-5 parkname2' style='text-align: center; height: 30px; background-color: yellow; color:blue; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:25px;'>"
+											+data[k].p_id +"</div><div style='float:left'>&nbsp;보통</div></div>"
 							}else if(10<data[k].count){
-								parkingsituation=parkingsituation+"<div class='col-sm-5 parkname2' style='text-align: center; height: 30px; background-color: blue; color:white; margin: 5px; border-radius: 5px;'>"+data[k].p_id+"</div>"
+								parkingsituation=
+									parkingsituation+
+										"<div class='col-sm-5 parkname2' style='text-align: center; height: 30px; background-color: blue; color:white; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:25px;'>"
+											+data[k].p_id +"</div><div style='float:left'>&nbsp;여유</div></div>"
 							}else if(data[k].count<=0){
-								parkingsituation=parkingsituation+"<div class='col-sm-5 parkname2' style='text-align: center; height: 30px; background-color: red; color:white; margin: 5px; border-radius: 5px;'>"+data[k].p_id+"</div>"
+								parkingsituation=
+									parkingsituation+
+										"<div class='col-sm-5 parkname2' style='text-align: center; height: 30px; background-color: red; color:white; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:25px;'>"
+											+data[k].p_id +"</div><div style='float:left'>&nbsp;만차</div></div>"
 							}
 						}
 						$(".parkbox").empty();
@@ -49,7 +70,7 @@
 			function ViewP_areaState(){
 				$(".parkname2").each(function() {
 					$(this).click(function() {
-						p_id = $.trim($(this).text());
+						p_id = $.trim($(this).children(".parkname3").text());
 						
 						InfoFromEachParkname2();
 						/* $(this).attr("class","col-sm-4 active parkname"); */
@@ -69,9 +90,15 @@
 									statecount=0;
 									for(i=0;i<data.length;i++){
 										if(data[i].state==0){
-											stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: blue; margin: 5px; text-align: left; color: white; font-size:14px;'>"+data[i].area_id+"</div>"
+											stateView=
+												stateView+
+													"<div class='col-sm-1' style='width:20px; height: 30px; background-color: blue; margin: 5px; text-align: left; color: white; font-size:14px;'>"
+														+data[i].area_id+"</div>"
 										}else if(data[i].state==1){
-											stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: red; margin: 5px; text-align: left; color: white; font-size:14px;'>"+data[i].area_id+"</div>"
+											stateView=
+												stateView+
+													"<div class='col-sm-1' style='width:20px; height: 30px; background-color: red; margin: 5px; text-align: left; color: white; font-size:14px;'>"
+														+data[i].area_id+"</div>"
 											statecount=statecount+1
 										}
 									}
@@ -79,7 +106,9 @@
 										stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: #DDDDDD; margin: 5px;'></div>"
 									}
 									
-									$("#SelectedParkinglot").text('선택된 주차장 : '+p_id+'('+(data.length-statecount)+'/'+data.length+')');
+									//$("#SelectedParkinglot").text('선택된 주차장 : '+p_id+'('+(data.length-statecount)+'/'+data.length+')');
+									$("#SelectedParkinglot").empty();
+									$("#SelectedParkinglot").append("<h3 style='float: left'>선택된 주차장:&nbsp;"+p_id+'('+"</h3><h3 style='float: left; color: blue;'>"+(data.length-statecount)+"</h3><h3 style='float: left'>"+'/'+data.length+')'+"</h3>")
 									
 									$(".spacebox").empty();
 						 			$(".spacebox").append(stateView);
@@ -381,13 +410,13 @@
 								<div class="col-sm-5 parkname" style="text-align: center;height: 30px;background-color: #83AFE0;margin: 5px;border-radius: 5px; ">
 									<%=i%>
 								</div>
-								<%-- <button class="btns"><%=i %></button> --%>
 							<%}%>
 						</div>
 					</div>
 				</div>
 				<div  style="width:100%; background: #FFFFFF; height: 100px; display: flex;" >
-					<div style="margin: auto;"><h3 id="SelectedParkinglot">선택된 주차장</h3></div>
+					<!-- <div style="margin: auto;" id="SelectedParkinglot"><h3 style="float: left">선택된 주차장 (</h3><h3 style="float: left; color: blue;">뀨뀨</h3><h3 style="float: left">/꺄꺄)</h3></div> -->
+					<div style="margin: auto;" id="SelectedParkinglot"><h3>선택된 주차장</h3></div>
 				</div>
 			</div>
 					
@@ -585,7 +614,7 @@
                             </div>
                             <div style="float : left; width: 65%;">
                                 <div class="stat-text">금일 총 매출</div>
-                                <div class="stat-digit" style="margin-top: 10px"><h5 id = "T_income">0원</h5></div>
+                                <div class="stat-digit" style="margin-top: 10px" id="T_income_div"><h5 id = "T_income">0원</h5></div>
                             </div>
                         </div>
                     </div>
@@ -604,7 +633,7 @@
                             </div>
                             <div style="float : left; width: 65%;">
                                 <div class="stat-text">금일 주차 차량수</div>
-                                <div class="stat-digit" style="margin-top: 10px"><h5 id = "T_count">0대</h5></div>
+                                <div class="stat-digit" style="margin-top: 10px" id="T_count_div"><h5 id = "T_count">0대</h5></div>
                             </div>
                         </div>
                     </div>
@@ -642,7 +671,7 @@
             </div>
             <!-- ^^==========================카드4(미정/ 전세계 지도)========================================================== -->
 
-			<div id="container2" style="width: 100%; height: 600px;"> 
+			<div id="container2" style="width: 100%; height: 600px;" > 
 			
 			</div>
 
