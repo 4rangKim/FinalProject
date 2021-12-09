@@ -52,7 +52,7 @@ public class PayController {
 	@RequestMapping("/seePayment.mc")
 	@ResponseBody
 	public int payment(String mem_id) {
-		String data = carService.seePayment("HAN");
+		String data = carService.seePayment("aaa");
 		if(data != null) {
 			int time = Integer.parseInt(data);
 			System.out.println("time: "+time);
@@ -127,28 +127,6 @@ public class PayController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		JSONArray ja = new JSONArray();
-//		List<CarVO> carList = null;
-//		try {
-//			carList = carService.selectList(id);
-//			System.out.println(carList);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		for(int i=0;i<carList.size();i++) {
-//			JSONObject jo = new JSONObject();
-//			CarVO mycar = carList.get(i);
-//			jo.put("carNum", mycar.getCar_num());
-//			jo.put("mem_id", mycar.getMem_id());
-//			jo.put("in_time", mycar.getIn_time());
-//			jo.put("out_time", mycar.getOut_time());
-//			jo.put("payment", mycar.getPayment());
-//			ja.add(jo);
-//		}
-//		String result = ja.toJSONString();
-//		System.out.println(ja.toJSONString());
-//		return result;
-		
 	}
 	
 	@RequestMapping("/payAmountbyP_id.mc")

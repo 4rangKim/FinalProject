@@ -18,13 +18,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectall" resultType="car">
-		SELECT * FROM car order by car_seq
+		SELECT * FROM car order by in_time desc
 	</select>
 	
 	<select id="categorylist" parameterType="String" resultType="car">
-		SELECT * FROM car where p_id=#{p_id} order by car_seq
+		SELECT * FROM car where p_id=#{p_id} order by in_time desc
 	</select>
-	
 	<select id="selectList" parameterType="String" resultType="car">
 		SELECT * FROM car WHERE mem_id=#{mem_id} and out_time is not null
 	</select>
@@ -37,7 +36,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT ceil((sysdate - in_time)*24*60) FROM CAR WHERE MEM_ID = #{mem_id} AND OUT_TIME IS NULL
 	</select>
 	
-	<update id="updatePayment">
+	<update id="updatePayment" parameterType="car">
 		UPDATE CAR SET payment=#{payment} WHERE mem_id=#{mem_id} AND out_time IS NULL
 	</update>
 	

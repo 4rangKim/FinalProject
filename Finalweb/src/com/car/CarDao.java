@@ -78,7 +78,7 @@ public class CarDao implements Dao<String, CarVO>{
 	
 	@Override
 	public void updatePayment(CarVO v) {
-		
+		cm.updatePayment(v);
 	}
 
 	@Override
@@ -104,5 +104,6 @@ public class CarDao implements Dao<String, CarVO>{
 	public ArrayList<CarVO> categorylist(String k) throws Exception {
 		return cm.categorylist(k);
 	}
+
 	
 }

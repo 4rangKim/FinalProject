@@ -18,6 +18,7 @@ public interface CarMapper {
 	public payAmountcheck_result_VO getTodayInfo(String p_id);
 	public List<CarVO> selectList(String obj);
 	public ArrayList<CarVO> categorylist(String obj);
+	public void updatePayment(CarVO obj);
 }
 
 
