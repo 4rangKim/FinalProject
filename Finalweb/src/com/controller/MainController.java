@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.frame.Service;
 import com.vo.CarVO;
 import com.vo.ManagerVO;
+import com.vo.MemberVO;
 import com.vo.P_AreaVO;
 import com.vo.PayVO;
 
@@ -33,6 +34,9 @@ public class MainController {
 	
 	@Resource(name="CarService")
 	Service<String, CarVO> carService;
+	
+	@Resource(name="MemberService")
+	Service<String, MemberVO> memberService;
 	
 	@RequestMapping("/login.mc")
 	public ModelAndView login() {
@@ -62,7 +66,7 @@ public class MainController {
 	@RequestMapping("/pkuser.mc")
 	public ModelAndView pkuserdetail(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-	      ArrayList<CarVO> pkuserList = null;
+	    ArrayList<CarVO> pkuserList = null;
 	  	try {
 	  		pkuserList = carService.get();
 	  		System.out.println(pkuserList);
@@ -75,12 +79,32 @@ public class MainController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/pkuser/ajax_list.mc",method = RequestMethod.GET,
+			produces =  "application/json;charset=utf-8")
+	public @ResponseBody ArrayList<CarVO> categoryList(String category){
+		ArrayList<CarVO> carlist = null;
+		try {
+			carlist = (ArrayList<CarVO>)carService.categorylist(category);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("ajax≈ÎΩ≈:"+carlist.size());
+		return carlist;
+	}
 	
 	
 	
 	@RequestMapping("/appuser.mc")
 	public ModelAndView appuserdetail(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
+		 ArrayList<MemberVO> appuserList = null;
+		  	try {
+		  		appuserList = memberService.get();
+		  		System.out.println(appuserList);
+		  	} catch (Exception e) {
+		  		e.printStackTrace();
+		  	}
+		mv.addObject("appuserList", appuserList);
 		mv.addObject("center", "appuser");
 		mv.setViewName("mainpage");
 		return mv;

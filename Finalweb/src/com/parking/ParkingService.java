@@ -105,5 +105,11 @@ public class ParkingService implements Service<String, ParkingVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ArrayList<ParkingVO> categorylist(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

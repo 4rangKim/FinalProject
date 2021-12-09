@@ -102,5 +102,11 @@ public class P_AreaDao implements Dao<String, P_AreaVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ArrayList<P_AreaVO> categorylist(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

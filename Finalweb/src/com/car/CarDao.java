@@ -99,5 +99,10 @@ public class CarDao implements Dao<String, CarVO>{
 	public payAmountcheck_result_VO getTodayInfo(String p_id) {
 		return cm.getTodayInfo(p_id);
 	}
+
+	@Override
+	public ArrayList<CarVO> categorylist(String k) throws Exception {
+		return cm.categorylist(k);
+	}
 	
 }

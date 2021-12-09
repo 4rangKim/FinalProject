@@ -100,5 +100,10 @@ public class CarService implements Service<String, CarVO>{
 	public payAmountcheck_result_VO getTodayInfo(String p_id) {
 		return dao.getTodayInfo(p_id);
 	}
+
+	@Override
+	public ArrayList<CarVO> categorylist(String k) throws Exception {
+		return dao.categorylist(k);
+	}
 	
 }

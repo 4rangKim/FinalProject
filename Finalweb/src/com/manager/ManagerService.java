@@ -97,5 +97,13 @@ public class ManagerService implements Service<String, ManagerVO>{
 	public List<ManagerVO> selectList(String k) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	
 	}
+
+	@Override
+	public ArrayList<ManagerVO> categorylist(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

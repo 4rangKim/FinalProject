@@ -29,6 +29,7 @@ public interface Service<K,V> {
 	public K pointselect(K k);
 	public payAmountcheck_result_VO getTodayInfo(K k);
 	public List<V> selectList(K k) throws Exception;
+	public ArrayList<V> categorylist(K k) throws Exception;
 }
 
 
