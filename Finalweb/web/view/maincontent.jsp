@@ -11,7 +11,7 @@
 				//alert('hi');
 				$("#selectedP").text(p_id+'주차장');
 				$("#imgdiv").empty();
-				$("#imgdiv").append("<img alt='' src='img/parkinglot_IMG/"+p_id+".jpg' style='width: 100%; height: 210px;'>");
+				$("#imgdiv").append("<img alt='' src='img/parkinglot_IMG/"+p_id+".jpg' style='width: 100%; height: 420px;'>");
 				$.ajax({
 					url:'payAmountbyP_id.mc',
 					type:"get",
@@ -33,6 +33,15 @@
 						
 					}
 				})
+				
+				
+				/*----------------------vv 카메라 추가할때마다 else if 추가 해야 하는 코드------------------------------------------------- */
+				if(p_id=='A'){
+					$("#imgdiv").empty();
+					$("#imgdiv").append("<iframe src='http://192.168.0.15:81/stream' frameborder='0' width='100%' height='420px' scrolling='no' style='margin: 0 auto;'>");
+				}/* else if(p_id=='B') */
+				
+				
 			}    
     
 			function AllParkinglotState(){
@@ -46,17 +55,17 @@
 							if(0<data[k].count && data[k].count<=10){
 								parkingsituation=
 									parkingsituation+
-										"<div class='col-sm-5 parkname2' style='text-align: center; height: 30px; background-color: yellow; color:blue; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:25px;'>"
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: yellow; color:blue; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:25px;'>"
 											+data[k].p_id +"</div><div style='float:left'>&nbsp;보통</div></div>"
 							}else if(10<data[k].count){
 								parkingsituation=
 									parkingsituation+
-										"<div class='col-sm-5 parkname2' style='text-align: center; height: 30px; background-color: blue; color:white; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:25px;'>"
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: blue; color:white; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:25px;'>"
 											+data[k].p_id +"</div><div style='float:left'>&nbsp;여유</div></div>"
 							}else if(data[k].count<=0){
 								parkingsituation=
 									parkingsituation+
-										"<div class='col-sm-5 parkname2' style='text-align: center; height: 30px; background-color: red; color:white; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:25px;'>"
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: red; color:white; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:25px;'>"
 											+data[k].p_id +"</div><div style='float:left'>&nbsp;만차</div></div>"
 							}
 						}
@@ -134,7 +143,6 @@
 			
 			function displaychart(d){
 				var colors = Highcharts.getOptions().colors;
-				/* container2 */
 				Highcharts.chart('chart_container', {
 				    chart: {
 				        type: 'spline'
@@ -565,10 +573,10 @@
                 <section class="card">
                     <!-- <div class="twt-feed blue-bg" style="border: solid red 2px;"> -->
                     <div id="imgdiv">
-                    	<!-- <img alt="" src="img/parkinglot_IMG/default.jpg" style="width: 100%; height: 420px;"> -->
+                    	<img alt="" src="img/parkinglot_IMG/default.jpg" style="width: 100%; height: 420px;">
                     	
                     	
-                    	<iframe src="http://192.168.0.15:81/stream" frameborder="0" width="100%" height="420px" scrolling="no" style="margin: 0 auto;">
+                    	<!-- <iframe src="http://192.168.0.15:81/stream" frameborder="0" width="100%" height="420px" scrolling="no" style="margin: 0 auto;"> -->
                     
 						</iframe>
                     	
@@ -682,9 +690,7 @@
             
             
 
-			<!-- <div id="container2" style="width: 100%; height: 600px; background-color: red;" > 
 			
-			</div> -->
 			
 			
 
