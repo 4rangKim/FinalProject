@@ -63,9 +63,9 @@
 				text-align: center; 
 				background-color:#f1f2f7; 
 				height: 30px; 
-				width: 100px; 
+				width: 90px; 
 				border: solid 1px #4b88a5; 
-				margin:10px; 
+				margin:5px; 
 				border-radius: 5px; 
 				display:inline;
 				cursor: pointer;
@@ -139,6 +139,9 @@
 		<div class="container">
 			<div class="btnbox" id="btnbox">
 				<span class="btnhead">주차장&nbsp;&nbsp;&nbsp;</span>
+					<button class="parkname" id="parkbtnall" value="all" onclick="parkbtn('parkbtnall')">
+						ALL
+					</button>
 				<% for(char i='A';i<='H';i++){ %>
 					<button class="parkname" id="parkbtn<%=i%>" value="<%=i%>" onclick="parkbtn('parkbtn<%=i%>')">
 						<%=i%>

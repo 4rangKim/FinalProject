@@ -84,7 +84,11 @@ public class MainController {
 	public @ResponseBody ArrayList<CarVO> categoryList(String category){
 		ArrayList<CarVO> carlist = null;
 		try {
-			carlist = (ArrayList<CarVO>)carService.categorylist(category);
+			if(category.equals("all")) {
+				carlist = (ArrayList<CarVO>)carService.get();
+			}else {
+				carlist = (ArrayList<CarVO>)carService.categorylist(category);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
