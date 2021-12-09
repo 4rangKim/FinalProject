@@ -121,6 +121,12 @@ public class PayController {
 		PayVO pay = new PayVO(id, amount);
 		payService.pay(pay);
 		System.out.println("지불 완료!!");
+		String msg = amount+"원이 결제되었습니다.";
+		try {
+			FcmUtil.sendServer(msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 //		JSONArray ja = new JSONArray();
 //		List<CarVO> carList = null;
 //		try {
@@ -182,6 +188,7 @@ public class PayController {
 			Date in_time = mycar.getIn_time();
 			Date out_time = mycar.getOut_time();
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String outResult ="";
 			jo.put("carNum", mycar.getCar_num());
 			jo.put("mem_id", mycar.getMem_id());
 			jo.put("in_time", format.format(in_time));
