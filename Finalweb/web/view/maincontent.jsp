@@ -21,16 +21,16 @@
 							$("#T_income_div").empty();
 							$("#T_income_div").append("<div style='font-size: 14px;'>정산된 요금이 없습니다.</div>");
 						}else{
-							$("#T_income").text(data.todayIncome+'원');
+							$("#T_income_div").empty();
+							$("#T_income_div").append("<div style='font-size: 30px; color:black;'>"+data.todayIncome+"&nbsp;원</div>");
 						}
 						if(data.todayCount==0){
 							$("#T_count_div").empty();
 							$("#T_count_div").append("<div style='font-size: 14px;'>주차한 차량이 없습니다.</div>");
 						}else{
-							$("#T_count").text(data.todayCount+'대')
+							$("#T_count_div").empty();
+							$("#T_count_div").append("<div style='font-size: 30px; color:black;'>"+data.todayCount+"&nbsp;대</div>");
 						}
-						
-						
 					}
 				})
 				
@@ -55,17 +55,17 @@
 							if(0<data[k].count && data[k].count<=10){
 								parkingsituation=
 									parkingsituation+
-										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: yellow; color:blue; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:25px;'>"
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: yellow; color:blue; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:35px;'>"
 											+data[k].p_id +"</div><div style='float:left'>&nbsp;보통</div></div>"
 							}else if(10<data[k].count){
 								parkingsituation=
 									parkingsituation+
-										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: blue; color:white; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:25px;'>"
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: blue; color:white; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:35px;'>"
 											+data[k].p_id +"</div><div style='float:left'>&nbsp;여유</div></div>"
 							}else if(data[k].count<=0){
 								parkingsituation=
 									parkingsituation+
-										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: red; color:white; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:25px;'>"
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: red; color:white; margin: 5px; border-radius: 5px;'><div class='parkname3' style='float:left; margin-left:35px;'>"
 											+data[k].p_id +"</div><div style='float:left'>&nbsp;만차</div></div>"
 							}
 						}
@@ -415,7 +415,7 @@
 						<div class="title" >주차장 별 현황</div>
 						<div class="row parkbox">
 							<% for(char i='A';i<='H';i++){ %>
-								<div class="col-sm-5 parkname" style="text-align: center;height: 30px;background-color: #83AFE0;margin: 5px;border-radius: 5px; ">
+								<div class="col-sm-5 parkname" style="text-align: center;height: 30px;background-color: #83AFE0;margin: 5px;border-radius: 5px; color: white;">
 									<%=i%>
 								</div>
 							<%}%>
