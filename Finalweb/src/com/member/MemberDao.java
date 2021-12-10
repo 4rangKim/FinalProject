@@ -106,5 +106,11 @@ public class MemberDao implements Dao<String, MemberVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ArrayList<MemberVO> dateSearch(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

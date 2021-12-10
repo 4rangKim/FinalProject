@@ -108,5 +108,11 @@ public class P_AreaService implements Service<String, P_AreaVO>{
 		return null;
 	}
 
+	@Override
+	public ArrayList<P_AreaVO> dateSearch(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

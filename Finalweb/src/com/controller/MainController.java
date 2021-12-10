@@ -96,7 +96,22 @@ public class MainController {
 		return carlist;
 	}
 	
-	
+	@RequestMapping(value = "/pkuser/ajax_date.mc",method = RequestMethod.GET,
+			produces =  "application/json;charset=utf-8")
+	public @ResponseBody ArrayList<CarVO> dateList(String date){
+		System.out.println("dateAjax호출");
+		ArrayList<CarVO> carlist = null;
+		String dateString = date.substring(2);
+		String dateVal = dateString.replace("-", "/");
+		System.out.println(dateVal);
+		try {
+			carlist = (ArrayList<CarVO>)carService.dateSearch(dateVal);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("ajaxDate통신:"+carlist.size());
+		return carlist;
+	}
 	
 	@RequestMapping("/appuser.mc")
 	public ModelAndView appuserdetail(HttpServletRequest request) {

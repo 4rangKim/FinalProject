@@ -24,6 +24,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="categorylist" parameterType="String" resultType="car">
 		SELECT * FROM car where p_id=#{p_id} order by in_time desc
 	</select>
+	<select id="dateSearch" parameterType="String" resultType="car">
+		SELECT * FROM car where in_time like '%'||#{dateVal}||'%' order by in_time desc
+	</select>
+	
 	<select id="selectList" parameterType="String" resultType="car">
 		SELECT * FROM car WHERE mem_id=#{mem_id} and out_time is not null
 	</select>

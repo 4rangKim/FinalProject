@@ -105,5 +105,10 @@ public class CarService implements Service<String, CarVO>{
 	public ArrayList<CarVO> categorylist(String k) throws Exception {
 		return dao.categorylist(k);
 	}
+
+	@Override
+	public ArrayList<CarVO> dateSearch(String k) throws Exception {
+		return dao.dateSearch(k);
+	}
 	
 }

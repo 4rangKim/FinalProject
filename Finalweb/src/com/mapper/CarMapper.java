@@ -19,6 +19,7 @@ public interface CarMapper {
 	public List<CarVO> selectList(String obj);
 	public ArrayList<CarVO> categorylist(String obj);
 	public void updatePayment(CarVO obj);
+	public ArrayList<CarVO> dateSearch(String obj);
 }
 
 

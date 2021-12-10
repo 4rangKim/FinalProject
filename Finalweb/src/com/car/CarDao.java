@@ -105,5 +105,10 @@ public class CarDao implements Dao<String, CarVO>{
 		return cm.categorylist(k);
 	}
 
+	@Override
+	public ArrayList<CarVO> dateSearch(String k) throws Exception {
+		return cm.dateSearch(k);
+	}
+
 	
 }

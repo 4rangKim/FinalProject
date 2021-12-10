@@ -108,6 +108,12 @@ public class MemberService implements Service<String, MemberVO>{
 	public ArrayList<MemberVO> categorylist(String k) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ArrayList<MemberVO> dateSearch(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 	
 }
