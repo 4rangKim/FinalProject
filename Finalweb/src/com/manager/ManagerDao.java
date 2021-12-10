@@ -1,6 +1,7 @@
 package com.manager;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -89,6 +90,18 @@ public class ManagerDao implements Dao<String, ManagerVO>{
 		
 	}
 	public payAmountcheck_result_VO getTodayInfo(String k) {
+		return null;
+	}
+	
+	@Override
+	public List<ManagerVO> selectList(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<ManagerVO> categorylist(String k) throws Exception {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

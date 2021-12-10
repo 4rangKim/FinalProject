@@ -1,3 +1,7 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="com.vo.CarVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -10,8 +14,8 @@
 		<style type="text/css">
 			.usertable{
 				width: 100%;
-				margin: 50px;
 				text-align: center;
+				margin-top: 40px;
 			}
 			th{
 				border-top: solid 2px gray;
@@ -46,20 +50,81 @@
 			.contenttitle{
 				font-weight: bold;
 			}
+			.btnbox{
+				text-align: center;
+				margin-top: 30px;
+			}
+			.btnhead{
+				font-size: 18pt;
+				font-weight: bold;
+				color: #4b88a5;
+			}
+			.parkname{
+				text-align: center; 
+				background-color:#f1f2f7; 
+				height: 30px; 
+				width: 90px; 
+				border: solid 1px #4b88a5; 
+				margin:5px; 
+				border-radius: 5px; 
+				display:inline;
+				cursor: pointer;
+			}
+			.parkname:focus {
+ 				background-color: #4b88a5;
+ 				color:white;
+			}
 		</style>
 		<script type="text/javascript">
-
-		$( document ).ready(function() {
-			$('#imgopen').click(function(){
-				window.open("/Finalweb/CarInImg.mc", "CarImg", "width=600, height=400, left=500, top=200");
-			});
-			$('#imgopen2').click(function(){
-				window.open("/Finalweb/CarOutImg.mc", "CarImg", "width=600, height=400, left=500, top=200");
-			});
-		});
+	/* 	function inImg(btn){
+			var img = $("#"+btn).val();
+			window.open("/Finalweb/CarInImg.mc?inImg="+img, "", "width=600, height=400, left=500, top=200");
+		}
+		function outImg(btn){
+			var img = $("#"+btn).val();
+			window.open("/Finalweb/CarOutImg.mc?outImg="+img, "", "width=600, height=400, left=500, top=200");
+		} */
+		
+		function parkbtn(btn){
+			category = $("#"+btn).val();
+			$.ajax({
+				url:"/Finalweb/pkuser/ajax_list.mc",
+				type:"get",
+				data:{"category":category},
+				success:function(data){
+					mydata="<tr><th>순번</th><th>주차장 번호</th><th>ID</th><th>차량 번호</th><th>입차 시간</th><th>출차 시간</th></tr>";
+					for(i=0;i<data.length;i++){
+						 mydata = mydata + "<tr>"+
+							"<td>"+data[i].car_seq+"</td>"+
+							"<td>"+data[i].p_id+"</td>"+
+							"<td>"+data[i].mem_id+"</td>"+
+							"<td>"+data[i].car_num+"</td>"+
+							"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
+							"<td>"+data[i].out_time+"<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
+							"</tr>"	
+					}
+					
+					$("#usertable").empty();
+					$("#usertable").append(mydata);
+					
+					$(".imgbtn").each(function(){
+						$(this).click(function(){
+							img = $(this).val();
+							window.open("/Finalweb/CarInImg.mc?inImg="+img, "", "width=600, height=400, left=500, top=200");
+						});
+					});
+				}
+			})//end ajax
+		}
+		
+		
 		</script> 
 	</head>
 	<body>
+	 <% ArrayList<CarVO> pkuserList = (ArrayList<CarVO>)request.getAttribute("pkuserList"); 
+		int size = pkuserList.size();
+
+	%>
 	
 		<div class="breadcrumbs" >
             <div class="col-sm-4">
@@ -72,8 +137,19 @@
         </div>
 
 		<div class="container">
-			<table class="usertable">
-				<tr>
+			<div class="btnbox" id="btnbox">
+				<span class="btnhead">주차장&nbsp;&nbsp;&nbsp;</span>
+					<button class="parkname" id="parkbtnall" value="all" onclick="parkbtn('parkbtnall')">
+						ALL
+					</button>
+				<% for(char i='A';i<='H';i++){ %>
+					<button class="parkname" id="parkbtn<%=i%>" value="<%=i%>" onclick="parkbtn('parkbtn<%=i%>')">
+						<%=i%>
+					</button>
+				<%}%>
+			</div>
+			<table class="usertable" id="usertable">
+ 				<tr>
 					<th>순번</th>
 					<th>주차장 번호</th>
 					<th>ID</th>
@@ -81,14 +157,27 @@
 					<th>입차 시간</th>
 					<th>출차 시간</th>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>A</td>
-					<td>lee</td>
-					<td>12가 3456</td>
-					<td>2021-11-29 13:00:00<button class="imgbtn" id="imgopen">조회</button></td>
-					<td>2021-11-29 17:00:00<button class="imgbtn" id="imgopen2">조회</button></td>
+				<%for(int i=0;i<size;i++){ 
+					CarVO mycar = pkuserList.get(i);
+					Date in_time = mycar.getIn_time();
+					Date out_time = mycar.getOut_time();
+					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					String outResult ="";
+					if(out_time==null){
+						outResult = "-";
+					}else{
+						outResult = format.format(out_time);
+					}
+					%>
+				<tr id="userlist">
+					<td id="car_seq"><%=mycar.getCar_seq() %></td>
+					<td id="p_id"><%=mycar.getP_id() %></td>
+					<td id="mem_id"><%=mycar.getMem_id()%></td>
+					<td id="car_num"><%=mycar.getCar_num()%></td>
+					<td id="in_time"><%=format.format(in_time)%><button class="imgbtn" name ="inImg" id="inImg<%=i %>" onclick="inImg('inImg<%=i%>')" value="<%=mycar.getIn_photo()%>">조회</button></td>
+					<td id="out_time"><%=outResult %><button class="imgbtn" name ="outImg" id="outImg<%=i%>" onclick="outImg('outImg<%=i%>')" value="<%=mycar.getOut_photo()%>">조회</button></td>
 				</tr>
+				<%} %>
 			</table>
 		</div>
 	</body>

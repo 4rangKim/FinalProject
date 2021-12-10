@@ -1,6 +1,7 @@
 package com.p_area;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -95,5 +96,17 @@ public class P_AreaService implements Service<String, P_AreaVO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<P_AreaVO> selectList(String k) throws Exception {
+		return null;
+	}
 
+	@Override
+	public ArrayList<P_AreaVO> categorylist(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

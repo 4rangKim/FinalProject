@@ -50,7 +50,8 @@
 		cursor: pointer;
 	}
 	</style>    
-    
+	
+	
     
 </head>
 <body>
@@ -70,7 +71,7 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                        <a href="/Finalweb/main.mc"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <h3 class="menu-title">주차장 관리</h3><!-- /.menu-title -->
                     <li>
@@ -84,6 +85,15 @@
                     <h3 class="menu-title">APP 관리</h3><!-- /.menu-title -->
 					<li>
                         <a href="/Finalweb/appuser.mc"> <i class="menu-icon fa fa-table"></i>사용자 조회</a>
+                    </li>
+                    
+                    
+                    <h3 class="menu-title">랜덤 데이터 생성</h3><!-- /.menu-title -->
+                    <li>
+                        <a href="#" id="MKrandom"><i class="menu-icon fa fa-table"></i>Random_On</a>
+                    </li>
+                    <li>
+                        <a href="#" id="MKrandomLog"><i class="menu-icon fa fa-table"></i>Random_Log_On</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->

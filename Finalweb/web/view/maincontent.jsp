@@ -10,15 +10,40 @@
 			function InfoFromEachParkname2(){
 				//alert('hi');
 				$("#selectedP").text(p_id+'주차장');
+				$("#imgdiv").empty();
+				$("#imgdiv").append("<img alt='' src='img/parkinglot_IMG/"+p_id+".jpg' style='width: 100%; height: 420px;'>");
 				$.ajax({
 					url:'payAmountbyP_id.mc',
 					type:"get",
 					data:{"p_id":p_id},
 					success:function(data){
-						$("#T_income").text(data.todayIncome+'원');
-						$("#T_count").text(data.todayCount+'대')
+						if(data.todayIncome==0){
+							$("#T_income_div").empty();
+							$("#T_income_div").append("<div style='font-size: 14px;'>정산된 요금이 없습니다.</div>");
+						}else{
+							$("#T_income_div").empty();
+							$("#T_income_div").append("<div style='font-size: 30px; color:black;'><h5>"+data.todayIncome+"&nbsp;원</h5></div>");
+						}
+						if(data.todayCount==0){
+							$("#T_count_div").empty();
+							$("#T_count_div").append("<div style='font-size: 14px;'>주차한 차량이 없습니다.</div>");
+						}else{
+							$("#T_count_div").empty();
+							$("#T_count_div").append("<div style='font-size: 30px; color:black;'><h5>"+data.todayCount+"&nbsp;대</hd></div>");
+						}
+						
+						
 					}
 				})
+				
+				
+				/*----------------------vv 카메라 추가할때마다 else if 추가 해야 하는 코드------------------------------------------------- */
+				if(p_id=='A'){
+					$("#imgdiv").empty();
+					$("#imgdiv").append("<iframe src='http://192.168.0.15:81/stream' frameborder='0' width='100%' height='420px' scrolling='no' style='margin: 0 auto;'>");
+				}/* else if(p_id=='B') */
+				
+				
 			}    
     
 			function AllParkinglotState(){
@@ -30,11 +55,20 @@
 						parkingsituation='';
 						for(k=0;k<data.length;k++){
 							if(0<data[k].count && data[k].count<=10){
-								parkingsituation=parkingsituation+"<div class='col-sm-5 parkname2' style='text-align: center; height: 30px; background-color: yellow; color:blue; margin: 5px; border-radius: 5px;'>"+data[k].p_id+"</div>"
+								parkingsituation=
+									parkingsituation+
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: yellow; color:blue; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+												+data[k].p_id +"</div><div style='float:left'>&nbsp;보통</div></div></div>"
 							}else if(10<data[k].count){
-								parkingsituation=parkingsituation+"<div class='col-sm-5 parkname2' style='text-align: center; height: 30px; background-color: blue; color:white; margin: 5px; border-radius: 5px;'>"+data[k].p_id+"</div>"
+								parkingsituation=
+									parkingsituation+
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: blue; color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+											+data[k].p_id +"</div><div style='float:left'>&nbsp;여유</div></div></div>"
 							}else if(data[k].count<=0){
-								parkingsituation=parkingsituation+"<div class='col-sm-5 parkname2' style='text-align: center; height: 30px; background-color: red; color:white; margin: 5px; border-radius: 5px;'>"+data[k].p_id+"</div>"
+								parkingsituation=
+									parkingsituation+
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: red; color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+											+data[k].p_id +"</div><div style='float:left'>&nbsp;만차</div></div></div>"
 							}
 						}
 						$(".parkbox").empty();
@@ -47,7 +81,7 @@
 			function ViewP_areaState(){
 				$(".parkname2").each(function() {
 					$(this).click(function() {
-						p_id = $.trim($(this).text());
+						p_id = $.trim($(this).children(".parkname2_chi1").children(".parkname2_chi2").text());
 						
 						InfoFromEachParkname2();
 						/* $(this).attr("class","col-sm-4 active parkname"); */
@@ -67,9 +101,15 @@
 									statecount=0;
 									for(i=0;i<data.length;i++){
 										if(data[i].state==0){
-											stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: blue; margin: 5px; text-align: left; color: white; font-size:14px;'>"+data[i].area_id+"</div>"
+											stateView=
+												stateView+
+													"<div class='col-sm-1' style='width:20px; height: 30px; background-color: blue; margin: 5px; text-align: left; color: white; font-size:14px;'>"
+														+data[i].area_id+"</div>"
 										}else if(data[i].state==1){
-											stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: red; margin: 5px; text-align: left; color: white; font-size:14px;'>"+data[i].area_id+"</div>"
+											stateView=
+												stateView+
+													"<div class='col-sm-1' style='width:20px; height: 30px; background-color: red; margin: 5px; text-align: left; color: white; font-size:14px;'>"
+														+data[i].area_id+"</div>"
 											statecount=statecount+1
 										}
 									}
@@ -77,7 +117,9 @@
 										stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: #DDDDDD; margin: 5px;'></div>"
 									}
 									
-									$("#SelectedParkinglot").text('선택된 주차장 : '+p_id+'('+(data.length-statecount)+'/'+data.length+')');
+									//$("#SelectedParkinglot").text('선택된 주차장 : '+p_id+'('+(data.length-statecount)+'/'+data.length+')');
+									$("#SelectedParkinglot").empty();
+									$("#SelectedParkinglot").append("<h3 style='float: left'>선택된 주차장:&nbsp;"+p_id+'('+"</h3><h3 style='float: left; color: blue;'>"+(data.length-statecount)+"</h3><h3 style='float: left'>"+'/'+data.length+')'+"</h3>")
 									
 									$(".spacebox").empty();
 						 			$(".spacebox").append(stateView);
@@ -91,7 +133,7 @@
 									
 								}
 							})
-						}, 2000);
+						}, 1500);
 						
 						//InfoFromEachParkname2();
 						
@@ -101,10 +143,8 @@
 			}
 			
 			
-			
 			function displaychart(d){
 				var colors = Highcharts.getOptions().colors;
-				container2
 				Highcharts.chart('chart_container', {
 				    chart: {
 				        type: 'spline'
@@ -248,7 +288,6 @@
 					success:function(d){
 						displaychart(d);
 					}
-						
 				})
 			}
 			
@@ -260,7 +299,6 @@
 					success:function(d){
 						displaychart(d);
 					}
-						
 				})
 			}
 			
@@ -272,17 +310,82 @@
 					success:function(d){
 						displaychart(d);
 					}
-						
 				})
 			}
 			
+			function makingRandomUpdate(){
+				//var obj=0;
+				$("#MKrandom").click(function(){
+					//obj=!obj
+					obj2=$("#MKrandom").text();
+					if(obj2=='Random_On'){
+						alert('주차장 DB에 랜덤 업데이트를 시작합니다.');
+						$("#MKrandom").empty();
+			 			$("#MKrandom").append("<i class='menu-icon fa fa-table'></i>"+'Random_Off');
+			 			timerId = setInterval(function(){
+			 				$.ajax({
+				 				url:'MakingRandomValue.mc',
+				 				success:function(da){
+				 					//alert('success');
+				 				}
+				 			});
+			 			},2000);
+			 			
+					}else{
+						alert('주차장 DB에 랜덤 업데이트를 종료합니다.');
+						$("#MKrandom").empty();
+			 			$("#MKrandom").append("<i class='menu-icon fa fa-table'></i>"+'Random_On');
+			 			clearInterval(timerId);
+					}
+				});
+			}
+			
+			
+			function makingRandomLog(){
+				$("#MKrandomLog").click(function(){
+					obj2=$("#MKrandomLog").text();
+					if(obj2=='Random_Log_On'){
+						alert('랜덤 로그 생성을 시작합니다.');
+						$("#MKrandomLog").empty();
+			 			$("#MKrandomLog").append("<i class='menu-icon fa fa-table'></i>"+'Random_Log_Off');
+		 				$.ajax({
+			 				url:'randomLogTest1.mc',
+			 				success:function(da){
+			 					//alert('log1 success');
+			 					logInterval=setInterval(function(){
+			 						$.ajax({
+			 							url:'randomLogTest2.mc',
+			 							success:function(da2){
+			 								//alert('log2 success');
+			 								
+			 							}
+			 						})
+			 					},5000);
+			 				}
+			 			});
+			 			
+			 			
+					}else{
+						alert('랜덤 로그 생성을 종료합니다.');
+						$("#MKrandomLog").empty();
+			 			$("#MKrandomLog").append("<i class='menu-icon fa fa-table'></i>"+'Random_Log_On');
+			 			clearInterval(logInterval);
+					}
+				});
+			}
+			
+			
+		/*==================vv================도큐먼트 레디========================================  */
 			$(document).ready(function(){
+				makingRandomUpdate();
+				
+				makingRandomLog();
 				
 				getdataforDCHART();
 				
 				setInterval(function() {
 					AllParkinglotState();
-			       },2000);
+			       },1500);
 				
 				
 				
@@ -317,13 +420,13 @@
 								<div class="col-sm-5 parkname" style="text-align: center;height: 30px;background-color: #83AFE0;margin: 5px;border-radius: 5px; ">
 									<%=i%>
 								</div>
-								<%-- <button class="btns"><%=i %></button> --%>
 							<%}%>
 						</div>
 					</div>
 				</div>
 				<div  style="width:100%; background: #FFFFFF; height: 100px; display: flex;" >
-					<div style="margin: auto;"><h3 id="SelectedParkinglot">선택된 주차장</h3></div><span>안녕!</span>
+					<!-- <div style="margin: auto;" id="SelectedParkinglot"><h3 style="float: left">선택된 주차장 (</h3><h3 style="float: left; color: blue;">뀨뀨</h3><h3 style="float: left">/꺄꺄)</h3></div> -->
+					<div style="margin: auto;" id="SelectedParkinglot"><h3>선택된 주차장</h3></div>
 				</div>
 			</div>
 					
@@ -387,6 +490,9 @@
                                 
                                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
                                     <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
+                                    	<label class="btn btn-outline-secondary">
+                                            <input type="radio" name="options" id="option0"> Hour
+                                        </label>
                                         <label class="btn btn-outline-secondary">
                                             <input type="radio" name="options" id="option1" checked="" onchange="getdataforDCHART()"> Day
                                         </label>
@@ -465,41 +571,43 @@
 
 
 			<!-- VV==========================매니저 현황========================================================== -->
-            <div class="col-xl-3 col-lg-6" >
+            <div class="col-lg-6" >
                 <section class="card">
-                    <div class="twt-feed blue-bg">
-                        <div class="corner-ribon black-ribon">
-                            <i class="fa fa-twitter"></i>
-                        </div>
-                        <div class="fa fa-twitter wtt-mark"></div>
+                    <!-- <div class="twt-feed blue-bg" style="border: solid red 2px;"> -->
+                    <div id="imgdiv">
+                    	<img alt="" src="img/parkinglot_IMG/default.jpg" style="width: 100%; height: 420px;">
+                    	
+                    	
+                    	<!-- <iframe src="http://192.168.0.15:81/stream" frameborder="0" width="100%" height="420px" scrolling="no" style="margin: 0 auto;"> -->
+                    
+						</iframe>
+                    	
 
-                        <div class="media" style="text-align: center;">
-                            <!-- <a href="#">
+                        <!-- <div class="media" style="text-align: center;">
+                            <a href="#">
                                 <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
-                            </a> -->
+                            </a>
                             <div class="media-body">
                                 <h2 class="text-white display-6" id="selectedP">주차장</h2>
                                 <p class="text-light" id="selectePsub">상세 현황 조회</p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
-                    <div class="weather-category twt-category">
+                    <div class="weather-category twt-category"style="height: 135px;">
                         <ul>
-                            <li class="active">
-                                <h5>750</h5>
-                                Tweets
-                            </li>
-                            <li>
-                                <h5>865</h5>
-                                Following
-                            </li>
-                            <li>
-                                <h5>3645</h5>
-                                Followers
-                            </li>
+                            <div class="media" style="text-align: center;">
+	                            <div class="media-body">
+	                                <!-- <h2 class="text-white display-6" id="selectedP" style="color: black">주차장</h2>
+	                                <p class="text-light" id="selectePsub"style="color: black">상세 현황 조회</p> -->
+	                                <h2 class="display-6" id="selectedP" style="color: #343a40;">주차장</h2>
+	                                <p  id="selectePsub"style="color: #343a40;">상세 현황 조회</p>
+	                                <textarea placeholder="메세지를 남기세요." rows="1" class="form-control t-text-area"></textarea>
+	                               
+	                            </div>
+	                        </div>
                         </ul>
                     </div>
-                    <div class="twt-write col-sm-12">
+                    <!-- <div class="twt-write col-sm-12" style="border: solid black 2px;">
                         <textarea placeholder="Write your Tweet and Enter" rows="1" class="form-control t-text-area"></textarea>
                     </div>
                     <footer class="twt-footer">
@@ -509,7 +617,7 @@
                         <span class="pull-right">
                             32
                         </span>
-                    </footer>
+                    </footer> -->
                 </section>
             </div>
 			<!-- ^^==========================매니저 현황========================================================== -->
@@ -525,7 +633,7 @@
                             </div>
                             <div style="float : left; width: 65%;">
                                 <div class="stat-text">금일 총 매출</div>
-                                <div class="stat-digit"><h5 id = "T_income">0원</h5></div>
+                                <div class="stat-digit" style="margin-top: 10px" id="T_income_div"><h5 id = "T_income">0원</h5></div>
                             </div>
                         </div>
                     </div>
@@ -544,7 +652,7 @@
                             </div>
                             <div style="float : left; width: 65%;">
                                 <div class="stat-text">금일 주차 차량수</div>
-                                <div class="stat-digit"><h5 id = "T_count">0대</h5></div>
+                                <div class="stat-digit" style="margin-top: 10px" id="T_count_div"><h5 id = "T_count">0대</h5></div>
                             </div>
                         </div>
                     </div>
@@ -553,7 +661,7 @@
             <!-- ^^==========================카드2(금일 방문 차량 수 현황)========================================================== -->
             
 			<!-- VV==========================카드3(미정)========================================================== -->
-            <div class="col-xl-3 col-lg-6">
+            <!-- <div class="col-xl-3 col-lg-6">
                 <div class="card">
                     <div class="card-body">
                         <div class="stat-widget-one">
@@ -565,11 +673,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- ^^==========================카드3(미정)========================================================== -->
             
 			<!-- VV==========================카드4(미정/ 전세계 지도)========================================================== -->
-            <div class="col-xl-6">
+           <!--  <div class="col-xl-6">
                 <div class="card">
                     <div class="card-header">
                         <h4>World</h4>
@@ -578,13 +686,15 @@
                         <div id="vmap" class="vmap" style="height: 265px;"></div>
                     </div>
                 </div>
-                <!-- /# card -->
-            </div>
+                /# card
+            </div> -->
             <!-- ^^==========================카드4(미정/ 전세계 지도)========================================================== -->
+            
+            
 
-			<div id="container2" style="width: 100%; height: 600px;"> 
 			
-			</div>
+			
+			
 
        <!-- .content -->
 </body>

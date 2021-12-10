@@ -41,23 +41,80 @@ public class LogController {
 	
 	private Logger ran_test_log = Logger.getLogger("data");
 	
+	
 	//================VV 랜덤 로그를 만드는 컨트롤러 코드========================================================================
+	
+	
+	
+	@RequestMapping("/randomLogTest1.mc")
+	@ResponseBody
+	public void MakingRandomLog1(HttpServletResponse response)throws IOException{
+		response.setContentType("application/text;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		for(char j='A'; j<='H';j++) {
+			ran_test_log.debug(j+","+1);
+		}
+		
+		out.print("랜덤로그생성테스트1완료");
+		out.close();
+	}
+	
+	
+	@RequestMapping("/randomLogTest2.mc")
+	@ResponseBody
+	public void MakingRandomLog2(HttpServletResponse response)throws IOException{
+		response.setContentType("application/text;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		char ranAlpha = (char) ((Math.random()*8)+65);
+		//Random r = new Random();
+		//int r_state = r.nextInt(2);
+		ran_test_log.debug(ranAlpha+","+1);
+		
+		out.print("랜덤로그생성테스트2완료");
+		out.close();
+	}
+	
+	
+	
+	//**********V 랜덤 로그를 만드는 컨트롤러 (안쓰지만 혹시 모르니 보관)*************
 	@RequestMapping("/trafficTest.mc")
 	@ResponseBody
 	public void iotdata(HttpServletRequest request) throws IOException {
-		String random_state = request.getParameter("state");
+		//String random_state = request.getParameter("state");
+		//int f_random_state = Integer.parseInt(random_state);
 		
-		int f_random_state = Integer.parseInt(random_state);
 		for(char j='A'; j<='H';j++) {
-			Random r = new Random();
-			int r_state = r.nextInt(2);
 			ran_test_log.debug(j+","+1);
-			ran_test_log.debug(j+","+r_state);
 		}
 		
+		while(true) {
+			Thread t1 = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					char ranAlpha = (char) ((Math.random()*8)+65);
+					//Random r = new Random();
+					//int r_state = r.nextInt(2);
+					ran_test_log.debug(ranAlpha+","+1);
+					
+				}
+			});
+			t1.start();
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 	}
 	//================^^ 랜덤 로그를 만드는 컨트롤러 코드========================================================================
+	
+	
+	
 	
 	
 	//=================VV maincontent에서 AJAX요청을 받고 로그 데이터를 json 형태로 변환하는 코드==========================================

@@ -1,11 +1,14 @@
 package com.controller;
 
+import java.util.ArrayList;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,6 +16,7 @@ import com.frame.Service;
 import com.vo.CarVO;
 import com.vo.ManagerVO;
 import com.vo.MemberVO;
+import com.vo.P_AreaVO;
 import com.vo.PayVO;
 
 @Controller
@@ -30,6 +34,9 @@ public class MainController {
 	
 	@Resource(name="CarService")
 	Service<String, CarVO> carService;
+	
+	@Resource(name="MemberService")
+	Service<String, MemberVO> memberService;
 	
 	@RequestMapping("/login.mc")
 	public ModelAndView login() {
@@ -59,13 +66,49 @@ public class MainController {
 	@RequestMapping("/pkuser.mc")
 	public ModelAndView pkuserdetail(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
+	    ArrayList<CarVO> pkuserList = null;
+	  	try {
+	  		pkuserList = carService.get();
+	  		System.out.println(pkuserList);
+	  	} catch (Exception e) {
+	  		e.printStackTrace();
+	  	}
+	    mv.addObject("pkuserList", pkuserList);
 		mv.addObject("center", "pkuser");
 		mv.setViewName("mainpage");
 		return mv;
 	}
+	
+	@RequestMapping(value = "/pkuser/ajax_list.mc",method = RequestMethod.GET,
+			produces =  "application/json;charset=utf-8")
+	public @ResponseBody ArrayList<CarVO> categoryList(String category){
+		ArrayList<CarVO> carlist = null;
+		try {
+			if(category.equals("all")) {
+				carlist = (ArrayList<CarVO>)carService.get();
+			}else {
+				carlist = (ArrayList<CarVO>)carService.categorylist(category);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("ajax≈ÎΩ≈:"+carlist.size());
+		return carlist;
+	}
+	
+	
+	
 	@RequestMapping("/appuser.mc")
 	public ModelAndView appuserdetail(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
+		 ArrayList<MemberVO> appuserList = null;
+		  	try {
+		  		appuserList = memberService.get();
+		  		System.out.println(appuserList);
+		  	} catch (Exception e) {
+		  		e.printStackTrace();
+		  	}
+		mv.addObject("appuserList", appuserList);
 		mv.addObject("center", "appuser");
 		mv.setViewName("mainpage");
 		return mv;
@@ -92,6 +135,9 @@ public class MainController {
 	@RequestMapping("/CarInImg.mc")
 	public ModelAndView carInImg(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
+		String inImg = request.getParameter("inImg");
+		System.out.println(inImg);
+		mv.addObject("Img", inImg);
 		mv.setViewName("ImgPopup");
 		return mv;
 	}
@@ -99,6 +145,9 @@ public class MainController {
 	@RequestMapping("/CarOutImg.mc")
 	public ModelAndView carOutImg(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
+		String outImg = request.getParameter("outImg");
+		System.out.println(outImg);
+		mv.addObject("Img", outImg);
 		mv.setViewName("ImgPopup");
 		return mv;
 	}

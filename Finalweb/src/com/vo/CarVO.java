@@ -2,13 +2,19 @@ package com.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class CarVO {
 	public int car_seq;
 	public String mem_id;
 	public String p_id;
 	public String car_num;
+	
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	public Date in_time;
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	public Date out_time;
+	
 	public String in_photo;
 	public String out_photo;
 	public int payment;

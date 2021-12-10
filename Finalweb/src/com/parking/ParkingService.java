@@ -1,6 +1,7 @@
 package com.parking;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -95,6 +96,18 @@ public class ParkingService implements Service<String, ParkingVO>{
 
 	@Override
 	public payAmountcheck_result_VO getTodayInfo(String k) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public List<ParkingVO> selectList(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<ParkingVO> categorylist(String k) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

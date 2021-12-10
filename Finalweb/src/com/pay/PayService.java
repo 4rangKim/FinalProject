@@ -1,12 +1,12 @@
 package com.pay;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
 import com.frame.Dao;
 import com.frame.Service;
-import com.vo.MemberVO;
 import com.vo.PayVO;
 import com.vo.payAmountcheck_result_VO;
 
@@ -97,5 +97,16 @@ public class PayService implements Service<String, PayVO>{
 		return null;
 	}
 	
+	@Override
+	public List<PayVO> selectList(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<PayVO> categorylist(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

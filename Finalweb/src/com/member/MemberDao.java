@@ -1,6 +1,7 @@
 package com.member;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.frame.Dao;
 import com.mapper.MemberMapper;
 import com.vo.MemberVO;
-import com.vo.PayVO;
 import com.vo.payAmountcheck_result_VO;
 
 @Repository("MemberDao")
@@ -92,6 +92,17 @@ public class MemberDao implements Dao<String, MemberVO>{
 
 	@Override
 	public payAmountcheck_result_VO getTodayInfo(String k) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<MemberVO> selectList(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<MemberVO> categorylist(String k) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

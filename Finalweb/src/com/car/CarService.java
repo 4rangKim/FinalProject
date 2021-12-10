@@ -1,6 +1,7 @@
 package com.car;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -29,6 +30,12 @@ public class CarService implements Service<String, CarVO>{
 	public void modify(CarVO v) throws Exception {
 		dao.update(v);
 	}
+	
+	@Override
+	public List<CarVO> selectList(String k) throws Exception {
+		return dao.selectList(k);
+	}
+
 
 	@Override
 	public CarVO get(String k) throws Exception {
@@ -46,8 +53,8 @@ public class CarService implements Service<String, CarVO>{
 	}
 
 	@Override
-	public ArrayList<CarVO> getstate(String P_id) throws Exception {
-		return null;
+	public ArrayList<CarVO> getstate(String k) throws Exception {
+		return dao.getstate(k);
 	}
 
 	@Override
@@ -92,6 +99,11 @@ public class CarService implements Service<String, CarVO>{
 	@Override
 	public payAmountcheck_result_VO getTodayInfo(String p_id) {
 		return dao.getTodayInfo(p_id);
+	}
+
+	@Override
+	public ArrayList<CarVO> categorylist(String k) throws Exception {
+		return dao.categorylist(k);
 	}
 	
 }
