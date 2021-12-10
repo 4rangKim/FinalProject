@@ -103,18 +103,18 @@
 										if(data[i].state==0){
 											stateView=
 												stateView+
-													"<div class='col-sm-1' style='width:20px; height: 30px; background-color: blue; margin: 5px; text-align: left; color: white; font-size:14px;'>"
+													"<div style='width:9.5%; height: 30px; background-color: blue; margin: 5px; text-align: center; color: white; font-size:14px;'>"
 														+data[i].area_id+"</div>"
 										}else if(data[i].state==1){
 											stateView=
 												stateView+
-													"<div class='col-sm-1' style='width:20px; height: 30px; background-color: red; margin: 5px; text-align: left; color: white; font-size:14px;'>"
+													"<div style='width:9.5%; height: 30px; background-color: red; margin: 5px; text-align: center; color: white; font-size:14px;'>"
 														+data[i].area_id+"</div>"
 											statecount=statecount+1
 										}
 									}
-									for(j=0;j<(45-(data.length));j++){
-										stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: #DDDDDD; margin: 5px;'></div>"
+									for(j=0;j<(32-(data.length));j++){
+										stateView=stateView+"<div style='width:9.5%; height: 30px; background-color: #DDDDDD; margin: 5px;'></div>"
 									}
 									
 									//$("#SelectedParkinglot").text('선택된 주차장 : '+p_id+'('+(data.length-statecount)+'/'+data.length+')');
@@ -432,66 +432,65 @@
         </div>
     
 			<!-- ===========주차장 현황================================================================ -->
-		<div class="content mt-3" style= "margin-bottom: 30px;">
-			<div class="col-sm-6 ">
-				<div class="bg-flat-color-1" style="width:100%; display: flex; padding-top: 50px; padding-bottom: 50px;">
-					<div class="allpark" style="height: 300px; background:#FFFFFF; border-radius: 3px; width: 70%; margin: auto; text-align: center;">
-						<div class="title" >주차장 별 현황</div>
-						<div class="row parkbox">
-							<% for(char i='A';i<='H';i++){ %>
-								<div class="col-sm-5 parkname" style="text-align: center;height: 30px;background-color: #83AFE0;margin: 5px;border-radius: 5px; ">
-									<%=i%>
-								</div>
-							<%}%>
+		<div  style= "margin-bottom: 30px;">
+			<div class="col-xl-6" >
+                <div class="card">
+					<div class="bg-flat-color-1" style="width:100%; display: flex; padding-top: 50px; padding-bottom: 50px;">
+						<div class="allpark" style="height: 300px; background:#FFFFFF; border-radius: 3px; width: 70%; margin: auto; text-align: center;">
+							<div class="title" >주차장 별 현황</div>
+							<div class="row parkbox">
+								<% for(char i='A';i<='H';i++){ %>
+									<div class="col-sm-5 parkname" style="text-align: center;height: 30px;background-color: #83AFE0;margin: 5px;border-radius: 5px; ">
+										<%=i%>
+									</div>
+								<%}%>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div  style="width:100%; background: #FFFFFF; height: 100px; display: flex;" >
-					<!-- <div style="margin: auto;" id="SelectedParkinglot"><h3 style="float: left">선택된 주차장 (</h3><h3 style="float: left; color: blue;">뀨뀨</h3><h3 style="float: left">/꺄꺄)</h3></div> -->
-					<div style="margin: auto;" id="SelectedParkinglot"><h3>선택된 주차장</h3></div>
+					<div  style="width:100%; background: #FFFFFF; height: 100px; display: flex;" >
+						<!-- <div style="margin: auto;" id="SelectedParkinglot"><h3 style="float: left">선택된 주차장 (</h3><h3 style="float: left; color: blue;">뀨뀨</h3><h3 style="float: left">/꺄꺄)</h3></div> -->
+						<div style="margin: auto;" id="SelectedParkinglot"><h3>선택된 주차장</h3></div>
+					</div>
 				</div>
 			</div>
 					
-			<div class="col-sm-6">
-				<div class="" style="width:100%; display: flex; background: #F7C873; padding-top: 50px; padding-bottom: 50px;">
-					<div class="eachpark" >
-						<p class="title" id="parkingTitle">주차장을 선택해주세요.</p>
-						<div class="row spacebox">
-							<% for(int i=0;i<45;i++){ %>
-								<div class="col-sm-1 parkspace">
+			<div class="col-xl-6" >
+                <div class="card">
+					<div class="" style="width:100%; display: flex; background: #F7C873; padding-top: 50px; padding-bottom: 50px;">
+						<div class="eachpark" >
+							<!-- <div style="width: 100%; height: 400px; border: solid red 2px; "> -->
+								<p class="title" id="parkingTitle">주차장을 선택해주세요.</p>
+								<div class="row spacebox">
+									<% for(int i=0;i<32;i++){ %>
+										<div class="parkspace">
+										</div>
+									<%}%>
 								</div>
-							<%}%>
-						</div>
-						<div class="row" >
+							<!-- </div> -->
 							
-							<!-- vv----div 크기 확인용 보더 코드 -->
-							<!-- style="text-align: center; border: solid; balck; 2px; " -->
-						
-							
-							
-						</div>
-					</div>
-				</div>
-				<div style="width:100%; background: #FFFFFF; height: 100px;" >
-					<div>
-						<div class="row col-sm-6" id="usingspace">
-							<div class="p_area_notice">
-								<div style="float:left; margin-top: 30px;"><h4>사용중 주차공간:</h4></div>
-								<div style="float:left;"><h1 class="spacevalue"></h1></div>
-							</div>
-							
-						</div>
-						
-						<div class="row col-sm-6" id="usablespace">
-							<div class="p_area_notice">
-								<div style="float:left; margin-top: 30px;"><h4>잔여 주차공간:</h4></div>
-								<div style="float:left;"><h1 class="spacevalue"></h1></div>
-							</div>
 						</div>
 					</div>
 					
+					<div style="width:100%; background: #FFFFFF; height: 100px;" >
+						<div>
+							<div class="row col-sm-6" id="usingspace">
+								<div class="p_area_notice">
+									<div style="float:left; margin-top: 30px;"><h4>사용중 주차공간:</h4></div>
+									<div style="float:left;"><h1 class="spacevalue"></h1></div>
+								</div>
+								
+							</div>
+							
+							<div class="row col-sm-6" id="usablespace">
+								<div class="p_area_notice">
+									<div style="float:left; margin-top: 30px;"><h4>잔여 주차공간:</h4></div>
+									<div style="float:left;"><h1 class="spacevalue"></h1></div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
 				</div>
-	
 			</div>
 		</div>
         <!-- ^^===========주차장 현황================================================================ -->
