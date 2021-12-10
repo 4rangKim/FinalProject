@@ -125,7 +125,7 @@ public class LogController {
 		PrintWriter out = response.getWriter();
 		RList list = null;
 		String xAxis = "";
-		
+		String title ="주차장별 이용 차량수 / ";
 		
 		
 		String date = request.getParameter("date");
@@ -144,10 +144,17 @@ public class LogController {
 		}else if(date.equals("day")) {
 			xAxis = "일(day)";
 			list = rconn.eval("byday()").asList();
+		}else if(date.equals("hour")) {
+			xAxis = "시(hour) -어제 날짜 기준";
+			list = rconn.eval("byhour()").asList();
+		}else if(date.equals("avgC")) {
+			xAxis = "시간대(hour)";
+			title = "시간대별 평균 주차수 / ";
+			list = rconn.eval("AVGbyhour()").asList();
 		}
 		
 
-		int[] n1 = list.at(0).asIntegers(); //년,월,일
+		int[] n1 = list.at(0).asIntegers(); //년,월,일,시
 		int[] n2 = list.at(1).asIntegers(); //A주차장
 		int[] n3 = list.at(2).asIntegers(); //B주차장
 		int[] n4 = list.at(3).asIntegers(); //C주차장
@@ -225,6 +232,7 @@ public class LogController {
 		
 		jo.put("Xdate", xAxis);
 		
+		jo.put("Title", title);
 		
 		out.print(jo.toJSONString());
 		out.close();

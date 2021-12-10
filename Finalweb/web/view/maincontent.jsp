@@ -155,7 +155,7 @@
 				    },
 
 				    title: {
-				        text: '주차장별 이용 차량수 / '+d.Xdate
+				        text: d.Title+d.Xdate
 				    },
 
 				    /* subtitle: {
@@ -307,6 +307,28 @@
 					url:'parkingChart.mc',
 					type:"get",
 					data:{"date":'day'},
+					success:function(d){
+						displaychart(d);
+					}
+				})
+			}
+			
+			function getdataforHCHART(){
+				$.ajax({
+					url:'parkingChart.mc',
+					type:"get",
+					data:{"date":'hour'},
+					success:function(d){
+						displaychart(d);
+					}
+				})
+			}
+			
+			function getdataforAvgCHART(){
+				$.ajax({
+					url:'parkingChart.mc',
+					type:"get",
+					data:{"date":'avgC'},
 					success:function(d){
 						displaychart(d);
 					}
@@ -491,7 +513,10 @@
                                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
                                     <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
                                     	<label class="btn btn-outline-secondary">
-                                            <input type="radio" name="options" id="option0"> Hour
+                                            <input type="radio" name="options" id="option5" onchange="getdataforAvgCHART()"> Avg Count
+                                        </label>
+                                    	<label class="btn btn-outline-secondary">
+                                            <input type="radio" name="options" id="option0" onchange="getdataforHCHART()"> Hour
                                         </label>
                                         <label class="btn btn-outline-secondary">
                                             <input type="radio" name="options" id="option1" checked="" onchange="getdataforDCHART()"> Day
@@ -570,7 +595,7 @@
 			<!-- ********************************그래프***************************************************************************************************************** -->
 
 
-			<!-- VV==========================매니저 현황========================================================== -->
+			<!-- VV==========================주차장 사진 및 주차장 연결캠이 뜨는 섹션========================================================== -->
             <div class="col-lg-6" >
                 <section class="card">
                     <!-- <div class="twt-feed blue-bg" style="border: solid red 2px;"> -->
@@ -601,8 +626,7 @@
 	                                <p class="text-light" id="selectePsub"style="color: black">상세 현황 조회</p> -->
 	                                <h2 class="display-6" id="selectedP" style="color: #343a40;">주차장</h2>
 	                                <p  id="selectePsub"style="color: #343a40;">상세 현황 조회</p>
-	                                <textarea placeholder="메세지를 남기세요." rows="1" class="form-control t-text-area"></textarea>
-	                               
+	                               	<p style="font-size: 20px">차량 번호 확인</p>
 	                            </div>
 	                        </div>
                         </ul>
@@ -620,7 +644,7 @@
                     </footer> -->
                 </section>
             </div>
-			<!-- ^^==========================매니저 현황========================================================== -->
+			<!-- ^^==========================주차장 사진 및 주차장 연결캠이 뜨는 섹========================================================== -->
 
 			<!-- VV==========================카드1(금일 결제 금액 현황)========================================================== -->
             <div class="col-xl-3 col-lg-6"  >
