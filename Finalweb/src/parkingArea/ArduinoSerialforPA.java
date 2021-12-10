@@ -1,4 +1,4 @@
-package exitGateAndParking;
+package parkingArea;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +11,7 @@ import gnu.io.PortInUseException;
 import gnu.io.SerialPort;
 import gnu.io.UnsupportedCommOperationException;
 
-public class ArduinoSerial {
+public class ArduinoSerialforPA {
 	OutputStream out;
 	InputStream in;
 	

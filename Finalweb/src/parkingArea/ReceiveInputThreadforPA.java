@@ -1,13 +1,13 @@
-package exitGateAndParking;
+package parkingArea;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class ReceiveInputThread {
+public class ReceiveInputThreadforPA {
 	InputStream serialIn;
 	OutputStream serialOut;
-	public ReceiveInputThread(InputStream serialIn, OutputStream serialOut) {
+	public ReceiveInputThreadforPA(InputStream serialIn, OutputStream serialOut) {
 		this.serialIn = serialIn;
 		this.serialOut = serialOut;
 	}
@@ -23,7 +23,7 @@ public class ReceiveInputThread {
 					if((len=serialIn.read(buffer)) > 0){
 						String data = new String(buffer, 0 ,len);
 						System.out.println("data:"+data);
-						SendHttpThread send = new SendHttpThread(data.trim(), serialOut);
+						SendHttpThreadforPA send = new SendHttpThreadforPA(data.trim(), serialOut);
 						send.sendHttp();					
 					}
 				} catch (IOException e) {

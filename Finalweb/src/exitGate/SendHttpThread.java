@@ -1,4 +1,4 @@
-package exitGateAndParking;
+package exitGate;
 
 import java.io.BufferedReader;
 import java.io.IOException;
