@@ -20,7 +20,7 @@
 			.usertable{
 				width: 100%;
 				text-align: center;
-				margin-top: 40px;
+				margin-top: 30px;
 				margin-bottom: 100px;
 			}
 			th{
@@ -80,9 +80,26 @@
  				background-color: #4b88a5;
  				color:white;
 			}
-			.dateSearch{
-				float: right;
-				margin-top: 20px;
+			.Search{
+				margin-top: 30px;
+				text-align: right;				
+			}
+			.numText{
+				margin-left: 10px;
+				margin-right: 5px;
+			}
+			.searchname{
+				color: #737373;
+				margin-left: 40px;
+			}
+			.numSearch{
+				border: none;
+				background-color: #f1f2f7;
+				cursor: pointer;
+			}
+			.searchimg{
+				width: 30px;
+				height: 30px;
 			}
 		</style>
 		<script type="text/javascript">
@@ -94,6 +111,50 @@
 			var img = $("#"+btn).val();
 			window.open("/Finalweb/CarOutImg.mc?outImg="+img, "", "width=600, height=400, left=500, top=200");
 		} 
+		
+		function carsearch(){
+			carnum =  $(".numText").val();
+			//alert(carnum);
+			$.ajax({
+				url:"/Finalweb/CarSearch.mc",
+				type:"get",
+				data:{"carnum":carnum},
+				success:function(data){
+					mydata="<tr><th>주차장 번호</th><th>ID</th><th>차량 번호</th><th>입차 시간</th><th>출차 시간</th></tr>";
+					for(i=0;i<data.length;i++){
+						 if(data[i].out_time==null){
+							 mydata = mydata + "<tr>"+
+								"<td>"+data[i].p_id+"</td>"+
+								"<td>"+data[i].mem_id+"</td>"+
+								"<td>"+data[i].car_num+"</td>"+
+								"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
+								"<td>-<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
+								"</tr>"	
+						 }else{
+							 mydata = mydata + "<tr>"+
+								"<td>"+data[i].p_id+"</td>"+
+								"<td>"+data[i].mem_id+"</td>"+
+								"<td>"+data[i].car_num+"</td>"+
+								"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
+								"<td>"+data[i].out_time+"<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
+								"</tr>"	
+						 }
+					}
+					
+					$("#usertable").empty();
+					$("#usertable").append(mydata);
+					$("#startdate").val("");
+					$("#enddate").val("");
+					$(".imgbtn").each(function(){
+						$(this).click(function(){
+							img = $(this).val();
+							window.open("/Finalweb/CarInImg.mc?inImg="+img, "", "width=600, height=400, left=500, top=200");
+						});
+					});
+					
+				}
+			});//end ajax
+		};
 		
 		function parkbtn(btn){
 			category = $("#"+btn).val();
@@ -125,7 +186,9 @@
 					
 					$("#usertable").empty();
 					$("#usertable").append(mydata);
-					
+					$(".numText").val("");
+					$("#startdate").val("");
+					$("#enddate").val("");
 					$(".imgbtn").each(function(){
 						$(this).click(function(){
 							img = $(this).val();
@@ -137,12 +200,14 @@
 		};
 		
 	$(function() {
-			$("#datepicker").datepicker({
+			$("#startdate, #enddate").datepicker({
 				   onSelect: function(dateText) {
+			            var startDate = $.datepicker.formatDate("yy-mm-dd",$("#startdate").datepicker('getDate'));
+			            var endDate =  $.datepicker.formatDate("yy-mm-dd",$("#enddate").datepicker('getDate'));
 						$.ajax({
 							url:"/Finalweb/pkuser/ajax_date.mc",
 							type:"get",
-							data:{"date":dateText},
+							data:{"startdate":startDate, "enddate":endDate},
 							success:function(data){
 								mydata="<tr><th>주차장 번호</th><th>ID</th><th>차량 번호</th><th>입차 시간</th><th>출차 시간</th></tr>";
 								for(i=0;i<data.length;i++){
@@ -167,7 +232,7 @@
 								
 								$("#usertable").empty();
 								$("#usertable").append(mydata);
-								
+								$(".numText").val("");
 								$(".imgbtn").each(function(){
 									$(this).click(function(){
 										img = $(this).val();
@@ -191,16 +256,18 @@
 			        showMonthAfterYear: true,
 			        yearSuffix: '년'
 			    });
-			$("#datepicker").datepicker().datepicker("setDate", new Date());
-		/* 	$('input[type=text]').on('input change', function(){
-				date = $.datepicker.formatDate("yy/mm/dd",$("#datepicker").datepicker("getDate")); 
-		       date = $("#datepicker").val();
-			   date = $(this).val(); 
-			    dateval=date.substring(2);
-		 	   	$("#datetext").empty();
-				$("#datetext").append(dateval);
-				
-			}); */
+			$("#startdate").datepicker().datepicker("setDate", new Date());
+			
+		    $ ("#startdate").datepicker("option", "maxDate", $ ("#edate").val());
+		    $ ("#startdate").datepicker("option", "onClose", function ( selectedDate ) {
+		        $ ("#enddate").datepicker( "option", "minDate", selectedDate );
+		    });
+		 
+		    $ ("#enddate").datepicker();
+		    $ ("#enddate").datepicker("option", "minDate", $ ("#sdate").val());
+		    $ ("#enddate").datepicker("option", "onClose", function ( selectedDate ) {
+		        $ ("#startdate").datepicker( "option", "maxDate", selectedDate );
+		    });
 		});
 		
 		</script> 
@@ -234,8 +301,12 @@
 				<%}%>
 			</div>
 			<div id="datetext"></div>
-			<div class="dateSearch">
-				<p>Date&nbsp;&nbsp;&nbsp;<input type="text" id="datepicker"></p>
+			<div class="Search">
+				<span class="searchname">조회 기간&nbsp;&nbsp;&nbsp;<input type="text" id="startdate"></span>
+				<span>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type="text" id="enddate"></span>
+				<span class="searchname">차량 번호</span>
+				<input type="text" class="numText" id="numText">
+				<button type="button" class="numSearch" onclick="carsearch()"><img src="img/search.png" class="searchimg"/></button>
 			</div>
 			<table class="usertable" id="usertable">
  				<tr>

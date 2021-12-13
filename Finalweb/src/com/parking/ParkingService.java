@@ -113,9 +113,16 @@ public class ParkingService implements Service<String, ParkingVO>{
 	}
 
 	@Override
-	public ArrayList<ParkingVO> dateSearch(String k) throws Exception {
+	public ArrayList<ParkingVO> dateSearch(String k1, String k2) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ArrayList<ParkingVO> carnumList(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

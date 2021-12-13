@@ -109,10 +109,17 @@ public class P_AreaService implements Service<String, P_AreaVO>{
 	}
 
 	@Override
-	public ArrayList<P_AreaVO> dateSearch(String k) throws Exception {
+	public ArrayList<P_AreaVO> dateSearch(String k1, String k2) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ArrayList<P_AreaVO> carnumList(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	
 }

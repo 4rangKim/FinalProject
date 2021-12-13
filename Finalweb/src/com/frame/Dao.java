@@ -25,5 +25,6 @@ public interface Dao<K,V> {
 	public payAmountcheck_result_VO getTodayInfo(K k);
 	public List<V> selectList(K k) throws Exception;
 	public ArrayList<V> categorylist(K k) throws Exception;
-	public ArrayList<V> dateSearch(K k) throws Exception;
+	public ArrayList<V> dateSearch(K k1, K k2) throws Exception;
+	public ArrayList<V> carnumList(K k) throws Exception;
 }

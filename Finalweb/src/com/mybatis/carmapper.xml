@@ -20,12 +20,14 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectall" resultType="car">
 		SELECT * FROM car order by in_time desc
 	</select>
-	
+	<select id="carnumList" parameterType="String" resultType="car">
+		SELECT * FROM car where car_num like '%'||#{carnum}||'%'  order by in_time desc
+	</select>
 	<select id="categorylist" parameterType="String" resultType="car">
 		SELECT * FROM car where p_id=#{p_id} order by in_time desc
 	</select>
 	<select id="dateSearch" parameterType="String" resultType="car">
-		SELECT * FROM car where in_time like '%'||#{dateVal}||'%' order by in_time desc
+		<![CDATA[SELECT * FROM car where in_time between to_date(#{start},'YY/MM/DD') and to_date(#{end}, 'YY/MM/DD')+1 order by in_time desc ]]>
 	</select>
 	
 	<select id="selectList" parameterType="String" resultType="car">

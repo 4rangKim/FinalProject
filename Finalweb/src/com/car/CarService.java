@@ -107,8 +107,12 @@ public class CarService implements Service<String, CarVO>{
 	}
 
 	@Override
-	public ArrayList<CarVO> dateSearch(String k) throws Exception {
-		return dao.dateSearch(k);
+	public ArrayList<CarVO> dateSearch(String k1, String k2) throws Exception {
+		return dao.dateSearch(k1, k2);
 	}
 	
+	@Override
+	public ArrayList<CarVO> carnumList(String k) throws Exception {
+		return dao.carnumList(k);
+	}
 }

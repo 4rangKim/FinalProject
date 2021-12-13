@@ -3,6 +3,8 @@ package com.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.vo.CarVO;
 import com.vo.payAmountcheck_result_VO;
 
@@ -19,7 +21,8 @@ public interface CarMapper {
 	public List<CarVO> selectList(String obj);
 	public ArrayList<CarVO> categorylist(String obj);
 	public void updatePayment(CarVO obj);
-	public ArrayList<CarVO> dateSearch(String obj);
+	public ArrayList<CarVO> dateSearch(@Param("start")String start, @Param("end")String end);
+	public ArrayList<CarVO> carnumList(String obj);
 }
 
 
