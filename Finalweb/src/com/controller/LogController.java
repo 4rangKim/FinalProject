@@ -251,16 +251,15 @@ public class LogController {
 		rconn.eval("source('C:/logs/parking_test.R',encoding='UTF-8')");
 		RList list = rconn.eval("piepercent()").asList();
 		
-		int[] n1 = list.at(0).asIntegers(); //
-		int[] n2 = list.at(1).asIntegers(); //A주차장
-		int[] n3 = list.at(2).asIntegers(); //B주차장
-		int[] n4 = list.at(3).asIntegers(); //C주차장
-		int[] n5 = list.at(4).asIntegers(); //D주차장
-		int[] n6 = list.at(5).asIntegers(); //E주차장
-		int[] n7 = list.at(6).asIntegers(); //F주차장
-		int[] n8 = list.at(7).asIntegers(); //G주차장
-		
-		
+		int[] n1 = list.at(0).asIntegers(); //A주차장
+		int[] n2 = list.at(1).asIntegers(); //B주차장
+		int[] n3 = list.at(2).asIntegers(); //C주차장
+		int[] n4 = list.at(3).asIntegers(); //D주차장
+		int[] n5 = list.at(4).asIntegers(); //E주차장
+		int[] n6 = list.at(5).asIntegers(); //F주차장
+		int[] n7 = list.at(6).asIntegers(); //G주차장
+		int[] n8 = list.at(7).asIntegers(); //H주차장
+		 
 		JSONObject jo = new JSONObject();
 		
 		
@@ -293,21 +292,22 @@ public class LogController {
 		jo7.put("y",n6[0]);
 		
 		JSONObject jo8 = new JSONObject();
-		jo3.put("name","G주차장");
-		jo3.put("y",n7[0]);
+		jo8.put("name","G주차장");
+		jo8.put("y",n7[0]);
 		
 		JSONObject jo9 = new JSONObject();
-		jo8.put("name","H주차장");
-		jo8.put("y",n8[0]);
+		jo9.put("name","H주차장");
+		jo9.put("y",n8[0]);
 		
-		ja.add(jo9);
-		ja.add(jo8);
-		ja.add(jo7);
-		ja.add(jo6);
-		ja.add(jo5);
-		ja.add(jo4);
-		ja.add(jo3);
 		ja.add(jo2);
+		ja.add(jo3);
+		ja.add(jo4);
+		ja.add(jo5);
+		ja.add(jo6);
+		ja.add(jo7);
+		ja.add(jo8);
+		ja.add(jo9);
+		
 		
 		jo.put("data",ja);
 		jo.put("colorByPoint",true);
