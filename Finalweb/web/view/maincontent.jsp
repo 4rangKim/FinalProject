@@ -444,7 +444,7 @@
 		<div  style= "margin-bottom: 30px;">
 			<div class="col-xl-6" >
                 <div class="card">
-					<div class="bg-flat-color-1" style="width:100%; display: flex; padding-top: 50px; padding-bottom: 50px;">
+					<div class="" style="width:100%; display: flex; padding-top: 50px; padding-bottom: 50px; background: linear-gradient(#0290C7, #A3CEDF);">
 						<div class="allpark" style="height: 300px; background:#FFFFFF; border-radius: 3px; width: 70%; margin: auto; text-align: center;">
 							<div class="title" >주차장 별 현황</div>
 							<div class="row parkbox">
@@ -465,7 +465,7 @@
 					
 			<div class="col-xl-6" >
                 <div class="card">
-					<div class="" style="width:100%; display: flex; background: #F7C873; padding-top: 50px; padding-bottom: 50px;">
+					<div class="" style="width:100%; display: flex; background: linear-gradient(#F3A64E, #F7C873); padding-top: 50px; padding-bottom: 50px;">
 						<div class="eachpark" >
 							<!-- <div style="width: 100%; height: 400px; border: solid red 2px; "> -->
 								<p class="title" id="parkingTitle">주차장을 선택해주세요.</p>
