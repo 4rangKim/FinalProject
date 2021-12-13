@@ -57,12 +57,12 @@
 							if(0<data[k].count && data[k].count<=10){
 								parkingsituation=
 									parkingsituation+
-										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: yellow; color:blue; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background: linear-gradient(yellow, #FDBC00); color:blue; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
 												+data[k].p_id +"</div><div style='float:left'>&nbsp;보통</div></div></div>"
 							}else if(10<data[k].count){
 								parkingsituation=
 									parkingsituation+
-										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: blue; color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px;  background: linear-gradient(#0098D0, blue); color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
 											+data[k].p_id +"</div><div style='float:left'>&nbsp;여유</div></div></div>"
 							}else if(data[k].count<=0){
 								parkingsituation=
@@ -103,12 +103,12 @@
 										if(data[i].state==0){
 											stateView=
 												stateView+
-													"<div class='each_p_area' style='cursor:pointer; width:9.5%; height: 30px; background-color: blue; margin: 5px; text-align: center; color: white; font-size:14px;'>"
+													"<div class='each_p_area' style='cursor:pointer; width:9.5%; height: 30px; background: linear-gradient(#0098D0, blue); margin: 5px; text-align: center; color: white; font-size:14px;'>"
 														+data[i].area_id+"</div>"
 										}else if(data[i].state==1){
 											stateView=
 												stateView+
-													"<div class='each_p_area' style='cursor:pointer; width:9.5%; height: 30px; background-color: red; margin: 5px; text-align: center; color: white; font-size:14px;'>"
+													"<div class='each_p_area' style='cursor:pointer; width:9.5%; height: 30px; background-color: red; margin: 5px; text-align: center; color: #EEEEEE; font-size:14px;'>"
 														+data[i].area_id+"</div>"
 											statecount=statecount+1
 										}
@@ -449,7 +449,7 @@
 							<div class="title" >주차장 별 현황</div>
 							<div class="row parkbox">
 								<% for(char i='A';i<='H';i++){ %>
-									<div class="col-sm-5 parkname" style="text-align: center;height: 30px;background-color: #83AFE0;margin: 5px;border-radius: 5px; ">
+									<div class="col-sm-5 parkname" style="text-align: center;height: 30px;background-color: #0098D0;margin: 5px;border-radius: 5px; ">
 										<%=i%>
 									</div>
 								<%}%>
