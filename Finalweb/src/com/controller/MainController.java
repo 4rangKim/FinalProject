@@ -79,6 +79,16 @@ public class MainController {
 		return mv;
 	}
 	
+	
+	@RequestMapping("/monitor.mc")
+	public ModelAndView monitor(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("center", "monitor");
+		mv.setViewName("mainpage");
+		return mv;
+	}
+	
+	
 	@RequestMapping(value = "/pkuser/ajax_list.mc",method = RequestMethod.GET,
 			produces =  "application/json;charset=utf-8")
 	public @ResponseBody ArrayList<CarVO> categoryList(String category){

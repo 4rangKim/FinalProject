@@ -75,10 +75,10 @@
                     </li>
                     <h3 class="menu-title">주차장 관리</h3><!-- /.menu-title -->
                     <li>
-                        <a href="#"> <i class="menu-icon fa fa-bar-chart"></i>주차장 실시간 현황</a>
+                        <a href="/Finalweb/pkuser.mc"> <i class="menu-icon fa fa-table"></i>주차장 이용 고객 현황</a>
                     </li>
                     <li>
-                        <a href="/Finalweb/pkuser.mc"> <i class="menu-icon fa fa-th"></i>주차장 이용 고객 현황</a>
+                        <a href="/Finalweb/monitor.mc"> <i class="menu-icon fa fa-table"></i>주차장 전체 모니터링</a>
                     </li>
 
 

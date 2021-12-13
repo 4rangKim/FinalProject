@@ -40,7 +40,7 @@
 				/*----------------------vv 카메라 추가할때마다 else if 추가 해야 하는 코드------------------------------------------------- */
 				if(p_id=='A'){
 					$("#imgdiv").empty();
-					$("#imgdiv").append("<iframe src='http://192.168.0.15:81/stream' frameborder='0' width='100%' height='420px' scrolling='no' style='margin: 0 auto;'>");
+					$("#imgdiv").append("<iframe src='http://192.168.0.16:81/stream' frameborder='0' width='100%' height='420px' scrolling='no' style='margin: 0 auto;'>");
 				}/* else if(p_id=='B') */
 				
 				
@@ -103,12 +103,12 @@
 										if(data[i].state==0){
 											stateView=
 												stateView+
-													"<div style='width:9.5%; height: 30px; background-color: blue; margin: 5px; text-align: center; color: white; font-size:14px;'>"
+													"<div class='each_p_area' style='cursor:pointer; width:9.5%; height: 30px; background-color: blue; margin: 5px; text-align: center; color: white; font-size:14px;'>"
 														+data[i].area_id+"</div>"
 										}else if(data[i].state==1){
 											stateView=
 												stateView+
-													"<div style='width:9.5%; height: 30px; background-color: red; margin: 5px; text-align: center; color: white; font-size:14px;'>"
+													"<div class='each_p_area' style='cursor:pointer; width:9.5%; height: 30px; background-color: red; margin: 5px; text-align: center; color: white; font-size:14px;'>"
 														+data[i].area_id+"</div>"
 											statecount=statecount+1
 										}
@@ -117,12 +117,15 @@
 										stateView=stateView+"<div style='width:9.5%; height: 30px; background-color: #DDDDDD; margin: 5px;'></div>"
 									}
 									
+									
 									//$("#SelectedParkinglot").text('선택된 주차장 : '+p_id+'('+(data.length-statecount)+'/'+data.length+')');
 									$("#SelectedParkinglot").empty();
 									$("#SelectedParkinglot").append("<h3 style='float: left'>선택된 주차장:&nbsp;"+p_id+'('+"</h3><h3 style='float: left; color: blue;'>"+(data.length-statecount)+"</h3><h3 style='float: left'>"+'/'+data.length+')'+"</h3>")
 									
 									$(".spacebox").empty();
 						 			$(".spacebox").append(stateView);
+						 			
+					
 						 			$("#usingspace").empty();
 						 			/* $("#usingspace").append('사용중 주차공간:'+statecount); */
 						 			$("#usingspace").append("<div style='margin-left:50px; float:left;'><div style='float:left; margin-top: 30px;'><h4>사용중 주차공간:</h4></div><div style='float:left;'><h1 style='margin-left: 30px; margin-top: 20px; color:red;'>"+statecount+"</h1></div></div></div>");
@@ -130,6 +133,12 @@
 						 			/* $("#usablespace").append('잔여 주차공간:'+(data.length-statecount)); */
 						 			$("#usablespace").append("<div style='margin-left:50px; float:left;'><div style='float:left; margin-top: 30px;'><h4>잔여 주차공간:</h4></div><div style='float:left;'><h1 style='margin-left: 30px; margin-top: 20px; color:blue;'>"+(data.length-statecount)+"</h1></div></div></div>");
 						 			
+						 			$(".each_p_area").each(function(){
+						 				$(this).click(function(){
+						 					p_ar=$.trim($(this).text());
+						 					alert(p_ar);
+						 				});
+						 			});
 									
 								}
 							})
@@ -498,6 +507,7 @@
 
 
 			<!-- ********************************그래프************************************************************************************************************** -->
+		<div>
             <div class="col-xl-6" >
                 <div class="card">
                     <div class="card-body">
@@ -541,7 +551,7 @@
                             <canvas id="trafficChart" style="height:200px;" height="200"></canvas>
                         </div> --%>
                         
-                        <div id="chart_container" style="height: 500px;">
+                        <div id="chart_container" style="height: 575px; margin-top: 7%;">
                         
                         </div>
                         <!--/.그래프 이거 교체해주면 될듯***********************************************************************************-->
@@ -550,7 +560,7 @@
                         
 
                     </div>
-                    <div class="card-footer">
+                    <!-- <div class="card-footer">
                         <ul>
                             <li>
                                 <div class="text-muted">Visits</div>
@@ -588,7 +598,7 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 			<!-- ********************************그래프***************************************************************************************************************** -->
@@ -713,8 +723,7 @@
             </div> -->
             <!-- ^^==========================카드4(미정/ 전세계 지도)========================================================== -->
             
-            
-
+		</div>
 			
 			
 			
