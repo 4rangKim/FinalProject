@@ -288,57 +288,69 @@
             </div>
         </div>
 
-		<div class="container">
-			<div class="btnbox" id="btnbox">
-				<span class="btnhead">주차장&nbsp;&nbsp;&nbsp;</span>
-					<button class="parkname" id="parkbtnall" value="all" onclick="parkbtn('parkbtnall')">
-						ALL
-					</button>
-				<% for(char i='A';i<='H';i++){ %>
-					<button class="parkname" id="parkbtn<%=i%>" value="<%=i%>" onclick="parkbtn('parkbtn<%=i%>')">
-						<%=i%>
-					</button>
-				<%}%>
+		<div class="col-xl-12" >
+			<div class="card" style="padding-bottom: 40px;">
+				<div class="container">
+					<div class="btnbox" id="btnbox">
+						<span class="btnhead">주차장&nbsp;&nbsp;&nbsp;</span>
+							<button class="parkname" id="parkbtnall" value="all" onclick="parkbtn('parkbtnall')">
+								ALL
+							</button>
+						<% for(char i='A';i<='H';i++){ %>
+							<button class="parkname" id="parkbtn<%=i%>" value="<%=i%>" onclick="parkbtn('parkbtn<%=i%>')">
+								<%=i%>
+							</button>
+						<%}%>
+					</div>
+					<div id="datetext"></div>
+					<div class="Search">
+						<span class="searchname">조회 기간&nbsp;&nbsp;&nbsp;<input type="text" id="startdate"></span>
+						<span>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type="text" id="enddate"></span>
+						<span class="searchname">차량 번호</span>
+						<input type="text" class="numText" id="numText">
+						<button type="button" class="numSearch" onclick="carsearch()"><img src="img/search.png" class="searchimg"/></button>
+					</div>
+				</div>
 			</div>
-			<div id="datetext"></div>
-			<div class="Search">
-				<span class="searchname">조회 기간&nbsp;&nbsp;&nbsp;<input type="text" id="startdate"></span>
-				<span>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type="text" id="enddate"></span>
-				<span class="searchname">차량 번호</span>
-				<input type="text" class="numText" id="numText">
-				<button type="button" class="numSearch" onclick="carsearch()"><img src="img/search.png" class="searchimg"/></button>
+		</div>	
+				
+				
+		<div class="col-xl-12" >
+			<div class="card">	
+				<div class="container">
+					<table class="usertable" id="usertable">
+		 				<tr>
+							<!-- <th>순번</th> -->
+							<th>주차장 번호</th>
+							<th>ID</th>
+							<th>차량 번호</th>
+							<th>입차 시간</th>
+							<th>출차 시간</th>
+						</tr>
+						<%for(int i=0;i<size;i++){ 
+							CarVO mycar = pkuserList.get(i);
+							Date in_time = mycar.getIn_time();
+							Date out_time = mycar.getOut_time();
+							SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							String outResult ="";
+							if(out_time==null){
+								outResult = "-";
+							}else{
+								outResult = format.format(out_time);
+							}
+							%>
+						<tr id="userlist">
+							<%-- <td id="car_seq"><%=mycar.getCar_seq() %></td> --%>
+							<td id="p_id"><%=mycar.getP_id() %></td>
+							<td id="mem_id"><%=mycar.getMem_id()%></td>
+							<td id="car_num"><%=mycar.getCar_num()%></td>
+							<td id="in_time"><%=format.format(in_time)%><button class="imgbtn" name ="inImg" id="inImg<%=i %>" onclick="inImg('inImg<%=i%>')" value="<%=mycar.getIn_photo()%>">조회</button></td>
+							<td id="out_time"><%=outResult %><button class="imgbtn" name ="outImg" id="outImg<%=i%>" onclick="outImg('outImg<%=i%>')" value="<%=mycar.getOut_photo()%>">조회</button></td>
+						</tr>
+						<%} %>
+					</table>
+				</div>
 			</div>
-			<table class="usertable" id="usertable">
- 				<tr>
-					<!-- <th>순번</th> -->
-					<th>주차장 번호</th>
-					<th>ID</th>
-					<th>차량 번호</th>
-					<th>입차 시간</th>
-					<th>출차 시간</th>
-				</tr>
-				<%for(int i=0;i<size;i++){ 
-					CarVO mycar = pkuserList.get(i);
-					Date in_time = mycar.getIn_time();
-					Date out_time = mycar.getOut_time();
-					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					String outResult ="";
-					if(out_time==null){
-						outResult = "-";
-					}else{
-						outResult = format.format(out_time);
-					}
-					%>
-				<tr id="userlist">
-					<%-- <td id="car_seq"><%=mycar.getCar_seq() %></td> --%>
-					<td id="p_id"><%=mycar.getP_id() %></td>
-					<td id="mem_id"><%=mycar.getMem_id()%></td>
-					<td id="car_num"><%=mycar.getCar_num()%></td>
-					<td id="in_time"><%=format.format(in_time)%><button class="imgbtn" name ="inImg" id="inImg<%=i %>" onclick="inImg('inImg<%=i%>')" value="<%=mycar.getIn_photo()%>">조회</button></td>
-					<td id="out_time"><%=outResult %><button class="imgbtn" name ="outImg" id="outImg<%=i%>" onclick="outImg('outImg<%=i%>')" value="<%=mycar.getOut_photo()%>">조회</button></td>
-				</tr>
-				<%} %>
-			</table>
 		</div>
 	</body>
 </html>

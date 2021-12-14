@@ -41,36 +41,41 @@
             </div>
         </div>
 
-		<div class="container">
-			<table class="usertable">
-				<tr>
-					<th>ID</th>
-					<th>이름</th>
-					<th>전화 번호</th>
-					<th>차량1</th>
-					<th>차량2</th>
-					<th>포인트</th>
-				</tr>
-				<tr>
-				<%for(int i=0;i<size;i++){ 
-					MemberVO user = appuserList.get(i);
-					String car2 ="";
-					if(user.getMem_car2()==null){
-						car2 = "-";
-					}else {
-						car2 = user.getMem_car2();
-					}
-				%>
-				<tr>
-					<td><%=user.getMem_id() %></td>
-					<td><%=user.getMem_name() %></td>
-					<td><%=user.getMem_tel() %></td>
-					<td><%=user.getMem_car1() %></td>
-					<td><%=car2 %></td>
-					<td><%=user.getMem_money() %></td>
-				</tr>
-				<%} %>
-			</table>
+		<div class="col-xl-12" >
+			<div class="card" style="padding-bottom: 40px;">
+			
+				<div class="container">
+					<table class="usertable">
+						<tr>
+							<th>ID</th>
+							<th>이름</th>
+							<th>전화 번호</th>
+							<th>차량1</th>
+							<th>차량2</th>
+							<th>포인트</th>
+						</tr>
+						<tr>
+						<%for(int i=0;i<size;i++){ 
+							MemberVO user = appuserList.get(i);
+							String car2 ="";
+							if(user.getMem_car2()==null){
+								car2 = "-";
+							}else {
+								car2 = user.getMem_car2();
+							}
+						%>
+						<tr>
+							<td><%=user.getMem_id() %></td>
+							<td><%=user.getMem_name() %></td>
+							<td><%=user.getMem_tel() %></td>
+							<td><%=user.getMem_car1() %></td>
+							<td><%=car2 %></td>
+							<td><%=user.getMem_money() %></td>
+						</tr>
+						<%} %>
+					</table>
+				</div>
+			</div>
 		</div>
 </body>
 </html>

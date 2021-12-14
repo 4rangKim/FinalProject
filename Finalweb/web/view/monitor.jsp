@@ -91,6 +91,18 @@
     		})
     	}
     	
+    	
+    	
+    	
+    	
+    	function changeCamera(a,b){
+    		$(a).empty();
+    		$(a).append("<iframe src="+b+" allow='autoplay' frameborder='0' width='100%' height='250px' scrolling='no' style='margin: 0 auto;'></iframe>");
+    	}
+    	
+    	
+    	
+    	
 	/*==================vv================도큐먼트 레디========================================  */
 		$(document).ready(function(){
 			
@@ -101,6 +113,24 @@
 	
    	<style type="text/css">
    		.contenttitle{
+			font-weight: bold;
+		}
+		
+		.display-6{
+			margin-bottom: 3%;
+		}
+		
+		.camera_btn{
+			border: solid #D2D2D2 2px;
+			border-radius: 5px;
+			color : black;
+			cursor: pointer;
+		}
+		
+		.camera_btn:focus{
+			background-color: #8DC560;
+			border : solid #5E8340 2px;
+			color:white;
 			font-weight: bold;
 		}
 		
@@ -128,10 +158,10 @@
 						<div style="width: 25%; float: left; " >
 			                <section class="card">
 			                    <!-- <div class="twt-feed blue-bg" style="border: solid red 2px;"> -->
-			                    <div >
+			                    <div id="iframediv1">
 			                    	<!-- <img alt="" src="img/parkinglot_IMG/default.jpg" style="width: 100%; height: 250px;"> -->
 			                    	
-			                    	<iframe src='https://www.youtube.com/embed/5HcgHcU_4go?autoplay=1&mute=1' frameborder='0' width='100%' height='250px' scrolling='no' style='margin: 0 auto;'>
+			                    	<iframe src='https://www.youtube.com/embed/5HcgHcU_4go?autoplay=1&mute=1' allow='autoplay' frameborder='0' width='100%' height='250px' scrolling='no' style='margin: 0 auto;'>
 			                    	</iframe>
 			                    	
 			                    </div>
@@ -140,7 +170,10 @@
 			                            <div class="media" style="text-align: center;">
 				                            <div class="media-body">
 				                                <h3 class="display-6" id="selectedP" style="color: #343a40;">A 주차장</h3>
-				                               	<p style="font-size: 14px">차량 번호 확인</p>
+				                                <button class="camera_btn" onclick="changeCamera('#iframediv1','https://www.youtube.com/embed/5HcgHcU_4go?autoplay=1&mute=1')">입차 상황</button>
+				                               	<button class="camera_btn" onclick="changeCamera('#iframediv1','https://www.youtube.com/embed/NXt-YY3Xt8Q?autoplay=1&mute=1 ')">출차 상황</button>
+				                               	<!-- <p style="font-size: 14px">차량 번호 확인</p> -->
+				                               	
 				                            </div>
 				                        </div>
 			                        </ul>
@@ -153,10 +186,10 @@
 			            <div style="width: 25%; float: left; " >
 			                <section class="card">
 			                    <!-- <div class="twt-feed blue-bg" style="border: solid red 2px;"> -->
-			                    <div >
+			                    <div id="iframediv2">
 			                    	<!-- <img alt="" src="img/parkinglot_IMG/default.jpg" style="width: 100%; height: 250px;"> -->
 			                    	
-			                    	<iframe src='//www.youtube.com/embed/ke4v1v2h9yQ?autoplay=1&mute=1' frameborder='0' width='100%' height='250px' scrolling='no' style='margin: 0 auto;'>
+			                    	<iframe src='//www.youtube.com/embed/ke4v1v2h9yQ?autoplay=1&mute=1' allow='autoplay' frameborder='0' width='100%' height='250px' scrolling='no' style='margin: 0 auto;'>
 			                    	</iframe>
 			                    	
 			                    </div>
@@ -165,7 +198,9 @@
 			                            <div class="media" style="text-align: center;">
 				                            <div class="media-body">
 				                                <h3 class="display-6" id="selectedP" style="color: #343a40;">B 주차장</h3>
-				                               	<p style="font-size: 14px">차량 번호 확인</p>
+				                                <button class="camera_btn" onclick="changeCamera('#iframediv2','https://www.youtube.com/embed/ke4v1v2h9yQ?autoplay=1&mute=1')">입차 상황</button>
+				                               	<button class="camera_btn" onclick="changeCamera('#iframediv2','https://www.youtube.com/embed/UZFm-kg3PaE?autoplay=1&mute=1 ')">출차 상황</button>
+				                               	<!-- <p style="font-size: 14px">차량 번호 확인</p> -->
 				                            </div>
 				                        </div>
 			                        </ul>
@@ -178,7 +213,7 @@
 			            <div style="width: 25%; float: left; " >
 			                <section class="card">
 			                    <!-- <div class="twt-feed blue-bg" style="border: solid red 2px;"> -->
-			                    <div >
+			                    <div id="iframediv3">
 			                    	<!-- <img alt="" src="img/parkinglot_IMG/default.jpg" style="width: 100%; height: 250px;"> -->
 			                    	
 			                    	<iframe src='https://www.youtube.com/embed/uMZO2qXElgg?autoplay=1&mute=1' frameborder='0' width='100%' height='250px' scrolling='no' style='margin: 0 auto;'>
@@ -190,7 +225,9 @@
 			                            <div class="media" style="text-align: center;">
 				                            <div class="media-body">
 				                                <h3 class="display-6" id="selectedP" style="color: #343a40;">C 주차장</h3>
-				                               	<p style="font-size: 14px">차량 번호 확인</p>
+				                                <button class="camera_btn" onclick="changeCamera('#iframediv3','https://www.youtube.com/embed/uMZO2qXElgg?autoplay=1&mute=1')">입차 상황</button>
+				                               	<button class="camera_btn" onclick="changeCamera('#iframediv3','https://www.youtube.com/embed/NXt-YY3Xt8Q?autoplay=1&mute=1 ')">출차 상황</button>
+				                               	<!-- <p style="font-size: 14px">차량 번호 확인</p> -->
 				                            </div>
 				                        </div>
 			                        </ul>
@@ -203,7 +240,7 @@
 			            <div style="width: 25%; float: left; " >
 			                <section class="card">
 			                    <!-- <div class="twt-feed blue-bg" style="border: solid red 2px;"> -->
-			                    <div >
+			                    <div id="iframediv4">
 			                    	<!-- <img alt="" src="img/parkinglot_IMG/default.jpg" style="width: 100%; height: 250px;"> -->
 			                    	
 			                    	<iframe src='https://www.youtube.com/embed/n1bqkBEZKMA?autoplay=1&mute=1' frameborder='0' width='100%' height='250px' scrolling='no' style='margin: 0 auto;'>
@@ -215,7 +252,9 @@
 			                            <div class="media" style="text-align: center;">
 				                            <div class="media-body">
 				                                <h3 class="display-6" id="selectedP" style="color: #343a40;">D 주차장</h3>
-				                               	<p style="font-size: 14px">차량 번호 확인</p>
+				                                <button class="camera_btn" onclick="changeCamera('#iframediv4','https://www.youtube.com/embed/n1bqkBEZKMA?autoplay=1&mute=1')">입차 상황</button>
+				                               	<button class="camera_btn" onclick="changeCamera('#iframediv4','https://www.youtube.com/embed/NXt-YY3Xt8Q?autoplay=1&mute=1 ')">출차 상황</button>
+				                               	<!-- <p style="font-size: 14px">차량 번호 확인</p> -->
 				                            </div>
 				                        </div>
 			                        </ul>
@@ -228,7 +267,7 @@
 			            <div style="width: 25%; float: left; " >
 			                <section class="card">
 			                    <!-- <div class="twt-feed blue-bg" style="border: solid red 2px;"> -->
-			                    <div >
+			                    <div id="iframediv5">
 			                    	<!-- <img alt="" src="img/parkinglot_IMG/default.jpg" style="width: 100%; height: 250px;"> -->
 			                    	
 			                    	<iframe src='https://www.youtube.com/embed/IXCYY6CFoYw?autoplay=1&mute=1' frameborder='0' width='100%' height='250px' scrolling='no' style='margin: 0 auto;'>
@@ -240,7 +279,9 @@
 			                            <div class="media" style="text-align: center;">
 				                            <div class="media-body">
 				                                <h3 class="display-6" id="selectedP" style="color: #343a40;">E 주차장</h3>
-				                               	<p style="font-size: 14px">차량 번호 확인</p>
+				                                <button class="camera_btn" onclick="changeCamera('#iframediv5','https://www.youtube.com/embed/IXCYY6CFoYw?autoplay=1&mute=1')">입차 상황</button>
+				                               	<button class="camera_btn" onclick="changeCamera('#iframediv5','https://www.youtube.com/embed/NXt-YY3Xt8Q?autoplay=1&mute=1 ')">출차 상황</button>
+				                               	<!-- <p style="font-size: 14px">차량 번호 확인</p> -->
 				                            </div>
 				                        </div>
 			                        </ul>
@@ -253,7 +294,7 @@
 			            <div style="width: 25%; float: left; " >
 			                <section class="card">
 			                    <!-- <div class="twt-feed blue-bg" style="border: solid red 2px;"> -->
-			                    <div >
+			                    <div id="iframediv6">
 			                    	<!-- <img alt="" src="img/parkinglot_IMG/default.jpg" style="width: 100%; height: 250px;"> -->
 			                    	
 			                    	<iframe src='https://www.youtube.com/embed/U7HRKjlXK-Y?autoplay=1&mute=1' frameborder='0' width='100%' height='250px' scrolling='no' style='margin: 0 auto;'>
@@ -265,7 +306,9 @@
 			                            <div class="media" style="text-align: center;">
 				                            <div class="media-body">
 				                                <h3 class="display-6" id="selectedP" style="color: #343a40;">F 주차장</h3>
-				                               	<p style="font-size: 14px">차량 번호 확인</p>
+				                                <button class="camera_btn" onclick="changeCamera('#iframediv6','https://www.youtube.com/embed/U7HRKjlXK-Y?autoplay=1&mute=1')">입차 상황</button>
+				                               	<button class="camera_btn" onclick="changeCamera('#iframediv6','https://www.youtube.com/embed/NXt-YY3Xt8Q?autoplay=1&mute=1 ')">출차 상황</button>
+				                               	<!-- <p style="font-size: 14px">차량 번호 확인</p> -->
 				                            </div>
 				                        </div>
 			                        </ul>
@@ -278,7 +321,7 @@
 			            <div style="width: 25%; float: left; " >
 			                <section class="card">
 			                    <!-- <div class="twt-feed blue-bg" style="border: solid red 2px;"> -->
-			                    <div >
+			                    <div id="iframediv7">
 			                    	<!-- <img alt="" src="img/parkinglot_IMG/default.jpg" style="width: 100%; height: 250px;"> -->
 			                    	
 			                    	<iframe src='https://www.youtube.com/embed/ncYZktE7c1E?autoplay=1&mute=1' frameborder='0' width='100%' height='250px' scrolling='no' style='margin: 0 auto;'>
@@ -290,7 +333,9 @@
 			                            <div class="media" style="text-align: center;">
 				                            <div class="media-body">
 				                                <h3 class="display-6" id="selectedP" style="color: #343a40;">G 주차장</h3>
-				                               	<p style="font-size: 14px">차량 번호 확인</p>
+				                                <button class="camera_btn" onclick="changeCamera('#iframediv7','https://www.youtube.com/embed/ncYZktE7c1E?autoplay=1&mute=1')">입차 상황</button>
+				                               	<button class="camera_btn" onclick="changeCamera('#iframediv7','https://www.youtube.com/embed/NXt-YY3Xt8Q?autoplay=1&mute=1 ')">출차 상황</button>
+				                               	<!-- <p style="font-size: 14px">차량 번호 확인</p> -->
 				                            </div>
 				                        </div>
 			                        </ul>
@@ -303,7 +348,7 @@
 			            <div style="width: 25%; float: left; " >
 			                <section class="card">
 			                    <!-- <div class="twt-feed blue-bg" style="border: solid red 2px;"> -->
-			                    <div >
+			                    <div id="iframediv8">
 			                    	<!-- <img alt="" src="img/parkinglot_IMG/default.jpg" style="width: 100%; height: 250px;"> -->
 			                    	
 			                    	<iframe src='https://www.youtube.com/embed/NW-rXqCl7us?autoplay=1&mute=1' frameborder='0' width='100%' height='250px' scrolling='no' style='margin: 0 auto;'>
@@ -315,7 +360,9 @@
 			                            <div class="media" style="text-align: center;">
 				                            <div class="media-body">
 				                                <h3 class="display-6" id="selectedP" style="color: #343a40;">H 주차장</h3>
-				                               	<p style="font-size: 14px">차량 번호 확인</p>
+				                                <button class="camera_btn" onclick="changeCamera('#iframediv8','https://www.youtube.com/embed/NW-rXqCl7us?autoplay=1&mute=1')">입차 상황</button>
+				                               	<button class="camera_btn" onclick="changeCamera('#iframediv8','https://www.youtube.com/embed/NXt-YY3Xt8Q?autoplay=1&mute=1 ')">출차 상황</button>
+				                               	<!-- <p style="font-size: 14px">차량 번호 확인</p> -->
 				                            </div>
 				                        </div>
 			                        </ul>
