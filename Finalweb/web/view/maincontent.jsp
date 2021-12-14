@@ -40,7 +40,7 @@
 				/*----------------------vv 카메라 추가할때마다 else if 추가 해야 하는 코드------------------------------------------------- */
 				if(p_id=='A'){
 					$("#imgdiv").empty();
-					$("#imgdiv").append("<iframe src='http://192.168.0.15:81/stream' frameborder='0' width='100%' height='420px' scrolling='no' style='margin: 0 auto;'>");
+					$("#imgdiv").append("<iframe src='http://192.168.0.16:81/stream' frameborder='0' width='100%' height='420px' scrolling='no' style='margin: 0 auto;'>");
 				}/* else if(p_id=='B') */
 				
 				
@@ -57,12 +57,12 @@
 							if(0<data[k].count && data[k].count<=10){
 								parkingsituation=
 									parkingsituation+
-										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: yellow; color:blue; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background: linear-gradient(yellow, #FDBC00); color:blue; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
 												+data[k].p_id +"</div><div style='float:left'>&nbsp;보통</div></div></div>"
 							}else if(10<data[k].count){
 								parkingsituation=
 									parkingsituation+
-										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: blue; color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px;  background: linear-gradient(#0098D0, blue); color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
 											+data[k].p_id +"</div><div style='float:left'>&nbsp;여유</div></div></div>"
 							}else if(data[k].count<=0){
 								parkingsituation=
@@ -103,19 +103,20 @@
 										if(data[i].state==0){
 											stateView=
 												stateView+
-													"<div class='col-sm-1' style='width:20px; height: 30px; background-color: blue; margin: 5px; text-align: left; color: white; font-size:14px;'>"
+													"<div class='each_p_area' style='cursor:pointer; width:9.5%; height: 30px; background: linear-gradient(#0098D0, blue); margin: 5px; text-align: center; color: white; font-size:14px;'>"
 														+data[i].area_id+"</div>"
 										}else if(data[i].state==1){
 											stateView=
 												stateView+
-													"<div class='col-sm-1' style='width:20px; height: 30px; background-color: red; margin: 5px; text-align: left; color: white; font-size:14px;'>"
+													"<div class='each_p_area' style='cursor:pointer; width:9.5%; height: 30px; background-color: red; margin: 5px; text-align: center; color: #EEEEEE; font-size:14px;'>"
 														+data[i].area_id+"</div>"
 											statecount=statecount+1
 										}
 									}
-									for(j=0;j<(45-(data.length));j++){
-										stateView=stateView+"<div class='col-sm-1' style='width:20px; height: 30px; background-color: #DDDDDD; margin: 5px;'></div>"
+									for(j=0;j<(32-(data.length));j++){
+										stateView=stateView+"<div style='width:9.5%; height: 30px; background-color: #DDDDDD; margin: 5px;'></div>"
 									}
+									
 									
 									//$("#SelectedParkinglot").text('선택된 주차장 : '+p_id+'('+(data.length-statecount)+'/'+data.length+')');
 									$("#SelectedParkinglot").empty();
@@ -123,6 +124,8 @@
 									
 									$(".spacebox").empty();
 						 			$(".spacebox").append(stateView);
+						 			
+					
 						 			$("#usingspace").empty();
 						 			/* $("#usingspace").append('사용중 주차공간:'+statecount); */
 						 			$("#usingspace").append("<div style='margin-left:50px; float:left;'><div style='float:left; margin-top: 30px;'><h4>사용중 주차공간:</h4></div><div style='float:left;'><h1 style='margin-left: 30px; margin-top: 20px; color:red;'>"+statecount+"</h1></div></div></div>");
@@ -130,6 +133,12 @@
 						 			/* $("#usablespace").append('잔여 주차공간:'+(data.length-statecount)); */
 						 			$("#usablespace").append("<div style='margin-left:50px; float:left;'><div style='float:left; margin-top: 30px;'><h4>잔여 주차공간:</h4></div><div style='float:left;'><h1 style='margin-left: 30px; margin-top: 20px; color:blue;'>"+(data.length-statecount)+"</h1></div></div></div>");
 						 			
+						 			$(".each_p_area").each(function(){
+						 				$(this).click(function(){
+						 					p_ar=$.trim($(this).text());
+						 					alert(p_ar);
+						 				});
+						 			});
 									
 								}
 							})
@@ -155,7 +164,7 @@
 				    },
 
 				    title: {
-				        text: '주차장별 이용 차량수 / '+d.Xdate
+				        text: d.Title+d.Xdate
 				    },
 
 				    /* subtitle: {
@@ -313,6 +322,28 @@
 				})
 			}
 			
+			function getdataforHCHART(){
+				$.ajax({
+					url:'parkingChart.mc',
+					type:"get",
+					data:{"date":'hour'},
+					success:function(d){
+						displaychart(d);
+					}
+				})
+			}
+			
+			function getdataforAvgCHART(){
+				$.ajax({
+					url:'parkingChart.mc',
+					type:"get",
+					data:{"date":'avgC'},
+					success:function(d){
+						displaychart(d);
+					}
+				})
+			}
+			
 			function makingRandomUpdate(){
 				//var obj=0;
 				$("#MKrandom").click(function(){
@@ -410,66 +441,65 @@
         </div>
     
 			<!-- ===========주차장 현황================================================================ -->
-		<div class="content mt-3" style= "margin-bottom: 30px;">
-			<div class="col-sm-6 ">
-				<div class="bg-flat-color-1" style="width:100%; display: flex; padding-top: 50px; padding-bottom: 50px;">
-					<div class="allpark" style="height: 300px; background:#FFFFFF; border-radius: 3px; width: 70%; margin: auto; text-align: center;">
-						<div class="title" >주차장 별 현황</div>
-						<div class="row parkbox">
-							<% for(char i='A';i<='H';i++){ %>
-								<div class="col-sm-5 parkname" style="text-align: center;height: 30px;background-color: #83AFE0;margin: 5px;border-radius: 5px; ">
-									<%=i%>
-								</div>
-							<%}%>
+		<div  style= "margin-bottom: 30px;">
+			<div class="col-xl-6" >
+                <div class="card">
+					<div class="" style="width:100%; display: flex; padding-top: 50px; padding-bottom: 50px; background: linear-gradient(#0290C7, #A3CEDF);">
+						<div class="allpark" style="height: 300px; background:#FFFFFF; border-radius: 3px; width: 70%; margin: auto; text-align: center;">
+							<div class="title" >주차장 별 현황</div>
+							<div class="row parkbox">
+								<% for(char i='A';i<='H';i++){ %>
+									<div class="col-sm-5 parkname" style="text-align: center;height: 30px;background-color: #0098D0;margin: 5px;border-radius: 5px; ">
+										<%=i%>
+									</div>
+								<%}%>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div  style="width:100%; background: #FFFFFF; height: 100px; display: flex;" >
-					<!-- <div style="margin: auto;" id="SelectedParkinglot"><h3 style="float: left">선택된 주차장 (</h3><h3 style="float: left; color: blue;">뀨뀨</h3><h3 style="float: left">/꺄꺄)</h3></div> -->
-					<div style="margin: auto;" id="SelectedParkinglot"><h3>선택된 주차장</h3></div>
+					<div  style="width:100%; background: #FFFFFF; height: 100px; display: flex;" >
+						<!-- <div style="margin: auto;" id="SelectedParkinglot"><h3 style="float: left">선택된 주차장 (</h3><h3 style="float: left; color: blue;">뀨뀨</h3><h3 style="float: left">/꺄꺄)</h3></div> -->
+						<div style="margin: auto;" id="SelectedParkinglot"><h3>선택된 주차장</h3></div>
+					</div>
 				</div>
 			</div>
 					
-			<div class="col-sm-6">
-				<div class="" style="width:100%; display: flex; background: #F7C873; padding-top: 50px; padding-bottom: 50px;">
-					<div class="eachpark" >
-						<p class="title" id="parkingTitle">주차장을 선택해주세요.</p>
-						<div class="row spacebox">
-							<% for(int i=0;i<45;i++){ %>
-								<div class="col-sm-1 parkspace">
+			<div class="col-xl-6" >
+                <div class="card">
+					<div class="" style="width:100%; display: flex; background: linear-gradient(#F3A64E, #F7C873); padding-top: 50px; padding-bottom: 50px;">
+						<div class="eachpark" >
+							<!-- <div style="width: 100%; height: 400px; border: solid red 2px; "> -->
+								<p class="title" id="parkingTitle">주차장을 선택해주세요.</p>
+								<div class="row spacebox">
+									<% for(int i=0;i<32;i++){ %>
+										<div class="parkspace">
+										</div>
+									<%}%>
 								</div>
-							<%}%>
-						</div>
-						<div class="row" >
+							<!-- </div> -->
 							
-							<!-- vv----div 크기 확인용 보더 코드 -->
-							<!-- style="text-align: center; border: solid; balck; 2px; " -->
-						
-							
-							
-						</div>
-					</div>
-				</div>
-				<div style="width:100%; background: #FFFFFF; height: 100px;" >
-					<div>
-						<div class="row col-sm-6" id="usingspace">
-							<div class="p_area_notice">
-								<div style="float:left; margin-top: 30px;"><h4>사용중 주차공간:</h4></div>
-								<div style="float:left;"><h1 class="spacevalue"></h1></div>
-							</div>
-							
-						</div>
-						
-						<div class="row col-sm-6" id="usablespace">
-							<div class="p_area_notice">
-								<div style="float:left; margin-top: 30px;"><h4>잔여 주차공간:</h4></div>
-								<div style="float:left;"><h1 class="spacevalue"></h1></div>
-							</div>
 						</div>
 					</div>
 					
+					<div style="width:100%; background: #FFFFFF; height: 100px;" >
+						<div>
+							<div class="row col-sm-6" id="usingspace">
+								<div class="p_area_notice">
+									<div style="float:left; margin-top: 30px;"><h4>사용중 주차공간:</h4></div>
+									<div style="float:left;"><h1 class="spacevalue"></h1></div>
+								</div>
+								
+							</div>
+							
+							<div class="row col-sm-6" id="usablespace">
+								<div class="p_area_notice">
+									<div style="float:left; margin-top: 30px;"><h4>잔여 주차공간:</h4></div>
+									<div style="float:left;"><h1 class="spacevalue"></h1></div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
 				</div>
-	
 			</div>
 		</div>
         <!-- ^^===========주차장 현황================================================================ -->
@@ -477,6 +507,7 @@
 
 
 			<!-- ********************************그래프************************************************************************************************************** -->
+		<div>
             <div class="col-xl-6" >
                 <div class="card">
                     <div class="card-body">
@@ -491,7 +522,10 @@
                                 <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
                                     <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
                                     	<label class="btn btn-outline-secondary">
-                                            <input type="radio" name="options" id="option0"> Hour
+                                            <input type="radio" name="options" id="option5" onchange="getdataforAvgCHART()"> Avg Count
+                                        </label>
+                                    	<label class="btn btn-outline-secondary">
+                                            <input type="radio" name="options" id="option0" onchange="getdataforHCHART()"> Hour
                                         </label>
                                         <label class="btn btn-outline-secondary">
                                             <input type="radio" name="options" id="option1" checked="" onchange="getdataforDCHART()"> Day
@@ -517,7 +551,7 @@
                             <canvas id="trafficChart" style="height:200px;" height="200"></canvas>
                         </div> --%>
                         
-                        <div id="chart_container" style="height: 500px;">
+                        <div id="chart_container" style="height: 575px; margin-top: 7%;">
                         
                         </div>
                         <!--/.그래프 이거 교체해주면 될듯***********************************************************************************-->
@@ -526,7 +560,7 @@
                         
 
                     </div>
-                    <div class="card-footer">
+                    <!-- <div class="card-footer">
                         <ul>
                             <li>
                                 <div class="text-muted">Visits</div>
@@ -564,13 +598,13 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 			<!-- ********************************그래프***************************************************************************************************************** -->
 
 
-			<!-- VV==========================매니저 현황========================================================== -->
+			<!-- VV==========================주차장 사진 및 주차장 연결캠이 뜨는 섹션========================================================== -->
             <div class="col-lg-6" >
                 <section class="card">
                     <!-- <div class="twt-feed blue-bg" style="border: solid red 2px;"> -->
@@ -601,8 +635,7 @@
 	                                <p class="text-light" id="selectePsub"style="color: black">상세 현황 조회</p> -->
 	                                <h2 class="display-6" id="selectedP" style="color: #343a40;">주차장</h2>
 	                                <p  id="selectePsub"style="color: #343a40;">상세 현황 조회</p>
-	                                <textarea placeholder="메세지를 남기세요." rows="1" class="form-control t-text-area"></textarea>
-	                               
+	                               	<p style="font-size: 20px">차량 번호 확인</p>
 	                            </div>
 	                        </div>
                         </ul>
@@ -620,7 +653,7 @@
                     </footer> -->
                 </section>
             </div>
-			<!-- ^^==========================매니저 현황========================================================== -->
+			<!-- ^^==========================주차장 사진 및 주차장 연결캠이 뜨는 섹========================================================== -->
 
 			<!-- VV==========================카드1(금일 결제 금액 현황)========================================================== -->
             <div class="col-xl-3 col-lg-6"  >
@@ -690,8 +723,7 @@
             </div> -->
             <!-- ^^==========================카드4(미정/ 전세계 지도)========================================================== -->
             
-            
-
+		</div>
 			
 			
 			

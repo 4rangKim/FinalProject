@@ -125,7 +125,7 @@ public class LogController {
 		PrintWriter out = response.getWriter();
 		RList list = null;
 		String xAxis = "";
-		
+		String title ="주차장별 이용 차량수 / ";
 		
 		
 		String date = request.getParameter("date");
@@ -144,10 +144,17 @@ public class LogController {
 		}else if(date.equals("day")) {
 			xAxis = "일(day)";
 			list = rconn.eval("byday()").asList();
+		}else if(date.equals("hour")) {
+			xAxis = "시(hour) -어제 날짜 기준";
+			list = rconn.eval("byhour()").asList();
+		}else if(date.equals("avgC")) {
+			xAxis = "시간대(hour)";
+			title = "시간대별 평균 주차수 / ";
+			list = rconn.eval("AVGbyhour()").asList();
 		}
 		
 
-		int[] n1 = list.at(0).asIntegers(); //년,월,일
+		int[] n1 = list.at(0).asIntegers(); //년,월,일,시
 		int[] n2 = list.at(1).asIntegers(); //A주차장
 		int[] n3 = list.at(2).asIntegers(); //B주차장
 		int[] n4 = list.at(3).asIntegers(); //C주차장
@@ -225,12 +232,98 @@ public class LogController {
 		
 		jo.put("Xdate", xAxis);
 		
+		jo.put("Title", title);
 		
 		out.print(jo.toJSONString());
 		out.close();
 		rconn.close();
 	}
 	
+	
+	@RequestMapping("/piechart.mc")
+	@ResponseBody
+	public void piechart(HttpServletResponse response) throws IOException, RserveException, REXPMismatchException{
+		response.setContentType("text/json;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		RConnection rconn = new RConnection("192.168.0.143");
+		rconn.setStringEncoding("utf8");
+		
+		rconn.eval("source('C:/logs/parking_test.R',encoding='UTF-8')");
+		RList list = rconn.eval("piepercent()").asList();
+		
+		int[] n1 = list.at(0).asIntegers(); //A주차장
+		int[] n2 = list.at(1).asIntegers(); //B주차장
+		int[] n3 = list.at(2).asIntegers(); //C주차장
+		int[] n4 = list.at(3).asIntegers(); //D주차장
+		int[] n5 = list.at(4).asIntegers(); //E주차장
+		int[] n6 = list.at(5).asIntegers(); //F주차장
+		int[] n7 = list.at(6).asIntegers(); //G주차장
+		int[] n8 = list.at(7).asIntegers(); //H주차장
+		 
+		JSONObject jo = new JSONObject();
+		
+		
+		JSONArray ja = new JSONArray();
+		
+		JSONObject jo2 = new JSONObject();
+		jo2.put("name","A주차장");
+		jo2.put("y",n1[0]);
+		jo2.put("sliced",true);
+		jo2.put("selected",true);
+		
+		JSONObject jo3 = new JSONObject();
+		jo3.put("name","B주차장");
+		jo3.put("y",n2[0]);
+		
+		JSONObject jo4 = new JSONObject();
+		jo4.put("name","C주차장");
+		jo4.put("y",n3[0]);
+		
+		JSONObject jo5 = new JSONObject();
+		jo5.put("name","D주차장");
+		jo5.put("y",n4[0]);
+		
+		JSONObject jo6 = new JSONObject();
+		jo6.put("name","E주차장");
+		jo6.put("y",n5[0]);
+		
+		JSONObject jo7 = new JSONObject();
+		jo7.put("name","F주차장");
+		jo7.put("y",n6[0]);
+		
+		JSONObject jo8 = new JSONObject();
+		jo8.put("name","G주차장");
+		jo8.put("y",n7[0]);
+		
+		JSONObject jo9 = new JSONObject();
+		jo9.put("name","H주차장");
+		jo9.put("y",n8[0]);
+		
+		ja.add(jo2);
+		ja.add(jo3);
+		ja.add(jo4);
+		ja.add(jo5);
+		ja.add(jo6);
+		ja.add(jo7);
+		ja.add(jo8);
+		ja.add(jo9);
+		
+		
+		jo.put("data",ja);
+		jo.put("colorByPoint",true);
+		jo.put("name","주차장 이용률");
+		
+		JSONArray aroundArray = new JSONArray();
+		aroundArray.add(jo);
+		
+		
+		System.out.println(aroundArray);
+		out.print(aroundArray.toJSONString());
+		out.close();
+		rconn.close();
+		
+		
+	}
 	
 
 }

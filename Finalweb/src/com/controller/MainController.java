@@ -86,6 +86,16 @@ public class MainController {
 		return mv;
 	}
 	
+	
+	@RequestMapping("/monitor.mc")
+	public ModelAndView monitor(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("center", "monitor");
+		mv.setViewName("mainpage");
+		return mv;
+	}
+	
+	
 	@RequestMapping(value = "/pkuser/ajax_list.mc",method = RequestMethod.GET,
 			produces =  "application/json;charset=utf-8")
 	public @ResponseBody ArrayList<CarVO> categoryList(String category){
@@ -103,7 +113,23 @@ public class MainController {
 		return carlist;
 	}
 	
-	
+	@RequestMapping(value = "/pkuser/ajax_date.mc",method = RequestMethod.GET,
+			produces =  "application/json;charset=utf-8")
+	public @ResponseBody ArrayList<CarVO> dateList(String startdate, String enddate){
+		System.out.println("dateAjax호출");
+		ArrayList<CarVO> carlist = null;
+		String start = startdate;
+		String end = enddate;
+		System.out.println(start);
+		System.out.println(end);
+		try {
+			carlist = (ArrayList<CarVO>)carService.dateSearch(start, end);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("ajaxDate통신:"+carlist.size());
+		return carlist;
+	}
 	
 	@RequestMapping("/appuser.mc")
 	public ModelAndView appuserdetail(HttpServletRequest request) {
@@ -168,7 +194,19 @@ public class MainController {
 		mv.setViewName("ImgPopup");
 		return mv;
 	}
-	
+
+	@RequestMapping(value = "/CarSearch.mc",method = RequestMethod.GET,
+			produces =  "application/json;charset=utf-8")
+	public @ResponseBody ArrayList<CarVO> carsearch(String carnum){
+		ArrayList<CarVO> carlist = null;
+		try {
+			carlist = (ArrayList<CarVO>)carService.carnumList(carnum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("carnum_ajax통신:"+carlist.size());
+		return carlist;
+	}
 }
 
 
