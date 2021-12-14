@@ -1,5 +1,10 @@
 package com.controller;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
@@ -16,12 +21,14 @@ import com.frame.Service;
 import com.vo.CarVO;
 import com.vo.ManagerVO;
 import com.vo.MemberVO;
-import com.vo.P_AreaVO;
 import com.vo.PayVO;
 
 @Controller
 public class MainController {
 	Mqtt_Pub publish;
+	int inCount = 0;
+	int outCount = 0;
+	
 	public MainController() {
 		publish = new Mqtt_Pub();
 	}
@@ -119,18 +126,28 @@ public class MainController {
 	public void carin(HttpServletRequest request) throws Exception {
 		String data = request.getParameter("car");
 		System.out.println("data: "+data);
-		if(data.substring(1).equals("In")) {
+		String carInImage = "http://192.168.0.16/CarInImage.jpg";
+		String carOutImage = "http://192.168.0.16/CarOutImage.jpg";
+		String state = data.substring(1);
+		System.out.println("state:"+state);
+		if(data.substring(1).equals("In")) {			
+			GetImageUrl.getImage(carInImage, state, inCount);
+			inCount++;
 			CarVO car = new CarVO(data.substring(0,1),"01가1234");
 			carService.register(car);
 			System.out.println("DB입력 완료!!");
 			publish.send("final", 1+"");
-		}else if(data.equals("AOut")){
+		}else if(data.substring(1).equals("Out")){
+			GetImageUrl.getImage(carOutImage, state, outCount);
+			outCount++;
 			CarVO car = new CarVO("01가1234");
 			carService.modify(car);
 			System.out.println("Out_time 업뎃 완료");
 			publish.send("final", 0+"");
 		}		
 	}
+	
+	
 	
 	@RequestMapping("/CarInImg.mc")
 	public ModelAndView carInImg(HttpServletRequest request) {
@@ -151,6 +168,7 @@ public class MainController {
 		mv.setViewName("ImgPopup");
 		return mv;
 	}
+	
 }
 
 
