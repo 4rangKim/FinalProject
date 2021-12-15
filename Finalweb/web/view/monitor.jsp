@@ -97,6 +97,43 @@
     		$(a).append("<iframe src="+b+" allow='autoplay' frameborder='0' width='100%' height='250px' scrolling='no' style='margin: 0 auto;'></iframe>");
     	}
     	
+    	
+    	//****************스위치 버튼 ajax******
+		function in_control(btn){
+			position = $("#"+btn).val();
+			if($("#checkbox"+position).is(':checked')){
+				alert(position+" 입구차단기 on");
+			}else{
+				alert(position+" 입구차단기 off");
+			}
+			//alert(position);
+			$.ajax({
+				success:function(){
+					//alert(position);
+					$("#checkbox"+position).each(function(){
+						$(".inBtnstate"+position).toggle();
+					});
+				}
+			});
+		};
+		
+		function out_control(btn){
+			position = $("#"+btn).val();
+			//alert(position);
+			$.ajax({
+				success:function(){
+					//alert(position);
+					$("#checkbox"+position).each(function(){
+						$(".outBtnstate"+position).toggle();
+					});
+				}
+			});
+		};
+		//***************************************************
+    	
+    	
+    	
+    	
 	/*==================vv================도큐먼트 레디========================================  */
 		$(document).ready(function(){
 			
@@ -145,6 +182,110 @@
 		.card-body{
 			text-align: center;
 		}
+		
+				/*--------스위치 css--------------*/
+		/* The switch - the box around the slider */
+		.switch {
+		  position: relative;
+		  display: inline-block;
+		  width: 60px;
+		  height: 34px;
+		  vertical-align:middle;
+		}
+		
+		/* Hide default HTML checkbox */
+		.switch input {
+			display:none;
+		}
+		
+		/* The slider */
+		.slider {
+		  position: absolute;
+		  cursor: pointer;
+		  top: 0;
+		  left: 0;
+		  right: 0;
+		  bottom: 0;
+		  background-color: #ccc;
+		  -webkit-transition: .4s;
+		  transition: .4s;
+		}
+		
+		.slider:before {
+		  position: absolute;
+		  content: "";
+		  height: 26px;
+		  width: 26px;
+		  left: 4px;
+		  bottom: 4px;
+		  background-color: white;
+		  -webkit-transition: .4s;
+		  transition: .4s;
+		}
+		
+		input:checked + .slider {
+		  background-color: #2196F3;
+		}
+		
+		input:focus + .slider {
+		  box-shadow: 0 0 1px #2196F3;
+		}
+		
+		input:checked + .slider:before {
+		  -webkit-transform: translateX(26px);
+		  -ms-transform: translateX(26px);
+		  transform: translateX(26px);
+		}
+		
+		/* Rounded sliders */
+		.slider.round {
+		  border-radius: 34px;
+		}
+		
+		.slider.round:before {
+		  border-radius: 50%;
+		}
+		
+		p {
+			margin:0px;
+			display:inline-block;
+			font-size:15px;
+			font-weight:bold;
+		}
+		/*--------스위치 css--------------*/
+		
+		.controltb{
+			margin:50px;
+			text-align: center;
+		}
+		td{
+			padding-bottom: 20px;
+			padding-top: 20px;
+			border-bottom: solid 1px #b5b3b4;
+		}
+		th{
+			padding-top: 10px;
+			padding-bottom: 10px;
+			border-bottom: solid 2px #b5b3b4;
+			border-top: solid 2px #b5b3b4;
+			margin-bottom: 20px;
+		}
+		.gate{
+			font-weight: bold;
+			font-size: 20pt;
+		}
+		.in{
+			color: #719ae6;
+		}
+		.out{
+			color: #fa612e;
+		}
+		.parkname{
+			font-weight: bold;
+			font-size: 15pt;
+		}
+		
+		
    	</style>
    	
    	
@@ -256,7 +397,57 @@
 		</div>
         <!-- ^^===========주차장 현황================================================================ -->
 
-
+		<!-- +++++++++++++++++++++차단기 제어+++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+		 <div class="breadcrumbs" >
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1 class="contenttitle">차단기 제어시스템</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		
+		<div class="col-xl-12" >
+			<div class="card">
+					<table class="controltb">
+						<tr>
+							<th></th>
+							<% for(char i='A';i<='H';i++){ %>
+								<th class="parkname"><%=i %>&nbsp;주차장</th>
+							<%}%>
+						</tr>
+						<tr>
+							<td class="in gate">IN</td>
+							<% for(char i='A';i<='H';i++){ %>
+								<td>
+									<label class="switch">
+										<input type="checkbox" id="checkbox<%=i%>" value="<%=i%>" onclick="in_control('checkbox<%=i%>')">
+										<span class="slider round"></span>	
+									</label>
+									<p class="inBtnstate<%=i%>" >OFF</p>
+									<p class="inBtnstate<%=i%>" style="display:none;">ON</p>
+								</td>
+							<%}%>
+						</tr>
+						<tr>
+							<td class="out gate">OUT</td>
+							<% for(char i='A';i<='H';i++){ %>
+								<td>
+									<label class="switch">
+										<input type="checkbox" id="checkbox<%=i%>" value="<%=i%>" onclick="out_control('checkbox<%=i%>')">
+										<span class="slider round"></span>	
+									</label>
+									<p class="outBtnstate<%=i%>" >OFF</p>
+									<p class="outBtnstate<%=i%>" style="display:none;">ON</p>
+								</td>
+							<%}%>
+						</tr>
+					</table>
+			</div>
+		</div>
+		<!-- +++++++++++++++++++++차단기 제어+++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
 			<!-- ********************************그래프************************************************************************************************************** -->
 		<div>
@@ -292,8 +483,6 @@
                                 </div>
                             </div>
                             /.col
-
-
                         </div> -->
                         
                         
