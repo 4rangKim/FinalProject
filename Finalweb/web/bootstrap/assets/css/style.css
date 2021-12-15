@@ -30,6 +30,35 @@ o */
 
 /* 내가 추가하는거 ^^ */
 
+.title2{
+ 	font-size: 17pt;
+ 	font-weight: 500;
+ 	font
+ 	/* margin: 5px; */
+ 	padding-bottom: 5px;
+ 	color: #3e3e33;
+ }
+
+.spacediv{
+	float:left;
+	width:50%;
+	height: 100%;
+	display:flex;
+}
+
+.p_area_notice{
+	margin: 0 auto;		
+	display: flex;
+	align-items:center;
+}
+
+.p_area_notice2{
+	font-size:14pt;
+	font-weight: 600;	
+	float:left;
+}
+
+
 .title{
 	margin-top: 20px;
  	font-size: 15pt;
@@ -41,15 +70,10 @@ o */
  	inline-block;
  }
 
-.p_area_notice{
-	margin-left:50px;
-	float:left;
-	
-}
+
 
 .spacevalue{
-	margin-left: 30px;
-	margin-top: 20px;
+	border: solid purple 2px;
 }
 
 .allpark{
