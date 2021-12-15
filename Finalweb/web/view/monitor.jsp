@@ -164,7 +164,7 @@
 			color:white;
 			font-weight: bold;
 		}
-		section{
+		.cameraSection{
 			border: solid #DFDFDF 1px;
 		}
 		.charttitle{
@@ -332,18 +332,18 @@
 						for(char i ='A'; i<='H';i++){
 						%>
 							<div style="width: 25%; float: left; " >
-				                <section>
+				                <section class="cameraSection">
 				                    <div id=<%=i%>>
 				                    	
 				                    	<iframe src=<%=cameramap.get(i+"_InCamera")%> allow='autoplay' frameborder='0' width='100%' height='250px' scrolling='no' style='margin: 0 auto;'>
 				                    	</iframe>
 				                    	
 				                    </div>
-				                    <div class="weather-category twt-category"style="height: 90px;">
+				                    <div class="weather-category twt-category"style="height: 110px;">
 				                        <ul>
 				                            <div class="media" style="text-align: center;">
 					                            <div class="media-body">
-					                                <h3 class="display-6" id="selectedP" style="color: #343a40;">A 주차장</h3>
+					                                <h3 class="display-6" id="selectedP" style="color: #343a40;"><%=i%> 주차장</h3>
 					                                
 					                                <button class="camera_btn" onclick="changeCamera('#<%=i%>','<%=cameramap.get(i+"_InCamera")%>')">입차 카메라</button>
 					                               	<button class="camera_btn" onclick="changeCamera('#<%=i%>','<%=cameramap.get(i+"_OutCamera")%>')">출차 카메라</button>
