@@ -50,7 +50,7 @@
 				border-radius: 20px;
 				color: #9abfd1;
 				font-size: 10pt;
-				background-color: #f1f2f7;
+				background-color: #ffffff;
 				cursor: pointer;
 			}
 			.contenttitle{
@@ -67,7 +67,7 @@
 			}
 			.parkname{
 				text-align: center; 
-				background-color:#f1f2f7; 
+				background-color:#ffffff; 
 				height: 30px; 
 				width: 90px; 
 				border: solid 1px #4b88a5; 
@@ -94,12 +94,15 @@
 			}
 			.numSearch{
 				border: none;
-				background-color: #f1f2f7;
+				background-color: #ffffff;
 				cursor: pointer;
 			}
 			.searchimg{
 				width: 30px;
 				height: 30px;
+			}
+			#startdate,#enddate{
+				margin-right: 7px;
 			}
 		</style>
 		<script type="text/javascript">
@@ -254,7 +257,11 @@
 			        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
 			        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
 			        showMonthAfterYear: true,
-			        yearSuffix: '년'
+			        yearSuffix: '년',
+			        showOn: "both", 
+			        buttonImage:  "img/date.png",
+			        buttonImageOnly: true,
+			        buttonText: "선택"    
 			    });
 			$("#startdate").datepicker().datepicker("setDate", new Date());
 			
