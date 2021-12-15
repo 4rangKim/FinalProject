@@ -22,7 +22,7 @@
     		        type: 'pie'
     		    },
     		    title: {
-    		        text: '파킹판다 관리 주차장별 이용률'
+    		        text: null
     		    },
     		    tooltip: {
     		        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -136,8 +136,21 @@
 		section{
 			border: solid #DFDFDF 1px;
 		}
-		
-		
+		.charttitle{
+			text-align: center;
+			margin-top: 20px;
+			margin-bottom: 50px;
+			font-size: 13pt;
+			color: #434550;
+			font-weight: bold;
+			display:inline-block;
+			border-bottom: solid 2px #9bafb7;
+			border-top: solid 2px #9bafb7;
+			padding: 10px;
+		}
+		.card-body{
+			text-align: center;
+		}
    	</style>
     
 </head>
@@ -433,7 +446,7 @@
                         <%-- <div class="chart-wrapper mt-4">
                             <canvas id="trafficChart" style="height:200px;" height="200"></canvas>
                         </div> --%>
-                        
+                        <div class="charttitle">ParkingPanda 주차장별 이용률</div>
                         <div id="chart_container" style="height: 575px; margin-top: 0%;">
                         
                         </div>
