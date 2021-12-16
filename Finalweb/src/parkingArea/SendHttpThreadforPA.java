@@ -26,7 +26,6 @@ public class SendHttpThreadforPA {
 			@Override
 			public void run() {
 				if(data.length()<=3) {
-					System.out.println("쓰레드안의 데이터: "+data);
 					try {						
 						if(data != null && data != "") {
 							urlmapping = "http://192.168.0.140/Finalweb/parkingArea.mc";

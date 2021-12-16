@@ -5,20 +5,26 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class GetImageUrl {
 	
-	public static void getImage(String imageUrl, String state, int count) throws IOException {
+	public static String getImage(String imageUrl, String parkingLot, String state) throws IOException {
         URL url = null;
         InputStream in = null;
         OutputStream out = null;
-
+        String filename = null;
+        String date = null;
         try {
             url = new URL(imageUrl);
             in = url.openStream();
-
+            Date nowDate = new Date();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_m_ss");
+            date = dateFormat.format(nowDate);
+            filename = date+".jpg";
             // 컴퓨터 또는 서버의 저장할 경로(절대패스로 지정해 주세요.)
-            String savePath = "C:/finalImage/"+state+"/"+count+".jpg";
+            String savePath = "C:/finalImage/"+parkingLot+"/"+state+"/"+filename;
             out = new FileOutputStream(savePath);
 
             while (true) {
@@ -37,7 +43,7 @@ public class GetImageUrl {
             // 저장이 끝난후 사용한 객체는 클로즈를 해줍니다.
             in.close();
             out.close();
-
+//            return filename;
         } catch (Exception e) {
         	  // 예외처리
             e.printStackTrace();
@@ -49,8 +55,10 @@ public class GetImageUrl {
             if (out != null) {
                 out.close();
             }
+            
         }
         System.out.println("다운로드 완료");
+        return filename;        
     }
 	
 }

@@ -49,28 +49,6 @@ public class PayController {
 		return result;
 	}
 	
-	@RequestMapping("/seePayment.mc")
-	@ResponseBody
-	public int payment(String mem_id) {
-		String data = carService.seePayment("aaa");
-		if(data != null) {
-			int time = Integer.parseInt(data);
-			System.out.println("time: "+time);
-			int hour = time/60;
-			int minute = time - hour*60;
-			int amount = 3000;
-			if(hour >=1 || minute > 30){
-				amount += Math.ceil((float)(((hour*60)+(minute-30))/5))*500;
-			}
-			CarVO fee = new CarVO("HAN", amount);
-			carService.updatePayment(fee);
-			return time;
-		}else {
-			return 0;
-		}
-		
-	}
-	
 	@RequestMapping(value = "/nowPayment.mc", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String nowpayment(HttpServletRequest request) {
@@ -121,12 +99,6 @@ public class PayController {
 		PayVO pay = new PayVO(id, amount);
 		payService.pay(pay);
 		System.out.println("지불 완료!!");
-		String msg = amount+"원이 결제되었습니다.";
-		try {
-			FcmUtil.sendServer(msg);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
 	@RequestMapping("/payAmountbyP_id.mc")

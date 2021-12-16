@@ -37,20 +37,22 @@ public class CarVO {
 		this.out_photo = out_photo;
 	}
 	//차 들어왔을 때 register용
-	public CarVO(String p_id, String car_num) {
+	public CarVO(String p_id, String car_num, String in_photo) {
 		super();
 		this.p_id = p_id;
-		this.car_num = car_num;		
+		this.car_num = car_num;
+		this.in_photo = in_photo;
 	}
 	//차 나갈때 Out_time 업데이트용
-	public CarVO(String car_num) {
+	public CarVO(String car_num, String out_photo) {
 		super();
-		this.car_num = car_num;		
+		this.car_num = car_num;
+		this.out_photo = out_photo;
 	}
-	
-	public CarVO(String mem_id, int payment) {
+	//updatePayment용
+	public CarVO(String car_num, int payment) {
 		super();
-		this.mem_id = mem_id;
+		this.car_num = car_num;
 		this.payment = payment;
 	}
 	

@@ -1,10 +1,5 @@
 package com.controller;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
@@ -26,8 +21,6 @@ import com.vo.PayVO;
 @Controller
 public class MainController {
 	Mqtt_Pub publish;
-	int inCount = 0;
-	int outCount = 0;
 	
 	public MainController() {
 		publish = new Mqtt_Pub();
@@ -147,33 +140,55 @@ public class MainController {
 		return mv;
 	}
 	
-	@RequestMapping("/car.mc")
+	@RequestMapping("/carIn.mc")
 	@ResponseBody
-	public void carin(HttpServletRequest request) throws Exception {
-		String data = request.getParameter("car");
+	public void carIn(HttpServletRequest request) throws Exception {
+		String data = request.getParameter("parkingLot");
 		System.out.println("data: "+data);
 		String carInImage = "http://192.168.0.16/CarInImage.jpg";
-		String carOutImage = "http://192.168.0.16/CarOutImage.jpg";
-		String state = data.substring(1);
-		System.out.println("state:"+state);
-		if(data.substring(1).equals("In")) {			
-			GetImageUrl.getImage(carInImage, state, inCount);
-			inCount++;
-			CarVO car = new CarVO(data.substring(0,1),"01가1234");
-			carService.register(car);
-			System.out.println("DB입력 완료!!");
-			publish.send("final", 1+"");
-		}else if(data.substring(1).equals("Out")){
-			GetImageUrl.getImage(carOutImage, state, outCount);
-			outCount++;
-			CarVO car = new CarVO("01가1234");
-			carService.modify(car);
-			System.out.println("Out_time 업뎃 완료");
-			publish.send("final", 0+"");
-		}		
+		String in_photo = GetImageUrl.getImage(carInImage, data, "In");
+		System.out.println("in_photo:"+in_photo);
+		CarVO car = new CarVO(data.substring(0,1),"01가1234", in_photo);
+		carService.register(car);
+		System.out.println("DB입력 완료!!");
+		publish.send("gate", 1+"");
 	}
 	
-	
+	@RequestMapping("/carOut.mc")
+	@ResponseBody
+	public int carOut(HttpServletRequest request) throws Exception {
+		String data = request.getParameter("parkingLot");
+		System.out.println("data: "+data);
+		String carOutImage = "http://192.168.0.19/CarOutImage.jpg";		
+		String out_photo = GetImageUrl.getImage(carOutImage, data, "Out");
+		//저장된 사진 분석해서 차량 번호  얻기
+		String car_num = "01가1234";
+		//차량 번호로 회원 아이디 찾아서 시간 조회 (서브 쿼리)
+		String result = carService.seePayment(car_num);
+		System.out.println("result: "+result);
+		int time = Integer.parseInt(result);
+		System.out.println("time: "+time);
+		//요금 계산 해서 DB업데이트
+		int hour = time/60;
+		int minute = time - hour*60;
+		int amount = 3000;
+		if(hour >=1 || minute > 30){
+			amount += Math.ceil((float)(((hour*60)+(minute-30))/5))*500;
+		}
+		//요금 업데이트
+		CarVO fee = new CarVO("01가1234", amount);
+		carService.updatePayment(fee);
+		//요금 결제
+		PayVO pay = new PayVO("01가1234", amount);
+		payService.pay(pay);
+		System.out.println("지불 완료!!");
+		//DB에 나간 시간 업데이트
+		CarVO car = new CarVO(car_num, out_photo);
+		carService.modify(car);
+		System.out.println("Out_time 업뎃 완료");
+		publish.send("gate", 0+"");	
+		return amount;
+	}
 	
 	@RequestMapping("/CarInImg.mc")
 	public ModelAndView carInImg(HttpServletRequest request) {

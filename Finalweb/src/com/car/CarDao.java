@@ -72,8 +72,10 @@ public class CarDao implements Dao<String, CarVO>{
 	}
 
 	@Override
-	public String seePayment(String k) {
-		return cm.seePayment(k);
+	public String seePayment(String car_num) {
+		System.out.println("carDAO k: "+car_num);
+		System.out.println(cm.seePayment(car_num));
+		return cm.seePayment(car_num);
 	}
 	
 	@Override
