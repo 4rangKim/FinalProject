@@ -76,6 +76,7 @@ public class PayController {
 	public String nowpayment(HttpServletRequest request) {
 		String mem_id = request.getParameter("id");
 		String data = carService.seePayment(mem_id);
+		String result = null;
 		if(data != null) {
 			int time = Integer.parseInt(data);
 			System.out.println("time: "+time);
@@ -87,28 +88,31 @@ public class PayController {
 			}
 			CarVO fee = new CarVO(mem_id, amount);
 			carService.updatePayment(fee);
+			JSONArray ja = new JSONArray();
+			List<CarVO> carList = null;
+			try {
+				carList = carService.getstate(mem_id);
+				System.out.println(carList);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			JSONObject jo = new JSONObject();
+			CarVO mycar = carList.get(0);
+			Date in_time = mycar.getIn_time();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			jo.put("carNum", mycar.getCar_num());
+			jo.put("mem_id", mycar.getMem_id());
+			jo.put("in_time",format.format(in_time));
+			jo.put("out_time", mycar.getOut_time());
+			jo.put("payment", mycar.getPayment());
+			ja.add(jo);
+			result = ja.toJSONString();
+			System.out.println(ja.toJSONString());
+			return result;
+		}else {
+			result = null;
+			return result;
 		}
-		JSONArray ja = new JSONArray();
-		List<CarVO> carList = null;
-		try {
-			carList = carService.getstate(mem_id);
-			System.out.println(carList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		JSONObject jo = new JSONObject();
-		CarVO mycar = carList.get(0);
-		Date in_time = mycar.getIn_time();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		jo.put("carNum", mycar.getCar_num());
-		jo.put("mem_id", mycar.getMem_id());
-		jo.put("in_time",format.format(in_time));
-		jo.put("out_time", mycar.getOut_time());
-		jo.put("payment", mycar.getPayment());
-		ja.add(jo);
-		String result = ja.toJSONString();
-		System.out.println(ja.toJSONString());
-		return result;
 	}
 	
 	

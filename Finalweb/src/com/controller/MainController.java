@@ -70,6 +70,7 @@ public class MainController {
 		return mv;
 	}
 	
+	
 	@RequestMapping("/pkuser.mc")
 	public ModelAndView pkuserdetail(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
@@ -134,14 +135,14 @@ public class MainController {
 	@RequestMapping("/appuser.mc")
 	public ModelAndView appuserdetail(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		 ArrayList<MemberVO> appuserList = null;
+		 ArrayList<MemberVO> memberlist = null;
 		  	try {
-		  		appuserList = memberService.get();
-		  		System.out.println(appuserList);
+		  		memberlist = memberService.get();
+		  		System.out.println(memberlist);
 		  	} catch (Exception e) {
 		  		e.printStackTrace();
 		  	}
-		mv.addObject("appuserList", appuserList);
+		mv.addObject("memberlist", memberlist);
 		mv.addObject("center", "appuser");
 		mv.setViewName("mainpage");
 		return mv;
@@ -206,6 +207,32 @@ public class MainController {
 		}
 		System.out.println("carnum_ajax통신:"+carlist.size());
 		return carlist;
+	}
+	
+	/*
+	 * @RequestMapping(value = "/app/CarSearch.mc",method = RequestMethod.GET,
+	 * produces = "application/json;charset=utf-8") public @ResponseBody
+	 * ArrayList<MemberVO> app_carsearch(String carnum){ ArrayList<MemberVO>
+	 * memberlist = null; try { memberlist =
+	 * (ArrayList<MemberVO>)memberService.carnumList(carnum); } catch (Exception e)
+	 * { e.printStackTrace(); }
+	 * System.out.println("app_carnumsearch_ajax통신:"+memberlist.size()); return
+	 * memberlist; }
+	 */
+	
+	
+	@RequestMapping(value ="/app/search.mc", method = RequestMethod.GET,
+			produces =  "application/json;charset=utf-8")
+	public @ResponseBody ArrayList<MemberVO> search(String tag,String search) {
+		System.out.println("app/search 메소드 호출");
+		ArrayList<MemberVO> memberlist=null;
+		try {
+			memberlist = (ArrayList<MemberVO>)memberService.dateSearch(tag, search);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("app/search:"+memberlist.size());
+		return memberlist;
 	}
 }
 

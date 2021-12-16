@@ -87,6 +87,7 @@
 			.numText{
 				margin-left: 10px;
 				margin-right: 5px;
+				border: solid 1px #dcdeeb;
 			}
 			.searchname{
 				color: #737373;
@@ -124,24 +125,28 @@
 				data:{"carnum":carnum},
 				success:function(data){
 					mydata="<tr><th>주차장 번호</th><th>ID</th><th>차량 번호</th><th>입차 시간</th><th>출차 시간</th></tr>";
-					for(i=0;i<data.length;i++){
-						 if(data[i].out_time==null){
-							 mydata = mydata + "<tr>"+
-								"<td>"+data[i].p_id+"</td>"+
-								"<td>"+data[i].mem_id+"</td>"+
-								"<td>"+data[i].car_num+"</td>"+
-								"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
-								"<td>-<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
-								"</tr>"	
-						 }else{
-							 mydata = mydata + "<tr>"+
-								"<td>"+data[i].p_id+"</td>"+
-								"<td>"+data[i].mem_id+"</td>"+
-								"<td>"+data[i].car_num+"</td>"+
-								"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
-								"<td>"+data[i].out_time+"<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
-								"</tr>"	
-						 }
+					if(data.length==0){
+						mydata = mydata + "<tr><td colspan='6' style='padding:10px; color:gray;'>조회된 차량이 없습니다.</td><tr>";
+					}else{
+						for(i=0;i<data.length;i++){
+							 if(data[i].out_time==null){
+								 mydata = mydata + "<tr>"+
+									"<td>"+data[i].p_id+"</td>"+
+									"<td>"+data[i].mem_id+"</td>"+
+									"<td>"+data[i].car_num+"</td>"+
+									"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
+									"<td>-<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
+									"</tr>"	
+							 }else{
+								 mydata = mydata + "<tr>"+
+									"<td>"+data[i].p_id+"</td>"+
+									"<td>"+data[i].mem_id+"</td>"+
+									"<td>"+data[i].car_num+"</td>"+
+									"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
+									"<td>"+data[i].out_time+"<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
+									"</tr>"	
+							 }
+						}
 					}
 					
 					$("#usertable").empty();
@@ -213,26 +218,29 @@
 							data:{"startdate":startDate, "enddate":endDate},
 							success:function(data){
 								mydata="<tr><th>주차장 번호</th><th>ID</th><th>차량 번호</th><th>입차 시간</th><th>출차 시간</th></tr>";
-								for(i=0;i<data.length;i++){
-									 if(data[i].out_time==null){
-										 mydata = mydata + "<tr>"+
-											"<td>"+data[i].p_id+"</td>"+
-											"<td>"+data[i].mem_id+"</td>"+
-											"<td>"+data[i].car_num+"</td>"+
-											"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
-											"<td>-<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
-											"</tr>"	
-									 }else{
-										 mydata = mydata + "<tr>"+
-											"<td>"+data[i].p_id+"</td>"+
-											"<td>"+data[i].mem_id+"</td>"+
-											"<td>"+data[i].car_num+"</td>"+
-											"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
-											"<td>"+data[i].out_time+"<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
-											"</tr>"	
-									 }
+								if(data.length==0){
+									mydata = mydata + "<tr><td colspan='6' style='padding:10px; color:gray;'>조회된 차량이 없습니다.</td><tr>";
+								}else{
+									for(i=0;i<data.length;i++){
+										 if(data[i].out_time==null){
+											 mydata = mydata + "<tr>"+
+												"<td>"+data[i].p_id+"</td>"+
+												"<td>"+data[i].mem_id+"</td>"+
+												"<td>"+data[i].car_num+"</td>"+
+												"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
+												"<td>-<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
+												"</tr>"	
+										 }else{
+											 mydata = mydata + "<tr>"+
+												"<td>"+data[i].p_id+"</td>"+
+												"<td>"+data[i].mem_id+"</td>"+
+												"<td>"+data[i].car_num+"</td>"+
+												"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
+												"<td>"+data[i].out_time+"<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
+												"</tr>"	
+										 }
+									}
 								}
-								
 								$("#usertable").empty();
 								$("#usertable").append(mydata);
 								$(".numText").val("");
