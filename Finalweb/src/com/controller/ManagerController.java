@@ -35,6 +35,8 @@ public class ManagerController {
 		ManagerVO managerOk = service.login(v);
 		System.out.println(managerOk);
 		if(managerOk!=null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("managerOk", managerOk);
 			mv.setViewName("mainpage");
 		}else {
 			mv.setViewName("login");

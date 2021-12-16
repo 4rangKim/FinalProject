@@ -1,6 +1,7 @@
 package com.mapper;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.vo.MemberVO;
 
@@ -14,6 +15,8 @@ public interface MemberMapper {
 	public MemberVO idcheck(MemberVO v);
 	public MemberVO pwdcheck(MemberVO v);
 	public void carinsert(MemberVO v);
+	public ArrayList<MemberVO> carnumList(String obj);
+	public ArrayList<MemberVO> dateSearch(Map<String,String> map) throws Exception;
 }
 
 

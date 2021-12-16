@@ -112,14 +112,12 @@ public class MemberService implements Service<String, MemberVO>{
 
 	@Override
 	public ArrayList<MemberVO> dateSearch(String k1, String k2) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.dateSearch(k1, k2);
 	}
 
 	@Override
 	public ArrayList<MemberVO> carnumList(String k) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.carnumList(k);
 	}
 
 	

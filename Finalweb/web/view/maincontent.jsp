@@ -47,6 +47,8 @@
 			}    
     
 			function AllParkinglotState(){
+				bestRemaining=0;
+				recommendP='';
 				$.ajax({
 					url:'parkingajax2.mc',
 					type:"get",
@@ -54,6 +56,11 @@
 						//alert(data[0].p_id);
 						parkingsituation='';
 						for(k=0;k<data.length;k++){
+							if(data[k].count>bestRemaining){
+								bestRemaining=data[k].count;
+								recommendP=data[k].p_id;
+							}
+							
 							if(0<data[k].count && data[k].count<=10){
 								parkingsituation=
 									parkingsituation+
@@ -73,6 +80,10 @@
 						}
 						$(".parkbox").empty();
 						$(".parkbox").append(parkingsituation);
+						
+						$("#RecommendParkinglot").empty();
+						$("#RecommendParkinglot").append("<span'>가장 여유 있는 주차장:&nbsp;</span><span style='font-weight: bold; background: linear-gradient(#0892C8,#3876A8); color:transparent; -webkit-background-clip:text;'>&nbsp;&nbsp;"+recommendP+" 주차장&nbsp;</span><span>(잔여 공간 : "+bestRemaining+")</span>")
+						
 						ViewP_areaState();
 					}
 				})
@@ -84,11 +95,6 @@
 						p_id = $.trim($(this).children(".parkname2_chi1").children(".parkname2_chi2").text());
 						
 						InfoFromEachParkname2();
-						/* $(this).attr("class","col-sm-4 active parkname"); */
-						//$(".parkname2").css('color','');
-						//$(this).css('color','purple');
-						$("#parkingTitle").text(p_id+'주차장');
-						//alert(p_id);
 						
 						setInterval(function(){
 							$.ajax({
@@ -118,20 +124,23 @@
 									}
 									
 									
-									//$("#SelectedParkinglot").text('선택된 주차장 : '+p_id+'('+(data.length-statecount)+'/'+data.length+')');
-									$("#SelectedParkinglot").empty();
-									$("#SelectedParkinglot").append("<h3 style='float: left'>선택된 주차장:&nbsp;"+p_id+'('+"</h3><h3 style='float: left; color: blue;'>"+(data.length-statecount)+"</h3><h3 style='float: left'>"+'/'+data.length+')'+"</h3>")
+									//$("#RecommendParkinglot").empty();
+									//$("#RecommendParkinglot").append("<h3 style='float: left'>선택된 주차장:&nbsp;"+p_id+'('+"</h3><h3 style='float: left; color: blue;'>"+(data.length-statecount)+"</h3><h3 style='float: left'>"+'/'+data.length+')'+"</h3>")
+									
+									
+									$("#parkingTitle").empty();
+									$("#parkingTitle").append("<span>"+p_id+'주차장 ('+"</span><span style='color: blue;'>"+(data.length-statecount)+"</span><span>"+'/'+data.length+')'+"</span>")
+									
+									
 									
 									$(".spacebox").empty();
 						 			$(".spacebox").append(stateView);
 						 			
 					
 						 			$("#usingspace").empty();
-						 			/* $("#usingspace").append('사용중 주차공간:'+statecount); */
-						 			$("#usingspace").append("<div style='margin-left:50px; float:left;'><div style='float:left; margin-top: 30px;'><h4>사용중 주차공간:</h4></div><div style='float:left;'><h1 style='margin-left: 30px; margin-top: 20px; color:red;'>"+statecount+"</h1></div></div></div>");
+						 			$("#usingspace").append("<h1 style='color:red;'>&nbsp&nbsp"+statecount+"</h1>");
 						 			$("#usablespace").empty();
-						 			/* $("#usablespace").append('잔여 주차공간:'+(data.length-statecount)); */
-						 			$("#usablespace").append("<div style='margin-left:50px; float:left;'><div style='float:left; margin-top: 30px;'><h4>잔여 주차공간:</h4></div><div style='float:left;'><h1 style='margin-left: 30px; margin-top: 20px; color:blue;'>"+(data.length-statecount)+"</h1></div></div></div>");
+						 			$("#usablespace").append("<h1 style='color:blue;'>&nbsp&nbsp"+(data.length-statecount)+"</h1>");
 						 			
 						 			$(".each_p_area").each(function(){
 						 				$(this).click(function(){
@@ -458,7 +467,7 @@
 					</div>
 					<div  style="width:100%; background: #FFFFFF; height: 100px; display: flex;" >
 						<!-- <div style="margin: auto;" id="SelectedParkinglot"><h3 style="float: left">선택된 주차장 (</h3><h3 style="float: left; color: blue;">뀨뀨</h3><h3 style="float: left">/꺄꺄)</h3></div> -->
-						<div style="margin: auto;" id="SelectedParkinglot"><h3>선택된 주차장</h3></div>
+						<div style="margin: auto;" class = "title2"; id="RecommendParkinglot"><span>추천 주차장<span></div>
 					</div>
 				</div>
 			</div>
@@ -468,7 +477,7 @@
 					<div class="" style="width:100%; display: flex; background: linear-gradient(#F3A64E, #F7C873); padding-top: 50px; padding-bottom: 50px;">
 						<div class="eachpark" >
 							<!-- <div style="width: 100%; height: 400px; border: solid red 2px; "> -->
-								<p class="title" id="parkingTitle">주차장을 선택해주세요.</p>
+								<p class="title" id="parkingTitle"><span>주차장을</span><span> 선택해주세요.</span></p>
 								<div class="row spacebox">
 									<% for(int i=0;i<32;i++){ %>
 										<div class="parkspace">
@@ -480,20 +489,20 @@
 						</div>
 					</div>
 					
-					<div style="width:100%; background: #FFFFFF; height: 100px;" >
-						<div>
-							<div class="row col-sm-6" id="usingspace">
+					<div style="width:100%; background: #FFFFFF; height: 100px; display :flex; align-items: center;" >
+						<div style="width: 100%">
+							<div class="spacediv">
 								<div class="p_area_notice">
-									<div style="float:left; margin-top: 30px;"><h4>사용중 주차공간:</h4></div>
-									<div style="float:left;"><h1 class="spacevalue"></h1></div>
+									<div class="p_area_notice2 ">사용중 주차공간:</div>
+									<div style="float:left;" id="usingspace"></div>
 								</div>
 								
 							</div>
 							
-							<div class="row col-sm-6" id="usablespace">
+							<div class="spacediv">
 								<div class="p_area_notice">
-									<div style="float:left; margin-top: 30px;"><h4>잔여 주차공간:</h4></div>
-									<div style="float:left;"><h1 class="spacevalue"></h1></div>
+									<div class="p_area_notice2">잔여 주차공간:</div>
+									<div style="float:left;" id="usablespace"></div>
 								</div>
 							</div>
 						</div>

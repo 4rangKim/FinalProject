@@ -1,7 +1,9 @@
 package com.member;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -108,15 +110,16 @@ public class MemberDao implements Dao<String, MemberVO>{
 	}
 
 	@Override
-	public ArrayList<MemberVO> dateSearch(String k1, String k2) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public  ArrayList<MemberVO> dateSearch(String tag, String search) throws Exception {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("tag",tag);
+		map.put("search",search);
+		return mem.dateSearch(map);
 	}
 
 	@Override
 	public ArrayList<MemberVO> carnumList(String k) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return mem.carnumList(k);
 	}
 
 }

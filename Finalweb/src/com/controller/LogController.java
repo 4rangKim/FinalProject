@@ -36,10 +36,7 @@ public class LogController {
 //	private Logger data_log = 
 //			Logger.getLogger("data"); 
 	
-	private Logger ran_traffic_test_log = 
-			Logger.getLogger("ran_traffic_test");
-	
-	private Logger ran_test_log = Logger.getLogger("data");
+	private Logger ran_test_log = Logger.getLogger("ran_parking");
 	
 	
 	//================VV 랜덤 로그를 만드는 컨트롤러 코드========================================================================

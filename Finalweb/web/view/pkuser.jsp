@@ -50,7 +50,7 @@
 				border-radius: 20px;
 				color: #9abfd1;
 				font-size: 10pt;
-				background-color: #f1f2f7;
+				background-color: #ffffff;
 				cursor: pointer;
 			}
 			.contenttitle{
@@ -67,7 +67,7 @@
 			}
 			.parkname{
 				text-align: center; 
-				background-color:#f1f2f7; 
+				background-color:#ffffff; 
 				height: 30px; 
 				width: 90px; 
 				border: solid 1px #4b88a5; 
@@ -87,6 +87,7 @@
 			.numText{
 				margin-left: 10px;
 				margin-right: 5px;
+				border: solid 1px #dcdeeb;
 			}
 			.searchname{
 				color: #737373;
@@ -94,12 +95,15 @@
 			}
 			.numSearch{
 				border: none;
-				background-color: #f1f2f7;
+				background-color: #ffffff;
 				cursor: pointer;
 			}
 			.searchimg{
 				width: 30px;
 				height: 30px;
+			}
+			#startdate,#enddate{
+				margin-right: 7px;
 			}
 		</style>
 		<script type="text/javascript">
@@ -121,24 +125,28 @@
 				data:{"carnum":carnum},
 				success:function(data){
 					mydata="<tr><th>주차장 번호</th><th>ID</th><th>차량 번호</th><th>입차 시간</th><th>출차 시간</th></tr>";
-					for(i=0;i<data.length;i++){
-						 if(data[i].out_time==null){
-							 mydata = mydata + "<tr>"+
-								"<td>"+data[i].p_id+"</td>"+
-								"<td>"+data[i].mem_id+"</td>"+
-								"<td>"+data[i].car_num+"</td>"+
-								"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
-								"<td>-<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
-								"</tr>"	
-						 }else{
-							 mydata = mydata + "<tr>"+
-								"<td>"+data[i].p_id+"</td>"+
-								"<td>"+data[i].mem_id+"</td>"+
-								"<td>"+data[i].car_num+"</td>"+
-								"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
-								"<td>"+data[i].out_time+"<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
-								"</tr>"	
-						 }
+					if(data.length==0){
+						mydata = mydata + "<tr><td colspan='6' style='padding:10px; color:gray;'>조회된 차량이 없습니다.</td><tr>";
+					}else{
+						for(i=0;i<data.length;i++){
+							 if(data[i].out_time==null){
+								 mydata = mydata + "<tr>"+
+									"<td>"+data[i].p_id+"</td>"+
+									"<td>"+data[i].mem_id+"</td>"+
+									"<td>"+data[i].car_num+"</td>"+
+									"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
+									"<td>-<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
+									"</tr>"	
+							 }else{
+								 mydata = mydata + "<tr>"+
+									"<td>"+data[i].p_id+"</td>"+
+									"<td>"+data[i].mem_id+"</td>"+
+									"<td>"+data[i].car_num+"</td>"+
+									"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
+									"<td>"+data[i].out_time+"<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
+									"</tr>"	
+							 }
+						}
 					}
 					
 					$("#usertable").empty();
@@ -210,26 +218,29 @@
 							data:{"startdate":startDate, "enddate":endDate},
 							success:function(data){
 								mydata="<tr><th>주차장 번호</th><th>ID</th><th>차량 번호</th><th>입차 시간</th><th>출차 시간</th></tr>";
-								for(i=0;i<data.length;i++){
-									 if(data[i].out_time==null){
-										 mydata = mydata + "<tr>"+
-											"<td>"+data[i].p_id+"</td>"+
-											"<td>"+data[i].mem_id+"</td>"+
-											"<td>"+data[i].car_num+"</td>"+
-											"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
-											"<td>-<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
-											"</tr>"	
-									 }else{
-										 mydata = mydata + "<tr>"+
-											"<td>"+data[i].p_id+"</td>"+
-											"<td>"+data[i].mem_id+"</td>"+
-											"<td>"+data[i].car_num+"</td>"+
-											"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
-											"<td>"+data[i].out_time+"<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
-											"</tr>"	
-									 }
+								if(data.length==0){
+									mydata = mydata + "<tr><td colspan='6' style='padding:10px; color:gray;'>조회된 차량이 없습니다.</td><tr>";
+								}else{
+									for(i=0;i<data.length;i++){
+										 if(data[i].out_time==null){
+											 mydata = mydata + "<tr>"+
+												"<td>"+data[i].p_id+"</td>"+
+												"<td>"+data[i].mem_id+"</td>"+
+												"<td>"+data[i].car_num+"</td>"+
+												"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
+												"<td>-<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
+												"</tr>"	
+										 }else{
+											 mydata = mydata + "<tr>"+
+												"<td>"+data[i].p_id+"</td>"+
+												"<td>"+data[i].mem_id+"</td>"+
+												"<td>"+data[i].car_num+"</td>"+
+												"<td>"+data[i].in_time+"<button class='imgbtn' name ='inImg' id='inImg' value='"+data[i].in_photo+"'>조회</button></td>"+
+												"<td>"+data[i].out_time+"<button class='imgbtn' name ='outImg' id='outImg' value='"+data[i].out_photo+"'>조회</button></td>"+
+												"</tr>"	
+										 }
+									}
 								}
-								
 								$("#usertable").empty();
 								$("#usertable").append(mydata);
 								$(".numText").val("");
@@ -254,7 +265,11 @@
 			        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
 			        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
 			        showMonthAfterYear: true,
-			        yearSuffix: '년'
+			        yearSuffix: '년',
+			        showOn: "both", 
+			        buttonImage:  "img/date.png",
+			        buttonImageOnly: true,
+			        buttonText: "선택"    
 			    });
 			$("#startdate").datepicker().datepicker("setDate", new Date());
 			
@@ -288,57 +303,69 @@
             </div>
         </div>
 
-		<div class="container">
-			<div class="btnbox" id="btnbox">
-				<span class="btnhead">주차장&nbsp;&nbsp;&nbsp;</span>
-					<button class="parkname" id="parkbtnall" value="all" onclick="parkbtn('parkbtnall')">
-						ALL
-					</button>
-				<% for(char i='A';i<='H';i++){ %>
-					<button class="parkname" id="parkbtn<%=i%>" value="<%=i%>" onclick="parkbtn('parkbtn<%=i%>')">
-						<%=i%>
-					</button>
-				<%}%>
+		<div class="col-xl-12" >
+			<div class="card" style="padding-bottom: 40px;">
+				<div class="container">
+					<div class="btnbox" id="btnbox">
+						<span class="btnhead">주차장&nbsp;&nbsp;&nbsp;</span>
+							<button class="parkname" id="parkbtnall" value="all" onclick="parkbtn('parkbtnall')">
+								ALL
+							</button>
+						<% for(char i='A';i<='H';i++){ %>
+							<button class="parkname" id="parkbtn<%=i%>" value="<%=i%>" onclick="parkbtn('parkbtn<%=i%>')">
+								<%=i%>
+							</button>
+						<%}%>
+					</div>
+					<div id="datetext"></div>
+					<div class="Search">
+						<span class="searchname">조회 기간&nbsp;&nbsp;&nbsp;<input type="text" id="startdate"></span>
+						<span>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type="text" id="enddate"></span>
+						<span class="searchname">차량 번호</span>
+						<input type="text" class="numText" id="numText">
+						<button type="button" class="numSearch" onclick="carsearch()"><img src="img/search.png" class="searchimg"/></button>
+					</div>
+				</div>
 			</div>
-			<div id="datetext"></div>
-			<div class="Search">
-				<span class="searchname">조회 기간&nbsp;&nbsp;&nbsp;<input type="text" id="startdate"></span>
-				<span>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type="text" id="enddate"></span>
-				<span class="searchname">차량 번호</span>
-				<input type="text" class="numText" id="numText">
-				<button type="button" class="numSearch" onclick="carsearch()"><img src="img/search.png" class="searchimg"/></button>
+		</div>	
+				
+				
+		<div class="col-xl-12" >
+			<div class="card">	
+				<div class="container">
+					<table class="usertable" id="usertable">
+		 				<tr>
+							<!-- <th>순번</th> -->
+							<th>주차장 번호</th>
+							<th>ID</th>
+							<th>차량 번호</th>
+							<th>입차 시간</th>
+							<th>출차 시간</th>
+						</tr>
+						<%for(int i=0;i<size;i++){ 
+							CarVO mycar = pkuserList.get(i);
+							Date in_time = mycar.getIn_time();
+							Date out_time = mycar.getOut_time();
+							SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							String outResult ="";
+							if(out_time==null){
+								outResult = "-";
+							}else{
+								outResult = format.format(out_time);
+							}
+							%>
+						<tr id="userlist">
+							<%-- <td id="car_seq"><%=mycar.getCar_seq() %></td> --%>
+							<td id="p_id"><%=mycar.getP_id() %></td>
+							<td id="mem_id"><%=mycar.getMem_id()%></td>
+							<td id="car_num"><%=mycar.getCar_num()%></td>
+							<td id="in_time"><%=format.format(in_time)%><button class="imgbtn" name ="inImg" id="inImg<%=i %>" onclick="inImg('inImg<%=i%>')" value="<%=mycar.getIn_photo()%>">조회</button></td>
+							<td id="out_time"><%=outResult %><button class="imgbtn" name ="outImg" id="outImg<%=i%>" onclick="outImg('outImg<%=i%>')" value="<%=mycar.getOut_photo()%>">조회</button></td>
+						</tr>
+						<%} %>
+					</table>
+				</div>
 			</div>
-			<table class="usertable" id="usertable">
- 				<tr>
-					<!-- <th>순번</th> -->
-					<th>주차장 번호</th>
-					<th>ID</th>
-					<th>차량 번호</th>
-					<th>입차 시간</th>
-					<th>출차 시간</th>
-				</tr>
-				<%for(int i=0;i<size;i++){ 
-					CarVO mycar = pkuserList.get(i);
-					Date in_time = mycar.getIn_time();
-					Date out_time = mycar.getOut_time();
-					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					String outResult ="";
-					if(out_time==null){
-						outResult = "-";
-					}else{
-						outResult = format.format(out_time);
-					}
-					%>
-				<tr id="userlist">
-					<%-- <td id="car_seq"><%=mycar.getCar_seq() %></td> --%>
-					<td id="p_id"><%=mycar.getP_id() %></td>
-					<td id="mem_id"><%=mycar.getMem_id()%></td>
-					<td id="car_num"><%=mycar.getCar_num()%></td>
-					<td id="in_time"><%=format.format(in_time)%><button class="imgbtn" name ="inImg" id="inImg<%=i %>" onclick="inImg('inImg<%=i%>')" value="<%=mycar.getIn_photo()%>">조회</button></td>
-					<td id="out_time"><%=outResult %><button class="imgbtn" name ="outImg" id="outImg<%=i%>" onclick="outImg('outImg<%=i%>')" value="<%=mycar.getOut_photo()%>">조회</button></td>
-				</tr>
-				<%} %>
-			</table>
 		</div>
 	</body>
 </html>
