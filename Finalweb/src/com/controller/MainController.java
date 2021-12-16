@@ -209,17 +209,6 @@ public class MainController {
 		return carlist;
 	}
 	
-	/*
-	 * @RequestMapping(value = "/app/CarSearch.mc",method = RequestMethod.GET,
-	 * produces = "application/json;charset=utf-8") public @ResponseBody
-	 * ArrayList<MemberVO> app_carsearch(String carnum){ ArrayList<MemberVO>
-	 * memberlist = null; try { memberlist =
-	 * (ArrayList<MemberVO>)memberService.carnumList(carnum); } catch (Exception e)
-	 * { e.printStackTrace(); }
-	 * System.out.println("app_carnumsearch_ajax통신:"+memberlist.size()); return
-	 * memberlist; }
-	 */
-	
 	
 	@RequestMapping(value ="/app/search.mc", method = RequestMethod.GET,
 			produces =  "application/json;charset=utf-8")
@@ -234,6 +223,36 @@ public class MainController {
 		System.out.println("app/search:"+memberlist.size());
 		return memberlist;
 	}
+	
+	@RequestMapping(value = "/doorControl.mc",method = RequestMethod.GET,
+			produces =  "application/json;charset=utf-8")
+	@ResponseBody
+	public ModelAndView doorControl(String msg){
+		ModelAndView mv = new ModelAndView();
+		System.out.println(msg);
+		if(msg!=null) {
+			publish.send("gate", msg);			
+		}
+		mv.addObject("center", "monitor");
+		mv.setViewName("mainpage");
+		return mv;
+	}
+	
+	@RequestMapping(value="/app/allsearch.mc", method = RequestMethod.GET,
+			produces =  "application/json;charset=utf-8")
+	public@ResponseBody ArrayList<MemberVO> allsearch() {
+		System.out.println("app/allsearch 메소드 호출");
+		ArrayList<MemberVO> memberlist = null;
+		try {
+			memberlist = memberService.get();
+			System.out.println(memberlist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("app/allsearch:"+memberlist.size());
+		return memberlist;
+	}
+	
 }
 
 

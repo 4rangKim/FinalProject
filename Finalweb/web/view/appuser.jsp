@@ -38,7 +38,7 @@
 				margin-left: 40px;
 			}
 			.search{
-				border: none;
+				border:none;
 				background-color: #ffffff;
 				cursor: pointer;
 			}
@@ -55,9 +55,60 @@
 			select:focus {
 				outline:none;
 			}
+			.allbtn{
+				margin-top: 30px;
+				margin-left: 20px;
+				border: solid 1px #dcdeeb;
+				border-radius: 15px;
+				width: 50px;
+				cursor: pointer;
+				background-color: #ffffff;
+			}
+			.allbtn:focus{
+				background-color: #dcdeeb;
+				color:#ffffff;
+			}
 	</style>
 	<script type="text/javascript">
-	
+		function allsearch(){
+			$.ajax({
+				url:"/Finalweb/app/allsearch.mc",
+				type:"get",
+				data:{"tag":tag,"search":search},
+				success:function(data){
+					mydata="<tr><th>ID</th><th>이름</th><th>전화 번호</th><th>차량1</th><th>차량2</th><th>포인트</th></tr>";
+					if(data.length==0){
+						mydata = mydata + "<tr><td colspan='6' style='padding:10px; color:gray;'>조회된 사용자가 없습니다.</td><tr>";
+					}else{
+						for(i=0;i<data.length;i++){
+							 if(data[i].mem_car2==null){
+								 mydata = mydata + "<tr>"+
+									"<td>"+data[i].mem_id+"</td>"+
+									"<td>"+data[i].mem_name+"</td>"+
+									"<td>"+data[i].mem_tel+"</td>"+
+									"<td>"+data[i].mem_car1+"</td>"+
+									"<td>-</td>"+
+									"<td>"+data[i].mem_money+"</td>"+
+									"</tr>"
+							}else{
+								 mydata = mydata + "<tr>"+
+									"<td>"+data[i].mem_id+"</td>"+
+									"<td>"+data[i].mem_name+"</td>"+
+									"<td>"+data[i].mem_tel+"</td>"+
+									"<td>"+data[i].mem_car1+"</td>"+
+									"<td>"+data[i].mem_car2+"</td>"+
+									"<td>"+data[i].mem_money+"</td>"+
+									"</tr>"
+							}
+						}
+					}
+					$(".usertable").empty();
+					$(".usertable").append(mydata);
+					$("#searchText").val("");
+				}
+			});//end ajax
+			
+		}
  		function listsearch(){
  			//alert("버튼눌림");
 			tag = $("#myoption option:selected").val();
@@ -74,14 +125,25 @@
 						mydata = mydata + "<tr><td colspan='6' style='padding:10px; color:gray;'>조회된 사용자가 없습니다.</td><tr>";
 					}else{
 						for(i=0;i<data.length;i++){
-							 mydata = mydata + "<tr>"+
-								"<td>"+data[i].mem_id+"</td>"+
-								"<td>"+data[i].mem_name+"</td>"+
-								"<td>"+data[i].mem_tel+"</td>"+
-								"<td>"+data[i].mem_car1+"</td>"+
-								"<td>"+data[i].mem_car2+"</td>"+
-								"<td>"+data[i].mem_money+"</td>"+
-								"</tr>"	
+							 if(data[i].mem_car2==null){
+								 mydata = mydata + "<tr>"+
+									"<td>"+data[i].mem_id+"</td>"+
+									"<td>"+data[i].mem_name+"</td>"+
+									"<td>"+data[i].mem_tel+"</td>"+
+									"<td>"+data[i].mem_car1+"</td>"+
+									"<td>-</td>"+
+									"<td>"+data[i].mem_money+"</td>"+
+									"</tr>"
+							}else{
+								 mydata = mydata + "<tr>"+
+									"<td>"+data[i].mem_id+"</td>"+
+									"<td>"+data[i].mem_name+"</td>"+
+									"<td>"+data[i].mem_tel+"</td>"+
+									"<td>"+data[i].mem_car1+"</td>"+
+									"<td>"+data[i].mem_car2+"</td>"+
+									"<td>"+data[i].mem_money+"</td>"+
+									"</tr>"
+							}
 						}
 					}
 					$(".usertable").empty();
@@ -94,8 +156,6 @@
 </head>
 <body>
 	 <%
-	 	/* ArrayList<MemberVO> appuserList = (ArrayList<MemberVO>)request.getAttribute("appuserList"); 
-		int size = appuserList.size(); */
 		ArrayList<MemberVO> memberlist = (ArrayList<MemberVO>)request.getAttribute("memberlist"); 
 		int size = memberlist.size();
 	%>
@@ -113,23 +173,16 @@
 		<div class="col-xl-12" >
 			<div class="card" style="padding-bottom: 40px;">
 				<div class="container">
-					<div class="Search">
-						<select id="myoption" name="tag">
-							<option value="id">ID</option>
-							<option value="name">이름</option>
-							<option value="carnum">차량 번호</option>
-						</select> 
-						<input type="text" class="searchText" id="searchText" name="search" /> 
-						<button type="button" class="search" onclick="listsearch()"><img src="img/search.png" class="searchimg"/></button>
-					</div>
-				</div>
-			</div>
-		</div>	
-		
-		<div class="col-xl-12" >
-			<div class="card" style="padding-bottom: 40px;">
-			
-				<div class="container">
+						<div class="Search">
+							<select id="myoption" name="tag">
+								<option value="id">ID</option>
+								<option value="name">이름</option>
+								<option value="carnum">차량 번호</option>
+							</select> 
+							<input type="text" class="searchText" id="searchText" name="search" /> 
+							<button type="button" class="search" onclick="listsearch()"><img src="img/search.png" class="searchimg"/></button>
+							<button class="allbtn" onclick="allsearch()">All</button>
+						</div>
 					<table class="usertable">
 						<tr>
 							<th>ID</th>
