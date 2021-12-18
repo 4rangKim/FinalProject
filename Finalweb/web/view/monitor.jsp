@@ -14,7 +14,9 @@
 
     <script type="text/javascript">
     	function csstest(){
-    		$("#in_checkboxA").css("border","solid red 3px");
+    		//$("#in_checkboxA").css("border","solid red 3px");
+    		$("#in_checkboxA").css("animation","blink-effect 1s step-end infinite");
+
     	}
     	function displayCHART2(d){
     		Highcharts.chart('chart_container', {
@@ -104,10 +106,14 @@
 		function in_control(btn){
 			
     		/* 웹 알림으로 생성된 css(border)를 버튼을 누르면 없어지게 하는 코드*/
-    		camidforchange = '#'+btn.substring(8);
-    		$(camidforchange).css("border","");
+    		camidforchange = '#'+btn.substring(8)+'box';
+    		camname='#selectedP'+btn.substring(8);
+    		$(camidforchange).css("animation","");
+    		$(camname).css("color","black");
     		btn2='#in_'+btn
-			$(btn2).css("border","");
+    		parkid = '#parkname'+btn.substring(8);
+			$(btn2).css("animation","");
+			$(parkid).css("color","black");
     		/*===================================================*/
     		
 			position = $("#"+btn).val();
@@ -127,13 +133,18 @@
 			});
 		};
 		
+		
 		function out_control(btn){
 			
 			/* 웹 알림으로 생성된 css(border)를 버튼을 누르면 없어지게 하는 코드*/
-			camidforchange = '#'+btn.substring(8);
-    		$(camidforchange).css("border","");
+			camidforchange = '#'+btn.substring(8)+'box';
+    		camname='#selectedP'+btn.substring(8);
+    		$(camidforchange).css("animation","");
+    		$(camname).css("color","black");
 			btn2='#out_'+btn
-			$(btn2).css("border","");
+			parkid = '#parkname'+btn.substring(8);
+			$(btn2).css("animation","");
+			$(parkid).css("color","black");
 			/*===================================================*/
 			
 			position = $("#"+btn).val();
@@ -304,7 +315,12 @@
 			font-size: 15pt;
 		}
 		
-		
+		@keyframes blink-effect {
+			50% { border: solid #e16040 3px } 
+		}
+		@keyframes blink-effect2 {
+			50% { border: solid #84b5f0 3px } 
+		}
    	</style>
    	
    	
@@ -351,7 +367,7 @@
 						for(char i ='A'; i<='H';i++){
 						%>
 							<div style="width: 25%; float: left; " >
-				                <section class="cameraSection">
+				                <section class="cameraSection" id="<%=i%>box">
 				                    <div id=<%=i%>>
 				                    	
 				                    	<iframe src=<%=cameramap.get(i+"_InCamera")%> allow='autoplay' frameborder='0' width='100%' height='250px' scrolling='no' style='margin: 0 auto;'>
@@ -362,7 +378,7 @@
 				                        <ul>
 				                            <div class="media" style="text-align: center;">
 					                            <div class="media-body">
-					                                <h3 class="display-6" id="selectedP" style="color: #343a40;"><%=i%> 주차장</h3>
+					                                <h3 class="display-6" id="selectedP<%=i%>" style="color: #343a40;"><%=i%> 주차장</h3>
 					                                
 					                                <button class="camera_btn" onclick="changeCamera('#<%=i%>','<%=cameramap.get(i+"_InCamera")%>')">입차 카메라</button>
 					                               	<button class="camera_btn" onclick="changeCamera('#<%=i%>','<%=cameramap.get(i+"_OutCamera")%>')">출차 카메라</button>
@@ -435,7 +451,7 @@
 						<tr>
 							<th></th>
 							<% for(char i='A';i<='H';i++){ %>
-								<th class="parkname"><%=i %>&nbsp;주차장</th>
+								<th class="parkname" id="parkname<%=i%>"><%=i %>&nbsp;주차장</th>
 							<%}%>
 						</tr>
 						<tr>
@@ -568,14 +584,22 @@
 					a = String.fromCharCode(y);
 					//alert(text.indexOf(a));
 					if(text.indexOf(a) != -1){
-						camid='#'+a
-						$(camid).css("border","solid red 5px");
+						//camid='#'+a
+						cambox='#'+a+'box'
+						camname='#selectedP'+a
+						//$(camid).css("border","solid red 5px");
+						$(cambox).css("animation","blink-effect 1s step-end infinite");
+						$(camname).css("color","#e16040");
 						if(text.indexOf("in") != -1){
 							checkinid = '#in_checkbox'+a
-							$(checkinid).css("border","solid skyblue 3px");
+							parkid = '#parkname'+a
+							$(checkinid).css("animation","blink-effect2 1s step-end infinite");
+							$(parkid).css("color", "#84b5f0");
 						}else if(text.indexOf("out") != -1){
 							checkoutid = '#out_checkbox'+a
-							$(checkoutid).css("border","solid skyblue 3px");
+							parkid = '#parkname'+a
+							$(checkoutid).css("animation","blink-effect2 1s step-end infinite");
+							$(parkid).css("color", "#84b5f0");
 						}
 					}
 				}
