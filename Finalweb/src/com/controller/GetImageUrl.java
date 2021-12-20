@@ -14,7 +14,7 @@ public class GetImageUrl {
         URL url = null;
         InputStream in = null;
         OutputStream out = null;
-        String filename;
+        String filename = null;
         String date = null;
         try {
             url = new URL(imageUrl);
