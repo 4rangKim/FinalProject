@@ -26,8 +26,7 @@ import com.vo.ParkingVO;
 
 @Controller
 public class ParkingController {
-	String A[] = {"A00", "A10", "A20"};
-	String B[] = {"B00", "B10", "B20"};
+	String A[] = {"A00", "A10", "A20", "A30"};
 	private Logger parking_log = Logger.getLogger("data");
 	
 	@Resource(name="ParkingService")
@@ -70,7 +69,6 @@ public class ParkingController {
 	@ResponseBody
 	public void parkingArea(HttpServletRequest request) throws Exception {
 		String data = request.getParameter("parking");
-		System.out.println("parking컨트롤러의 data: "+data);
 		String parking_id = data.substring(0,1); // A
 		String area_id = data.substring(0,2); // A1
 		int state = Integer.parseInt(data.substring(2)); // 0
@@ -79,15 +77,11 @@ public class ParkingController {
 				A[Integer.parseInt(data.substring(1,2))] = data;
 				P_AreaVO changed = new P_AreaVO(area_id, state);
 				service2.modify(changed);
-				System.out.println("DB업데이트 완료");
-				parking_log.debug(parking_id+","+area_id+","+state);
-			}
-		}else if(parking_id.equals("B")) {
-			if(!data.equals(B[Integer.parseInt(data.substring(1,2))])) {
-				B[Integer.parseInt(data.substring(1,2))] = data;
-				P_AreaVO changed = new P_AreaVO(area_id, state);
-				service2.modify(changed);
-				System.out.println("DB업데이트 완료");
+				if(state == 0) {
+					System.out.println(area_id+"자리 차 나감");
+				}else {
+					System.out.println(area_id+"자리 차 들어옴");
+				}
 				parking_log.debug(parking_id+","+area_id+","+state);
 			}
 		}

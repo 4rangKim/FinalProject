@@ -9,12 +9,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class GetImageUrl {
+	static String filename;
 	
 	public static String getImage(String imageUrl, String parkingLot, String state) throws IOException {
         URL url = null;
         InputStream in = null;
         OutputStream out = null;
-        String filename = null;
         String date = null;
         try {
             url = new URL(imageUrl);
@@ -24,7 +24,7 @@ public class GetImageUrl {
             date = dateFormat.format(nowDate);
             filename = date+".jpg";
             // 컴퓨터 또는 서버의 저장할 경로(절대패스로 지정해 주세요.)
-            String savePath = "C:/finalImage/"+parkingLot+"/"+state+"/"+filename;
+            String savePath = "C:\\bigdata_iot\\work\\FinalProject\\Finalweb\\web\\img\\"+parkingLot+"\\"+state+"\\"+filename;
             out = new FileOutputStream(savePath);
 
             while (true) {

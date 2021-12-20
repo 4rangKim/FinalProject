@@ -22,7 +22,6 @@ public class ReceiveInputThreadforPA {
 				try {
 					if((len=serialIn.read(buffer)) > 0){
 						String data = new String(buffer, 0 ,len);
-						System.out.println("data:"+data);
 						SendHttpThreadforPA send = new SendHttpThreadforPA(data.trim(), serialOut);
 						send.sendHttp();					
 					}

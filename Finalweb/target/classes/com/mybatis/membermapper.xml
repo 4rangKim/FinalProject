@@ -32,6 +32,23 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="pwdcheck" resultType="member" parameterType="member">
 		select * from member where mem_id = #{mem_id} and mem_name = #{mem_name} and mem_tel = #{mem_tel}
 	</select>
+	<select id="carnumList" parameterType="String" resultType="member">
+		SELECT * FROM member where mem_car1 like '%'||#{carnum}||'%' or mem_car2 like '%'||#{carnum}||'%'
+	</select>
+	<select id="dateSearch" resultType="member" parameterType="Map">
+ 	 	select * from member
+ 	 	<where>
+ 	 		<if test="tag=='id' and search!=''">
+ 	 			mem_id like '%' || #{search} || '%'
+ 	 		</if>
+ 	 		<if test="tag=='name' and search!=''">
+ 	 			mem_name like '%' || #{search} || '%'
+ 	 		</if>
+ 	 		<if test="tag=='carnum' and search!=''">
+ 	 			mem_car1 like '%' || #{search} || '%' or mem_car2 like '%'||#{search}||'%'
+ 	 		</if>
+ 	 	</where>
+ 	 </select>
 </mapper>
 
 

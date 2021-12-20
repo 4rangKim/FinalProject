@@ -167,7 +167,10 @@ public class MainController {
 		//차량 번호로 회원 아이디 찾아서 시간 조회 (서브 쿼리)
 		String result = carService.seePayment(car_num);
 		System.out.println("result: "+result);
-		int time = Integer.parseInt(result);
+		int time = 0;
+		if(result != null) {
+			time = Integer.parseInt(result);
+		}
 		System.out.println("time: "+time);
 		//요금 계산 해서 DB업데이트
 		int hour = time/60;
