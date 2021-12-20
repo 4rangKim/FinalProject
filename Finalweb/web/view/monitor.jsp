@@ -100,6 +100,18 @@
     	
     	//****************스위치 버튼 ajax******
 		function in_control(btn){
+			
+    		/* 웹 알림으로 생성된 css(border)를 버튼을 누르면 없어지게 하는 코드*/
+    		camidforchange = '#'+btn.substring(8)+'box';
+    		camname='#selectedP'+btn.substring(8);
+    		$(camidforchange).css("animation","");
+    		$(camname).css("animation","");
+    		btn2='#in_'+btn
+    		parkid = '#parkname'+btn.substring(8);
+			$(btn2).css("animation","");
+			$(parkid).css("color","black");
+    		/*===================================================*/
+    		
 			position = $("#"+btn).val();
 			if($("#checkbox"+position).is(':checked')){
 				alert(position+" 입구차단기 on");
@@ -117,7 +129,20 @@
 			});
 		};
 		
+		
 		function out_control(btn){
+			
+			/* 웹 알림으로 생성된 css(border)를 버튼을 누르면 없어지게 하는 코드*/
+			camidforchange = '#'+btn.substring(8)+'box';
+    		camname='#selectedP'+btn.substring(8);
+    		$(camidforchange).css("animation","");
+    		$(camname).css("animation","");
+			btn2='#out_'+btn
+			parkid = '#parkname'+btn.substring(8);
+			$(btn2).css("animation","");
+			$(parkid).css("color","black");
+			/*===================================================*/
+			
 			position = $("#"+btn).val();
 			//alert(position);
 			$.ajax({
@@ -137,6 +162,7 @@
 	/*==================vv================도큐먼트 레디========================================  */
 		$(document).ready(function(){
 			
+			openSocket();
 			getdataforpieCHART();
 			
 		});
@@ -285,7 +311,15 @@
 			font-size: 15pt;
 		}
 		
-		
+		@keyframes blink-effect {
+			50% {background : #e84820}
+		}
+		@keyframes blink-effect2 {
+			50% {background : #f3dce2} 
+		}
+		@keyframes blink-effect3 {
+			50% {color : #f8ec10} 
+		}
    	</style>
    	
    	
@@ -332,7 +366,7 @@
 						for(char i ='A'; i<='H';i++){
 						%>
 							<div style="width: 25%; float: left; " >
-				                <section class="cameraSection">
+				                <section class="cameraSection" id="<%=i%>box">
 				                    <div id=<%=i%>>
 				                    	
 				                    	<iframe src=<%=cameramap.get(i+"_InCamera")%> allow='autoplay' frameborder='0' width='100%' height='250px' scrolling='no' style='margin: 0 auto;'>
@@ -343,7 +377,7 @@
 				                        <ul>
 				                            <div class="media" style="text-align: center;">
 					                            <div class="media-body">
-					                                <h3 class="display-6" id="selectedP" style="color: #343a40;"><%=i%> 주차장</h3>
+					                                <h3 class="display-6" id="selectedP<%=i%>" style="color: #343a40;"><%=i%> 주차장</h3>
 					                                
 					                                <button class="camera_btn" onclick="changeCamera('#<%=i%>','<%=cameramap.get(i+"_InCamera")%>')">입차 카메라</button>
 					                               	<button class="camera_btn" onclick="changeCamera('#<%=i%>','<%=cameramap.get(i+"_OutCamera")%>')">출차 카메라</button>
@@ -415,13 +449,13 @@
 						<tr>
 							<th></th>
 							<% for(char i='A';i<='H';i++){ %>
-								<th class="parkname"><%=i %>&nbsp;주차장</th>
+								<th class="parkname" id="parkname<%=i%>"><%=i %>&nbsp;주차장</th>
 							<%}%>
 						</tr>
 						<tr>
 							<td class="in gate">IN</td>
 							<% for(char i='A';i<='H';i++){ %>
-								<td>
+								<td id="in_checkbox<%=i%>">
 									<label class="switch">
 										<input type="checkbox" id="checkbox<%=i%>" value="<%=i%>" onclick="in_control('checkbox<%=i%>')">
 										<span class="slider round"></span>	
@@ -434,7 +468,7 @@
 						<tr>
 							<td class="out gate">OUT</td>
 							<% for(char i='A';i<='H';i++){ %>
-								<td>
+								<td id="out_checkbox<%=i%>">
 									<label class="switch">
 										<input type="checkbox" id="checkbox<%=i%>" value="<%=i%>" onclick="out_control('checkbox<%=i%>')">
 										<span class="slider round"></span>	
@@ -504,26 +538,82 @@
                     
                 </div>
             </div>
-			<!-- ********************************그래프***************************************************************************************************************** -->
-
-
-			
-			<!-- VV==========================카드4(미정/ 전세계 지도)========================================================== -->
-           <!--  <div class="col-xl-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>World</h4>
-                    </div>
-                    <div class="Vector-map-js">
-                        <div id="vmap" class="vmap" style="height: 265px;"></div>
-                    </div>
-                </div>
-                /# card
-            </div> -->
-            <!-- ^^==========================카드4(미정/ 전세계 지도)========================================================== -->
             
 		</div>
+		<!-- ********************************그래프***************************************************************************************************************** -->
 			
+		
+		
+		<script>
+			var ws;
+			var messages = document.getElementById("message");
+	
+			function openSocket() {
+				if (ws !== undefined && ws.readyState !== WebSocket.CLOSED) {
+					writeResponse("WebSocket is already opend.");
+					return;
+				}
+	
+				//웹소켓 객체 만드는 코드
+				var url = window.location.host;//웹브라우저의 주소창의 포트까지 가져옴
+				var pathname = window.location.pathname; /* '/'부터 오른쪽에 있는 모든 경로*/
+				var appCtx = pathname.substring(0, pathname.indexOf("/", 2));
+				var root = url + appCtx;
+				ws = new WebSocket("ws://"+root+"/ws"); /*/ws는 @ServerEndpoint(value = "/ws")를 말함*/
+	
+				ws.onopen = function(event) {
+					if (event.data === undefined)
+						return;
+					writeResponse(event.data);
+				};
+				ws.onmessage = function(event) {
+					writeResponse(event.data);
+				};
+				ws.onclose = function(event) {
+					writeResponse("Connection closed");
+				}
+			}
+			
+			function writeResponse(text) {
+				//message.innerHTML += "<br/>" + text;
+				
+				/* 요청이 들어온 주차장을 확인하고 해당 주차장의 카메라(iframe)와 요청이 들어온 버튼을 css를 통해서 표시해주는 코드 */
+				for(y=65;y<=72;y++){
+					a = String.fromCharCode(y);
+					//alert(text.indexOf(a));
+					if(text.indexOf(a) != -1){
+						//camid='#'+a
+						cambox='#'+a+'box'
+						camname='#selectedP'+a
+						//$(camid).css("border","solid red 5px");
+						$(cambox).css("animation","blink-effect 1s step-end infinite");
+						$(camname).css("animation","blink-effect3 1s step-end infinite");
+						if(text.indexOf("in") != -1){
+							checkinid = '#in_checkbox'+a
+							parkid = '#parkname'+a
+							$(checkinid).css("animation","blink-effect2 1s step-end infinite");
+							$(parkid).css("color","#dd99ad");
+						}else if(text.indexOf("out") != -1){
+							checkoutid = '#out_checkbox'+a
+							parkid = '#parkname'+a
+							$(checkoutid).css("animation","blink-effect2 1s step-end infinite");
+							$(parkid).css("color","#dd99ad");
+						}
+					}
+				}
+				/* ################################################################################### */
+				
+				alert(text);
+			}
+			
+			/* document.addEventListener("DOMContentLoaded", function(){
+				openSocket();
+			}); */
+			
+
+
+			
+		</script>
 			
 			
 

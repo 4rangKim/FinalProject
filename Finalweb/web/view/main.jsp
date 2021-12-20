@@ -29,6 +29,7 @@
 	font-weight: bold;
 }
 </style>
+</head>
 <body>
 	<header>
 		<!-- top -->
