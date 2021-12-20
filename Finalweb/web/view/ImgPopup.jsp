@@ -8,8 +8,12 @@
 </head>
 <body>
 	<%
-		String img = (String)request.getAttribute("Img"); 
+		String img = (String)request.getAttribute("Img");
+		if(img.equals("inImg")){
 	%>
-	<img alt="" src="img/<%=img %>" style="width: 700px; height: 400px;">
+		<img alt="" src="img/A/In/<%=img%>" style="width: 700px; height: 400px;">
+	<%}else if(img.equals("inImg")){%>
+		<img alt="" src="img/A/Out/<%=img%>" style="width: 700px; height: 400px;">
+	<%} %>
 </body>
 </html>
