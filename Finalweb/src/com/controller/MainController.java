@@ -147,8 +147,8 @@ public class MainController {
 		String data = request.getParameter("parkingLot");
 		String carInImage = "http://192.168.0.16/CarInImage.jpg";
 		String in_photo = GetImageUrl.getImage(carInImage, data, "In");
-		String carplate = GetImageUrl.getFilename();
 		//OpenCV
+		String carplate = null;
 		
 		
 		CarVO car = new CarVO(data.substring(0,1), carplate, in_photo);

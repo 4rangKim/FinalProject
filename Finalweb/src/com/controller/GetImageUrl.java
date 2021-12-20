@@ -9,12 +9,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class GetImageUrl {
-	static String filename;
 	
 	public static String getImage(String imageUrl, String parkingLot, String state) throws IOException {
         URL url = null;
         InputStream in = null;
         OutputStream out = null;
+        String filename;
         String date = null;
         try {
             url = new URL(imageUrl);
@@ -60,9 +60,5 @@ public class GetImageUrl {
         System.out.println("다운로드 완료");
         return filename;        
     }
-	
-	public static String getFilename() {
-		return filename;
-	}
 	
 }
