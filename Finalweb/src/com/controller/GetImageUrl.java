@@ -61,4 +61,8 @@ public class GetImageUrl {
         return filename;        
     }
 	
+	public static String getFilename() {
+		return filename;
+	}
+	
 }

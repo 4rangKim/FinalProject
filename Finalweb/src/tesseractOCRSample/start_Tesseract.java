@@ -10,11 +10,12 @@ import net.sourceforge.tess4j.TesseractException;
 public class start_Tesseract {
 	public static void main(String[] args) throws IOException {
 		String name = "kor_number.png";
-		String path = "C:\\Users\\a\\git\\FinalProject\\Finalweb\\web\\img\\sample\\"+name;
-		 File imageFile = new File(path); 
+		String path = "C:\\bigdata_iot\\work\\FinalProject\\Finalweb\\web\\img\\sample\\"+name;
+		
+		File imageFile = new File(path); 
 		/* File imageFile = new File("resultImg/text7.jpg"); */
 		ITesseract instance = new Tesseract();
-		instance.setDatapath("C:\\Users\\a\\git\\FinalProject\\Finalweb\\web\\WEB-INF\\lib");
+		instance.setDatapath("C:\\bigdata_iot\\work\\FinalProject\\Finalweb\\web\\WEB-INF\\lib");
 		instance.setLanguage("kor");
 		try {
 			String result = instance.doOCR(imageFile);
