@@ -41,11 +41,59 @@
 		alert(text);
 	}
     
+	
+	
+	/* 테서랙트로 추출한 번호판 문자를 웹소켓 통신으로 받는 코드------------------------------------ */
+	var wsforplates;
+	function openSocketForPlates() {
+		if (wsforplates !== undefined && wsforplates.readyState !== WebSocket.CLOSED) {
+			//writeResponse("WebSocket is already opend.");
+			return;
+		}
+
+		//웹소켓 객체 만드는 코드
+		var url = window.location.host;//웹브라우저의 주소창의 포트까지 가져옴
+		var pathname = window.location.pathname; /* '/'부터 오른쪽에 있는 모든 경로*/
+		var appCtx = pathname.substring(0, pathname.indexOf("/", 2));
+		var root = url + appCtx;
+		wsforplates = new WebSocket("ws://"+root+"/ws2"); /*/ws는 @ServerEndpoint(value = "/ws")를 말함*/
+
+		wsforplates.onopen = function(event) {
+			if (event.data === undefined)
+				return;
+			writeResponse2(event.data);
+		};
+		wsforplates.onmessage = function(event) {
+			writeResponse2(event.data);
+		};
+		wsforplates.onclose = function(event) {
+			writeResponse2("Connection closed");
+		}
+	}
+	
+	function writeResponse2(text) {
+		//message.innerHTML += "<br/>" + text;
+		for(q=65;q<=72;q++){
+			t = String.fromCharCode(q);
+			if(text.indexOf(t)!= -1){
+				if(t==p_id){
+					//newidForCarnum = '#carnumof_'+t;
+					newpid='carnumof_'+p_id;
+					$("#carnum_p").attr('id',newpid);
+					newidForCarnum='#'+newpid;
+					$(newidForCarnum).text(text.substring(1));
+					$(newidForCarnum).css("color","red");
+					$(newidForCarnum).attr('id','carnum_p');
+				}				
+			}
+		}
+	}
+	/* ----------------------------------------------------------------------- */
     
-    
-    
+	
 			function InfoFromEachParkname2(){
-				//alert('hi');
+				$("#carnum_p").text("");
+				openSocketForPlates();
 				$("#selectedP").text(p_id+'주차장');
 				$("#imgdiv").empty();
 				$("#imgdiv").append("<img alt='' src='img/parkinglot_IMG/"+p_id+".jpg' style='width: 100%; height: 420px;'>");
@@ -129,8 +177,9 @@
 			function ViewP_areaState(){
 				$(".parkname2").each(function() {
 					$(this).click(function() {
-						p_id = $.trim($(this).children(".parkname2_chi1").children(".parkname2_chi2").text());
 						
+						p_id = $.trim($(this).children(".parkname2_chi1").children(".parkname2_chi2").text());
+
 						InfoFromEachParkname2();
 						
 						setInterval(function(){
@@ -454,6 +503,7 @@
 			
 		/*==================vv================도큐먼트 레디========================================  */
 			$(document).ready(function(){
+				
 				openSocket();
 				
 				makingRandomUpdate();
@@ -660,10 +710,8 @@
                     	<img alt="" src="img/parkinglot_IMG/default.jpg" style="width: 100%; height: 420px;">
                     	
                     	
-                    	<!-- <iframe src="http://192.168.0.15:81/stream" frameborder="0" width="100%" height="420px" scrolling="no" style="margin: 0 auto;"> -->
-                    
-						</iframe>
-                    	
+                    	<!-- <iframe src="http://192.168.0.15:81/stream" frameborder="0" width="100%" height="420px" scrolling="no" style="margin: 0 auto;"></iframe> -->
+						
 
                         <!-- <div class="media" style="text-align: center;">
                             <a href="#">
@@ -683,7 +731,7 @@
 	                                <p class="text-light" id="selectePsub"style="color: black">상세 현황 조회</p> -->
 	                                <h2 class="display-6" id="selectedP" style="color: #343a40;">주차장</h2>
 	                                <p  id="selectePsub"style="color: #343a40;">상세 현황 조회</p>
-	                               	<p style="font-size: 20px">차량 번호 확인</p>
+	                               	<p id="carnum_p" style="font-size: 20px">차량 번호 확인</p>
 	                            </div>
 	                        </div>
                         </ul>
