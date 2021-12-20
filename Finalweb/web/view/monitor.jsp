@@ -109,7 +109,7 @@
     		camidforchange = '#'+btn.substring(8)+'box';
     		camname='#selectedP'+btn.substring(8);
     		$(camidforchange).css("animation","");
-    		$(camname).css("color","black");
+    		$(camname).css("animation","");
     		btn2='#in_'+btn
     		parkid = '#parkname'+btn.substring(8);
 			$(btn2).css("animation","");
@@ -140,7 +140,7 @@
 			camidforchange = '#'+btn.substring(8)+'box';
     		camname='#selectedP'+btn.substring(8);
     		$(camidforchange).css("animation","");
-    		$(camname).css("color","black");
+    		$(camname).css("animation","");
 			btn2='#out_'+btn
 			parkid = '#parkname'+btn.substring(8);
 			$(btn2).css("animation","");
@@ -316,10 +316,13 @@
 		}
 		
 		@keyframes blink-effect {
-			50% { border: solid #e16040 3px } 
+			50% {background : #e84820}
 		}
 		@keyframes blink-effect2 {
-			50% { border: solid #84b5f0 3px } 
+			50% {background : #f3dce2} 
+		}
+		@keyframes blink-effect3 {
+			50% {color : #f8ec10} 
 		}
    	</style>
    	
@@ -589,17 +592,17 @@
 						camname='#selectedP'+a
 						//$(camid).css("border","solid red 5px");
 						$(cambox).css("animation","blink-effect 1s step-end infinite");
-						$(camname).css("color","#e16040");
+						$(camname).css("animation","blink-effect3 1s step-end infinite");
 						if(text.indexOf("in") != -1){
 							checkinid = '#in_checkbox'+a
 							parkid = '#parkname'+a
 							$(checkinid).css("animation","blink-effect2 1s step-end infinite");
-							$(parkid).css("color", "#84b5f0");
+							$(parkid).css("color","#dd99ad");
 						}else if(text.indexOf("out") != -1){
 							checkoutid = '#out_checkbox'+a
 							parkid = '#parkname'+a
 							$(checkoutid).css("animation","blink-effect2 1s step-end infinite");
-							$(parkid).css("color", "#84b5f0");
+							$(parkid).css("color","#dd99ad");
 						}
 					}
 				}
