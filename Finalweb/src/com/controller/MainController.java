@@ -143,18 +143,22 @@ public class MainController {
 	
 	@RequestMapping("/carIn.mc")
 	@ResponseBody
-	public void carIn(HttpServletRequest request) throws Exception {
+	public String carIn(HttpServletRequest request) throws Exception {
 		String data = request.getParameter("parkingLot");
 		String carInImage = "http://192.168.0.16/CarInImage.jpg";
 		String in_photo = GetImageUrl.getImage(carInImage, data, "In");
 		//OpenCV
 		String carplate = null;
 		
-		
+				
 		CarVO car = new CarVO(data.substring(0,1), carplate, in_photo);
 		carService.register(car);
 		System.out.println("DB입력 완료!!");
 		publish.send("gate", 1+"");
+		
+		String redirect = "redirect:/plateNotification.mc?parkingLot="+data.substring(0,1)+"&carPlate="+carplate;
+		
+		return redirect;
 	}
 	
 	@RequestMapping("/carOut.mc")
