@@ -21,7 +21,7 @@ public class ReceiveInputThread {
 				int len = -1;
 				try {
 					if((len=serialIn.read(buffer)) > 0){
-						String data = new String(buffer, 0 ,len).trim();
+						String data = new String(buffer, 0, len).trim();
 						System.out.println("data:"+data);
 						if(data.equals("0")) {
 							SendHttpThread send = new SendHttpThread("A", serialOut);

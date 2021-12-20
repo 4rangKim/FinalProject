@@ -145,11 +145,13 @@ public class MainController {
 	@ResponseBody
 	public void carIn(HttpServletRequest request) throws Exception {
 		String data = request.getParameter("parkingLot");
-		System.out.println("data: "+data);
 		String carInImage = "http://192.168.0.16/CarInImage.jpg";
 		String in_photo = GetImageUrl.getImage(carInImage, data, "In");
-		System.out.println("in_photo:"+in_photo);
-		CarVO car = new CarVO(data.substring(0,1),"01가1234", in_photo);
+		//OpenCV
+		String carplate = null;
+		
+		
+		CarVO car = new CarVO(data.substring(0,1), carplate, in_photo);
 		carService.register(car);
 		System.out.println("DB입력 완료!!");
 		publish.send("gate", 1+"");
@@ -167,7 +169,10 @@ public class MainController {
 		//차량 번호로 회원 아이디 찾아서 시간 조회 (서브 쿼리)
 		String result = carService.seePayment(car_num);
 		System.out.println("result: "+result);
-		int time = Integer.parseInt(result);
+		int time = 0;
+		if(result != null) {
+			time = Integer.parseInt(result);
+		}
 		System.out.println("time: "+time);
 		//요금 계산 해서 DB업데이트
 		int hour = time/60;

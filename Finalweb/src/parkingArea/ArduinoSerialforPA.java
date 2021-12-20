@@ -20,9 +20,9 @@ public class ArduinoSerialforPA {
 			CommPortIdentifier comPortIdentifier = CommPortIdentifier.getPortIdentifier(portName);
 			
 			if(comPortIdentifier.isCurrentlyOwned()) {
-				System.out.println("??? ??? ???");
+				System.out.println("Port Unavailable");
 			}else {
-				System.out.println("??? ??? ????");
+				System.out.println("Port availabe");
 				CommPort commPort = comPortIdentifier.open("basic_serial", 3000);
 				System.out.println(commPort);
 				if(commPort instanceof SerialPort) {
@@ -35,7 +35,7 @@ public class ArduinoSerialforPA {
 					
 					in = serialPort.getInputStream();
 					out = serialPort.getOutputStream();
-					System.out.println("?©ª??? ??? ????!!");
+					System.out.println("Serial Connected");
 					
 				}
 			}
