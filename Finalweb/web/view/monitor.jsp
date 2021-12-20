@@ -13,11 +13,7 @@
 	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
     <script type="text/javascript">
-    	function csstest(){
-    		//$("#in_checkboxA").css("border","solid red 3px");
-    		$("#in_checkboxA").css("animation","blink-effect 1s step-end infinite");
-
-    	}
+    	
     	function displayCHART2(d){
     		Highcharts.chart('chart_container', {
     		    chart: {
@@ -166,8 +162,8 @@
 	/*==================vv================도큐먼트 레디========================================  */
 		$(document).ready(function(){
 			
+			openSocket();
 			getdataforpieCHART();
-			
 			
 		});
 	</script>
@@ -385,7 +381,6 @@
 					                                
 					                                <button class="camera_btn" onclick="changeCamera('#<%=i%>','<%=cameramap.get(i+"_InCamera")%>')">입차 카메라</button>
 					                               	<button class="camera_btn" onclick="changeCamera('#<%=i%>','<%=cameramap.get(i+"_OutCamera")%>')">출차 카메라</button>
-					                               	<button class="camera_btn" onclick="csstest()">csstest</button>
 					                               	
 					                               	
 					                            </div>
@@ -615,12 +610,6 @@
 				openSocket();
 			}); */
 			
-			/*==================vv================도큐먼트 레디========================================  */
-			$(document).ready(function(){
-				
-				openSocket();
-				
-			});
 
 
 			

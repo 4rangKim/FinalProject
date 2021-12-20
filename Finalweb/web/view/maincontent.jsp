@@ -7,6 +7,43 @@
 <title>Insert title here</title>
     <script type="text/javascript">
     
+    var ws;
+	var messages = document.getElementById("message");
+
+	function openSocket() {
+		if (ws !== undefined && ws.readyState !== WebSocket.CLOSED) {
+			writeResponse("WebSocket is already opend.");
+			return;
+		}
+
+		//웹소켓 객체 만드는 코드
+		var url = window.location.host;//웹브라우저의 주소창의 포트까지 가져옴
+		var pathname = window.location.pathname; /* '/'부터 오른쪽에 있는 모든 경로*/
+		var appCtx = pathname.substring(0, pathname.indexOf("/", 2));
+		var root = url + appCtx;
+		ws = new WebSocket("ws://"+root+"/ws"); /*/ws는 @ServerEndpoint(value = "/ws")를 말함*/
+
+		ws.onopen = function(event) {
+			if (event.data === undefined)
+				return;
+			writeResponse(event.data);
+		};
+		ws.onmessage = function(event) {
+			writeResponse(event.data);
+		};
+		ws.onclose = function(event) {
+			writeResponse("Connection closed");
+		}
+	}
+	
+	function writeResponse(text) {
+		//message.innerHTML += "<br/>" + text;
+		alert(text);
+	}
+    
+    
+    
+    
 			function InfoFromEachParkname2(){
 				//alert('hi');
 				$("#selectedP").text(p_id+'주차장');
@@ -417,6 +454,8 @@
 			
 		/*==================vv================도큐먼트 레디========================================  */
 			$(document).ready(function(){
+				openSocket();
+				
 				makingRandomUpdate();
 				
 				makingRandomLog();
