@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getstateBy_p_id" resultType="p_area_result">
-		select p_id, count(case when state=0 then 1 end) Ecount, count(case when state=1 then 1 end) Ocount from p_area group by p_id order by p_id asc
+		select p_id, count(state) as count from p_area where state=0 group by p_id order by p_id asc
 	</select>
 	
 	

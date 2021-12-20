@@ -3,22 +3,15 @@ package com.vo;
 public class P_Area_ResultVo {
 	public String p_id;
 	//public int state;
-	public int Ecount;
-	public int Ocount;
+	public int count;
 	
 	public P_Area_ResultVo() {
 	}
 
-	
-
-	public P_Area_ResultVo(String p_id, int ecount, int ocount) {
-		super();
+	public P_Area_ResultVo(String p_id, int count) {
 		this.p_id = p_id;
-		Ecount = ecount;
-		Ocount = ocount;
+		this.count = count;
 	}
-
-
 
 	public String getP_id() {
 		return p_id;
@@ -28,37 +21,19 @@ public class P_Area_ResultVo {
 		this.p_id = p_id;
 	}
 
-
-
-	public int getEcount() {
-		return Ecount;
+	public int getCount() {
+		return count;
 	}
 
-
-
-	public void setEcount(int ecount) {
-		Ecount = ecount;
+	public void setCount(int count) {
+		this.count = count;
 	}
-
-
-
-	public int getOcount() {
-		return Ocount;
-	}
-
-
-
-	public void setOcount(int ocount) {
-		Ocount = ocount;
-	}
-
-
 
 	@Override
 	public String toString() {
-		return "P_Area_ResultVo [p_id=" + p_id + ", Ecount=" + Ecount + ", Ocount=" + Ocount + "]";
+		return "P_Area_ResultVo [p_id=" + p_id + ", count=" + count + "]";
 	}
-
+	
 	
 	
 	

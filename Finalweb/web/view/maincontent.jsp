@@ -141,22 +141,22 @@
 						//alert(data[0].p_id);
 						parkingsituation='';
 						for(k=0;k<data.length;k++){
-							if(data[k].Ecount>bestRemaining){
-								bestRemaining=data[k].Ecount;
+							if(data[k].count>bestRemaining){
+								bestRemaining=data[k].count;
 								recommendP=data[k].p_id;
 							}
 							
-							if(0<data[k].Ecount && data[k].Ecount<=10){
+							if(0<data[k].count && data[k].count<=10){
 								parkingsituation=
 									parkingsituation+
 										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background: linear-gradient(yellow, #FDBC00); color:blue; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
 												+data[k].p_id +"</div><div style='float:left'>&nbsp;보통</div></div></div>"
-							}else if(10<data[k].Ecount){
+							}else if(10<data[k].count){
 								parkingsituation=
 									parkingsituation+
 										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px;  background: linear-gradient(#0098D0, blue); color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
 											+data[k].p_id +"</div><div style='float:left'>&nbsp;여유</div></div></div>"
-							}else if(data[k].Ecount<=0){
+							}else if(data[k].count<=0){
 								parkingsituation=
 									parkingsituation+
 										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: red; color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
