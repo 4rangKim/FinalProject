@@ -21,6 +21,7 @@ import com.vo.PayVO;
 @Controller
 public class MainController {
 	Mqtt_Pub publish;
+	OATUtils oatUtils;
 	
 	public MainController() {
 		publish = new Mqtt_Pub();
@@ -149,7 +150,8 @@ public class MainController {
 		String in_photo = GetImageUrl.getImage(carInImage, data, "In");
 		//OpenCV
 		String carplate = null;
-		
+		String imgPath = "C:\\Users\\a\\git\\FinalProject\\Finalweb\\web\\img\\sample\\sample_carPlate.jpg";		
+		carplate = oatUtils.doOAT(imgPath);
 				
 		CarVO car = new CarVO(data.substring(0,1), carplate, in_photo);
 		carService.register(car);
@@ -205,7 +207,7 @@ public class MainController {
 		ModelAndView mv = new ModelAndView();
 		String inImg = request.getParameter("inImg");
 		System.out.println(inImg);
-		mv.addObject("inImg", inImg);
+		mv.addObject("Img", inImg);
 		mv.setViewName("ImgPopup");
 		return mv;
 	}
@@ -215,7 +217,7 @@ public class MainController {
 		ModelAndView mv = new ModelAndView();
 		String outImg = request.getParameter("outImg");
 		System.out.println(outImg);
-		mv.addObject("outImg", outImg);
+		mv.addObject("Img", outImg);
 		mv.setViewName("ImgPopup");
 		return mv;
 	}
