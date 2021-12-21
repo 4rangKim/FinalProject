@@ -207,7 +207,7 @@ public class MainController {
 		ModelAndView mv = new ModelAndView();
 		String inImg = request.getParameter("inImg");
 		System.out.println(inImg);
-		mv.addObject("Img", inImg);
+		mv.addObject("inImg", inImg);
 		mv.setViewName("ImgPopup");
 		return mv;
 	}
@@ -217,7 +217,7 @@ public class MainController {
 		ModelAndView mv = new ModelAndView();
 		String outImg = request.getParameter("outImg");
 		System.out.println(outImg);
-		mv.addObject("Img", outImg);
+		mv.addObject("outImg", outImg);
 		mv.setViewName("ImgPopup");
 		return mv;
 	}
