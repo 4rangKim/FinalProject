@@ -115,11 +115,16 @@
 			position = $("#"+btn).val();
 			if($("#checkbox"+position).is(':checked')){
 				alert(position+" 입구차단기 on");
+				msg = position+"_in_on";
 			}else{
 				alert(position+" 입구차단기 off");
+				msg = position+"_in_off";
 			}
 			//alert(position);
 			$.ajax({
+				url:"/Finalweb/doorControl.mc",
+				type:"get",
+				data:{"msg":msg},
 				success:function(){
 					//alert(position);
 					$("#checkbox"+position).each(function(){
@@ -144,8 +149,18 @@
 			/*===================================================*/
 			
 			position = $("#"+btn).val();
+			if($("#checkbox"+position).is(':checked')){
+				alert(position+" 출구차단기 on");
+				msg = position+"_out_on";
+			}else{
+				alert(position+" 출구차단기 off");
+				msg = position+"_out_off";
+			}
 			//alert(position);
 			$.ajax({
+				url:"/Finalweb/doorControl.mc",
+				type:"get",
+				data:{"msg":msg},
 				success:function(){
 					//alert(position);
 					$("#checkbox"+position).each(function(){
