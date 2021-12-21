@@ -8,7 +8,9 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-		<title>Insert title here</title>
+		<link rel="apple-touch-icon" href="img/favicon.png">
+        <link rel="shortcut icon" href="img/favicon.png">
+   	 	<title>Parking Panda</title>
 		<style type="text/css">
 			.container{
 				text-align: center;
@@ -61,7 +63,7 @@
 						<label for="pwd">비밀번호</label>
 					</div>
 					<div class="col-sm-8">
-						<input type="password"  name="mgr_pwd"
+						<input type="password"  name="mgr_pwd" id="mgr_pwd"
 							class="form-control"  placeholder="비밀번호를 입력해주세요."  value=""
 							required>
 					</div>

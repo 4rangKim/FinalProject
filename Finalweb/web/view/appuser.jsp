@@ -10,7 +10,8 @@
 	<style type="text/css">
 			.usertable{
 				width: 100%;
-				margin: 50px;
+				margin-top: 50px;
+				margin-bottom:50px;
 				text-align: center;
 			}
 			th{
@@ -152,6 +153,10 @@
 			});//end ajax
 		};
 		
+		$(document).ready(function(){
+			$("#searchText").keyup(function(e){if(e.keyCode == 13)  listsearch(); });
+		});
+		
 	</script>
 </head>
 <body>
@@ -180,7 +185,7 @@
 								<option value="carnum">차량 번호</option>
 							</select> 
 							<input type="text" class="searchText" id="searchText" name="search" /> 
-							<button type="button" class="search" onclick="listsearch()"><img src="img/search.png" class="searchimg"/></button>
+							<button type="button" class="search" id="listsearch" onclick="listsearch()"><img src="img/search.png" class="searchimg"/></button>
 							<button class="allbtn" onclick="allsearch()">All</button>
 						</div>
 					<table class="usertable">
