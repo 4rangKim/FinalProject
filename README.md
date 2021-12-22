@@ -15,7 +15,6 @@
 
 ---
 # 프로젝트 소개
----
 
 #### 📍 **Topic**
 
@@ -32,7 +31,6 @@
 | **5 주차** (2021-12-20 ~ 2021-12-23) |          |
 
 # 실행 환경
----
 ### 🤝Team Collaboration Tool : 
 <div align=center>
 <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white">&nbsp;<img src="https://img.shields.io/badge/Zoom-2D8CFF?style=for-the-badge&logo=Zoom&logoColor=white">&nbsp;<img src="https://img.shields.io/badge/Miro-050038?style=for-the-badge&logo=Miro&logoColor=white">&nbsp;<img src="https://img.shields.io/badge/allo-ffffff?style=for-the-badge">&nbsp;<img src="https://img.shields.io/badge/Google Drive-4285F4?style=for-the-badge&logo=Google Drive&logoColor=white">&nbsp;<img src="https://img.shields.io/badge/Google Docs-4d8aed?style=for-the-badge">&nbsp;<img src="https://img.shields.io/badge/Google Sheets-34A853?style=for-the-badge&logo=Google Sheets&logoColor=white">&nbsp;<img src="https://img.shields.io/badge/Google Slides-edb413?style=for-the-badge">
@@ -61,18 +59,15 @@
 
 # 참조
 ###### 본 프로젝트와 함께 진행된 프로젝트입니다.
----
 📕[ Semi Project - Web ](https://github.com/4rangKim/FinalProject-semi)
 📗[ Semi Project - Android ]()
 📘[ Final Project - Web ](https://github.com/4rangKim/FinalProject)
 📙[ Final Project - Android](https://github.com/4rangKim/FinalProject-Android)
 
 # 실행 예시
----
 (실행 예시)
 
 # 프로젝트 소감
----
 
 ### 🎈 Team Member 
 <div align=center><a href="https://github.com/4rangKim"><img src="https://img.shields.io/badge/김사랑 -434343?style=for-the-badge&logo=GitHub&logoColor=white"/></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/MIHEE-LEE"><img src="https://img.shields.io/badge/이미희-434343?style=for-the-badge&logo=GitHub&logoColor=white"/></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/JaehyunHan0722"><img src="https://img.shields.io/badge/한재현-434343?style=for-the-badge&logo=GitHub&logoColor=white"/></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/le-espiritu"><img src="https://img.shields.io/badge/이동연-434343?style=for-the-badge&logo=GitHub&logoColor=white"/></a></div>
