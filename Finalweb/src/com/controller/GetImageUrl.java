@@ -43,6 +43,7 @@ public class GetImageUrl {
             // 저장이 끝난후 사용한 객체는 클로즈를 해줍니다.
             in.close();
             out.close();
+            System.out.println("다운로드 완료");
 //            return filename;
         } catch (Exception e) {
         	  // 예외처리
@@ -55,9 +56,7 @@ public class GetImageUrl {
             if (out != null) {
                 out.close();
             }
-            
         }
-        System.out.println("다운로드 완료");
         return filename;        
     }
 	

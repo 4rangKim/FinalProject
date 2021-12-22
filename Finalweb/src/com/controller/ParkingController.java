@@ -26,7 +26,7 @@ import com.vo.ParkingVO;
 
 @Controller
 public class ParkingController {
-	String A[] = {"A00", "A10", "A20", "A30"};
+	String A[] = {"A10", "A20", "A30", "A40"};
 	private Logger parking_log = Logger.getLogger("data");
 	
 	@Resource(name="ParkingService")
@@ -73,8 +73,8 @@ public class ParkingController {
 		String area_id = data.substring(0,2); // A1
 		int state = Integer.parseInt(data.substring(2)); // 0
 		if(parking_id.equals("A")) {
-			if(!data.equals(A[Integer.parseInt(data.substring(1,2))])) {
-				A[Integer.parseInt(data.substring(1,2))] = data;
+			if(!data.equals(A[Integer.parseInt(data.substring(1,2))-1])) {
+				A[Integer.parseInt(data.substring(1,2))-1] = data;
 				P_AreaVO changed = new P_AreaVO(area_id, state);
 				service2.modify(changed);
 				if(state == 0) {

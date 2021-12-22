@@ -148,7 +148,7 @@ public class MainController {
 		String carInImage = "http://192.168.0.16/CarInImage.jpg";
 		String in_photo = GetImageUrl.getImage(carInImage, data, "In");
 		//OpenCV
-		String carplate = null;
+		String carplate = "01가1234";
 		
 				
 		CarVO car = new CarVO(data.substring(0,1), carplate, in_photo);
@@ -166,7 +166,7 @@ public class MainController {
 	public int carOut(HttpServletRequest request) throws Exception {
 		String data = request.getParameter("parkingLot");
 		System.out.println("data: "+data);
-		String carOutImage = "http://192.168.0.19/CarOutImage.jpg";		
+		String carOutImage = "http://192.168.0.7/CarOutImage.jpg";		
 		String out_photo = GetImageUrl.getImage(carOutImage, data, "Out");
 		//저장된 사진 분석해서 차량 번호  얻기
 		String car_num = "01가1234";
