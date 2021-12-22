@@ -67,7 +67,7 @@
 ---
 
 ### 🎈 Team Member 
-<div align=center><a href="https://github.com/4rangKim"><img src="https://img.shields.io/badge/김사랑 -434343?style=for-the-badge&logo=GitHub&logoColor=white"/></a><a href="https://github.com/MIHEE-LEE"><img src="https://img.shields.io/badge/이미희-434343?style=for-the-badge&logo=GitHub&logoColor=white"/></a><a href="https://github.com/JaehyunHan0722"><img src="https://img.shields.io/badge/한재현-434343?style=for-the-badge&logo=GitHub&logoColor=white"/></a><a href="https://github.com/le-espiritu"><img src="https://img.shields.io/badge/이동연-434343?style=for-the-badge&logo=GitHub&logoColor=white"/></a></div>
+<div align=center><a href="https://github.com/4rangKim"><img src="https://img.shields.io/badge/김사랑 -434343?style=for-the-badge&logo=GitHub&logoColor=white"/></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/MIHEE-LEE"><img src="https://img.shields.io/badge/이미희-434343?style=for-the-badge&logo=GitHub&logoColor=white"/></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/JaehyunHan0722"><img src="https://img.shields.io/badge/한재현-434343?style=for-the-badge&logo=GitHub&logoColor=white"/></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/le-espiritu"><img src="https://img.shields.io/badge/이동연-434343?style=for-the-badge&logo=GitHub&logoColor=white"/></a></div>
 
 ### 👍 Roles & Responsibilities
 |   Person   |                   Roles & Responsibilities                   |
