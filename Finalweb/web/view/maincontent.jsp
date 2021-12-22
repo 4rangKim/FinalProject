@@ -125,7 +125,12 @@
 				/*----------------------vv 카메라 추가할때마다 else if 추가 해야 하는 코드------------------------------------------------- */
 				if(p_id=='A'){
 					$("#imgdiv").empty();
-					$("#imgdiv").append("<iframe src='http://192.168.0.16:81/stream' frameborder='0' width='100%' height='420px' scrolling='no' style='margin: 0 auto;'>");
+					/* $("#imgdiv").append("<iframe src='http://192.168.0.19:81/stream' frameborder='0' width='100%' height='420px' scrolling='no' style='margin: 0 auto;'>"); */
+					$("#imgdiv").append("<iframe src='https://www.youtube.com/embed/Z4eOnPTp2Aw?autoplay=1&mute=1&amp;playlist=Z4eOnPTp2Aw&amp;loop=1' frameborder='0' width='100%' height='420px' scrolling='no' style='margin: 0 auto;'>");
+					
+					
+					
+					
 				}/* else if(p_id=='B') */
 				
 				

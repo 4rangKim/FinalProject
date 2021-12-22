@@ -88,12 +88,16 @@
                     </li>
                     
                     
-                    <h3 class="menu-title">랜덤 데이터 생성</h3><!-- /.menu-title -->
+                    <h3 class="menu-title">랜덤 데이터 생성 및 TEST</h3><!-- /.menu-title -->
                     <li>
                         <a href="#" id="MKrandom"><i class="menu-icon fa fa-table"></i>Random_On</a>
                     </li>
                     <li>
                         <a href="#" id="MKrandomLog"><i class="menu-icon fa fa-table"></i>Random_Log_On</a>
+                    </li>
+                    <li>
+                        <!-- <a href="/Finalweb/btnpopuptest.mc" id=""><i class="menu-icon fa fa-table"></i>btn_test</a> -->
+                        <a href="/Finalweb/helpbtnpopuptest.mc" onclick="window.open(this.href, '_blank', 'width=400,height=300,toolbars=no,scrollbars=no'); return false;"><i class="menu-icon fa fa-table"></i>Help_btn_test</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->

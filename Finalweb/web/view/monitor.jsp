@@ -340,12 +340,14 @@
    	
    	<%
    	HashMap<String,String> cameramap = new HashMap<>();
-   	cameramap.put("A_InCamera","https://www.youtube.com/embed/5HcgHcU_4go?autoplay=1&mute=1&amp;playlist=5HcgHcU_4go&amp;loop=1");
-   	cameramap.put("A_OutCamera","https://www.youtube.com/embed/NXt-YY3Xt8Q?autoplay=1&mute=1&amp;playlist=NXt-YY3Xt8Q&amp;loop=1");
-   	cameramap.put("B_InCamera","https://www.youtube.com/embed/ke4v1v2h9yQ?autoplay=1&mute=1&amp;playlist=ke4v1v2h9yQ&amp;loop=1");
+   	//cameramap.put("A_InCamera","http://192.168.0.16:81/stream");
+   	//cameramap.put("A_OutCamera","http://192.168.0.19:81/stream");
+   	cameramap.put("A_InCamera","https://www.youtube.com/embed/Z4eOnPTp2Aw?autoplay=1&mute=1&amp;playlist=Z4eOnPTp2Aw&amp;loop=1");
+   	cameramap.put("A_OutCamera","https://www.youtube.com/embed/5HcgHcU_4go?autoplay=1&mute=1&amp;playlist=5HcgHcU_4go&amp;loop=1");
+   	cameramap.put("B_InCamera","https://www.youtube.com/embed/A7b3breCM0g?autoplay=1&mute=1&amp;playlist=A7b3breCM0g&amp;loop=1");
    	cameramap.put("B_OutCamera","https://www.youtube.com/embed/UZFm-kg3PaE?autoplay=1&mute=1&amp;playlist=UZFm-kg3PaE&amp;loop=1");
-   	cameramap.put("C_InCamera","https://www.youtube.com/embed/uMZO2qXElgg?autoplay=1&mute=1&amp;playlist=uMZO2qXElgg&amp;loop=1");
-   	cameramap.put("C_OutCamera","https://www.youtube.com/embed/NXt-YY3Xt8Q?autoplay=1&mute=1&amp;playlist=NXt-YY3Xt8Q&amp;loop=1");
+   	cameramap.put("C_InCamera","https://www.youtube.com/embed/s-7on9BO-Po?autoplay=1&mute=1&amp;playlist=s-7on9BO-Po&amp;loop=1");
+   	cameramap.put("C_OutCamera","https://www.youtube.com/embed/uMZO2qXElgg?autoplay=1&mute=1&amp;playlist=uMZO2qXElgg&amp;loop=1");
    	cameramap.put("D_InCamera","https://www.youtube.com/embed/n1bqkBEZKMA?autoplay=1&mute=1&amp;playlist=n1bqkBEZKMA&amp;loop=1");
    	cameramap.put("D_OutCamera","https://www.youtube.com/embed/NXt-YY3Xt8Q?autoplay=1&mute=1&amp;playlist=NXt-YY3Xt8Q&amp;loop=1");
    	cameramap.put("E_InCamera","https://www.youtube.com/embed/IXCYY6CFoYw?autoplay=1&mute=1&amp;playlist=IXCYY6CFoYw&amp;loop=1");

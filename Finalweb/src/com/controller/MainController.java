@@ -221,6 +221,17 @@ public class MainController {
 		mv.setViewName("ImgPopup");
 		return mv;
 	}
+	
+	
+	//-----------help 요청 버튼 팝업을 위한 테스트 코드임(mainpage 좌측 메뉴에서)-------------------
+	@RequestMapping("/helpbtnpopuptest.mc")
+	public ModelAndView helpbtnpopuptest(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("helpbtn_testPopup");
+		return mv;
+	}
+	//-------------------------------------------------------------------------------
+	
 
 	@RequestMapping(value = "/CarSearch.mc",method = RequestMethod.GET,
 			produces =  "application/json;charset=utf-8")
