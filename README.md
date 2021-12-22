@@ -70,7 +70,7 @@
 |            **JDK**             | 8 (Java Version : 1.8.0_251) |
 |        **Eclipse IDE**         |       2020-06 (4.16.0)       |
 |     **Eclipse Mosquitto**      |            1.2.2             |
-|             **R**              |                              |
+|             **R**              | R version 3.6.3 (2020-02-29) |
 |       **Apache Tomcat**        |            9.0.55            |
 | **Oracle 11g Express Edition** |          11.2.0.2.0          |
 |       **Android Studio**       |             4.2              |
@@ -101,7 +101,7 @@
 | **김사랑** | 안드로이드 앱 디자인 및 각종 기능 구현 / OpenCV와 Tesseract OCR을 이용한 차량 번호판 인식 기능 구현 |
 | **이미희** | Web 디자인 및 고객 조회 등의 각종 기능 구현 / Web과 Android간 통신 기능 구현 / Oracle DB 설계 및 구축 |
 | **한재현** | 각종 센서를 통한 주차장 모니터링 및 장치 제어 / ESP32-CAM보드를 이용한 이미지 캡처 및 Web으로 전송 |
-| **이동연** |                                                              |
+| **이동연** | 부트스트랩을 활용한 view 구축 및 실시간 주차 현황 조회 기능 구현/ R을 활용한 로그파일 분석 및 차트 작성/ 웹소켓통신을 통한 웹 알림 기능 구현 |
 
 ### 💬 Comment
 |   Person   | Comment |
