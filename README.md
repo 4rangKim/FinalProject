@@ -55,7 +55,7 @@
 |       **Tesseract OCR**        |            3.4.8             |
 
 ### 🧰 Equipment Used
-* **ESP32 CAM OV2640 **
+* ESP32 CAM OV2640
 
 # 참조
 ###### 본 프로젝트와 함께 진행된 프로젝트입니다.
