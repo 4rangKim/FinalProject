@@ -1,21 +1,20 @@
-![logo1](https://user-images.githubusercontent.com/88477658/146860208-6e062a29-9882-4509-b878-3f74c4822c4a.png)
 <div align=center><h2>IoT 통신 활용 및 빅데이터 분석을 통한 주차 정보 관리 시스템</h2></div>
 <div align=center><a href="https://github.com/4rangKim/FinalProject"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2F4rangKim%2FFinalProject&count_bg=%23434343&title_bg=%23F7C873&icon=&icon_color=%23FFFFFF&title=hits&edge_flat=false"/></a></div>
 
 ---
 ### 📌 목차
-1️⃣ [Description](#Description)
+1️⃣ [프로젝트 소개](#프로젝트-소개)
 
-2️⃣ [Environment](#Environment)
+2️⃣ [실행 환경](#실행-환경)
 
-3️⃣ [Reference](#Reference)
+3️⃣ [참조](#참조)
 
-4️⃣ [Usage Example](#Usage-Example)
+4️⃣ [실행 예시](#실행-예시)
 
-5️⃣ [Review](#Review)
+5️⃣ [프로젝트 소감](#프로젝트-소감)
 
 ---
-# Description
+# 프로젝트 소개
 ---
 
 #### 📍 **Topic**
@@ -32,7 +31,7 @@
 | **4 주차** (2021-12-13 ~ 2021-12-18) |          |
 | **5 주차** (2021-12-20 ~ 2021-12-23) |          |
 
-# Environment
+# 실행 환경
 ---
 ### ✍Technologies Used : 
 
@@ -55,7 +54,7 @@
 ### 🧰 Equipment Used
 * **ESP32 CAM OV2640 **
 
-# Reference
+# 참조
 ###### 본 프로젝트와 함께 진행된 프로젝트입니다.
 ---
 📕[ Semi Project - Web ](https://github.com/4rangKim/FinalProject-semi)
@@ -63,11 +62,11 @@
 📘[ Final Project - Web ](https://github.com/4rangKim/FinalProject)
 📙[ Final Project - Android](https://github.com/4rangKim/FinalProject-Android)
 
-# Usage Example
+# 실행 예시
 ---
 (실행 예시)
 
-# Review
+# 프로젝트 소감
 ---
 
 ### 🎈 Team Member 
