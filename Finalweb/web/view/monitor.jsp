@@ -102,6 +102,7 @@
 		function in_control(btn){
 			
     		/* 웹 알림으로 생성된 css(border)를 버튼을 누르면 없어지게 하는 코드*/
+    		
     		camidforchange = '#'+btn.substring(8)+'box';
     		camname='#selectedP'+btn.substring(8);
     		$(camidforchange).css("animation","");
@@ -109,6 +110,7 @@
     		btn2='#in_'+btn
     		parkid = '#parkname'+btn.substring(8);
 			$(btn2).css("animation","");
+			$('.'+'inBtnstate'+btn.substring(8)).css("animation","");
 			$(parkid).css("color","black");
     		/*===================================================*/
     		
@@ -145,6 +147,7 @@
 			btn2='#out_'+btn
 			parkid = '#parkname'+btn.substring(8);
 			$(btn2).css("animation","");
+			$('.'+'outBtnstate'+btn.substring(8)).css("animation","");
 			$(parkid).css("color","black");
 			/*===================================================*/
 			
@@ -330,11 +333,12 @@
 			50% {background : #e84820}
 		}
 		@keyframes blink-effect2 {
-			50% {background : #f3dce2} 
+			50% {background : #e84820} 
 		}
 		@keyframes blink-effect3 {
 			50% {color : #f8ec10} 
 		}
+		
    	</style>
    	
    	
@@ -609,12 +613,14 @@
 							checkinid = '#in_checkbox'+a
 							parkid = '#parkname'+a
 							$(checkinid).css("animation","blink-effect2 1s step-end infinite");
-							$(parkid).css("color","#dd99ad");
+							$('.'+'inBtnstate'+a).css("animation","blink-effect3 1s step-end infinite");
+							$(parkid).css("color","#e84820");
 						}else if(text.indexOf("out") != -1){
 							checkoutid = '#out_checkbox'+a
 							parkid = '#parkname'+a
 							$(checkoutid).css("animation","blink-effect2 1s step-end infinite");
-							$(parkid).css("color","#dd99ad");
+							$('.'+'outBtnstate'+a).css("animation","blink-effect3 1s step-end infinite");
+							$(parkid).css("color","#e84820");
 						}
 					}
 				}
