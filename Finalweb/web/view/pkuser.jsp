@@ -285,6 +285,11 @@
 		    });
 		});
 		
+	
+		$(document).ready(function(){
+			$("#numText").keyup(function(e){if(e.keyCode == 13)  carsearch(); });
+		});	
+	
 		</script> 
 	</head>
 	<body>

@@ -95,7 +95,7 @@ public class ParkingController {
 		response.setContentType("application/text;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		for(char i = 'A'; i<='H'; i++) {
+		for(char i = 'B'; i<='H'; i++) {
 			
 			String str_i = String.valueOf(i);
 			

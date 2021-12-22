@@ -125,7 +125,12 @@
 				/*----------------------vv 카메라 추가할때마다 else if 추가 해야 하는 코드------------------------------------------------- */
 				if(p_id=='A'){
 					$("#imgdiv").empty();
-					$("#imgdiv").append("<iframe src='http://192.168.0.16:81/stream' frameborder='0' width='100%' height='420px' scrolling='no' style='margin: 0 auto;'>");
+					/* $("#imgdiv").append("<iframe src='http://192.168.0.19:81/stream' frameborder='0' width='100%' height='420px' scrolling='no' style='margin: 0 auto;'>"); */
+					$("#imgdiv").append("<iframe src='https://www.youtube.com/embed/Z4eOnPTp2Aw?autoplay=1&mute=1&amp;playlist=Z4eOnPTp2Aw&amp;loop=1' frameborder='0' width='100%' height='420px' scrolling='no' style='margin: 0 auto;'>");
+					
+					
+					
+					
 				}/* else if(p_id=='B') */
 				
 				
@@ -141,27 +146,46 @@
 						//alert(data[0].p_id);
 						parkingsituation='';
 						for(k=0;k<data.length;k++){
-							if(data[k].count>bestRemaining){
-								bestRemaining=data[k].count;
+							if(data[k].Ecount>bestRemaining){
+								bestRemaining=data[k].Ecount;
 								recommendP=data[k].p_id;
 							}
-							
-							if(0<data[k].count && data[k].count<=10){
-								parkingsituation=
-									parkingsituation+
-										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background: linear-gradient(yellow, #FDBC00); color:blue; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
-												+data[k].p_id +"</div><div style='float:left'>&nbsp;보통</div></div></div>"
-							}else if(10<data[k].count){
-								parkingsituation=
-									parkingsituation+
-										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px;  background: linear-gradient(#0098D0, blue); color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
-											+data[k].p_id +"</div><div style='float:left'>&nbsp;여유</div></div></div>"
-							}else if(data[k].count<=0){
-								parkingsituation=
-									parkingsituation+
-										"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: red; color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
-											+data[k].p_id +"</div><div style='float:left'>&nbsp;만차</div></div></div>"
+							if(data[k].p_id=='A'){
+								if(0<data[k].Ecount && data[k].Ecount<=2){
+									parkingsituation=
+										parkingsituation+
+											"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background: linear-gradient(yellow, #FDBC00); color:blue; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+													+data[k].p_id +"</div><div style='float:left'>&nbsp;보통</div></div></div>"
+								}else if(2<data[k].Ecount){
+									parkingsituation=
+										parkingsituation+
+											"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px;  background: linear-gradient(#0098D0, blue); color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+												+data[k].p_id +"</div><div style='float:left'>&nbsp;여유</div></div></div>"
+								}else if(data[k].Ecount<=0){
+									parkingsituation=
+										parkingsituation+
+											"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: red; color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+												+data[k].p_id +"</div><div style='float:left'>&nbsp;만차</div></div></div>"
+								}
+							}else{
+								if(0<data[k].Ecount && data[k].Ecount<=10){
+									parkingsituation=
+										parkingsituation+
+											"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background: linear-gradient(yellow, #FDBC00); color:blue; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+													+data[k].p_id +"</div><div style='float:left'>&nbsp;보통</div></div></div>"
+								}else if(10<data[k].Ecount){
+									parkingsituation=
+										parkingsituation+
+											"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px;  background: linear-gradient(#0098D0, blue); color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+												+data[k].p_id +"</div><div style='float:left'>&nbsp;여유</div></div></div>"
+								}else if(data[k].Ecount<=0){
+									parkingsituation=
+										parkingsituation+
+											"<div class='col-sm-5 parkname2' style=' cursor:pointer; text-align: center; height: 30px; background-color: red; color:white; margin: 5px; border-radius: 5px; display: flex;'><div class='parkname2_chi1' style='margin : 0 auto;'><div class='parkname2_chi2' style='float:left;'>"
+												+data[k].p_id +"</div><div style='float:left'>&nbsp;만차</div></div></div>"
+								}
 							}
+							
 						}
 						$(".parkbox").empty();
 						$(".parkbox").append(parkingsituation);

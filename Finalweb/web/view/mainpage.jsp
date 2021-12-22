@@ -6,12 +6,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
+    <title>Parking Panda</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="apple-icon.png">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/favicon.png">
     
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -88,12 +88,16 @@
                     </li>
                     
                     
-                    <h3 class="menu-title">랜덤 데이터 생성</h3><!-- /.menu-title -->
+                    <h3 class="menu-title">랜덤 데이터 생성 및 TEST</h3><!-- /.menu-title -->
                     <li>
                         <a href="#" id="MKrandom"><i class="menu-icon fa fa-table"></i>Random_On</a>
                     </li>
                     <li>
                         <a href="#" id="MKrandomLog"><i class="menu-icon fa fa-table"></i>Random_Log_On</a>
+                    </li>
+                    <li>
+                        <!-- <a href="/Finalweb/btnpopuptest.mc" id=""><i class="menu-icon fa fa-table"></i>btn_test</a> -->
+                        <a href="/Finalweb/helpbtnpopuptest.mc" onclick="window.open(this.href, '_blank', 'width=400,height=300,toolbars=no,scrollbars=no'); return false;"><i class="menu-icon fa fa-table"></i>Help_btn_test</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
