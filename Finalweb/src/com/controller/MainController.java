@@ -205,7 +205,7 @@ public class MainController {
 	@RequestMapping("/CarInImg.mc")
 	public ModelAndView carInImg(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		String inImg = request.getParameter("inImg");
+		String inImg = request.getParameter("in_photo");
 		System.out.println(inImg);
 		mv.addObject("inImg", inImg);
 		mv.setViewName("ImgPopup");
@@ -215,8 +215,8 @@ public class MainController {
 	@RequestMapping("/CarOutImg.mc")
 	public ModelAndView carOutImg(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		String outImg = request.getParameter("outImg");
-		System.out.println(outImg);
+		String outImg = request.getParameter("out_photo");
+		System.out.println("outimg:"+outImg);
 		mv.addObject("outImg", outImg);
 		mv.setViewName("ImgPopup");
 		return mv;

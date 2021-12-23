@@ -105,15 +105,17 @@
 			#startdate,#enddate{
 				margin-right: 7px;
 			}
+			
 		</style>
 		<script type="text/javascript">
+
 	 	function inImg(btn){
-			var img = $("#"+btn).val();
-			window.open("/Finalweb/CarInImg.mc?inImg="+img, "", "width=600, height=400, left=500, top=200");
+	 		var img = $("#"+btn).val();
+			window.open("/Finalweb/CarInImg.mc?in_photo="+img, "", "width=600, height=400, left=500, top=200");
 		}
 		function outImg(btn){
 			var img = $("#"+btn).val();
-			window.open("/Finalweb/CarOutImg.mc?outImg="+img, "", "width=600, height=400, left=500, top=200");
+			window.open("/Finalweb/CarOutImg.mc?out_photo="+img, "", "width=600, height=400, left=500, top=200");
 		} 
 		
 		function carsearch(){
@@ -124,6 +126,7 @@
 				type:"get",
 				data:{"carnum":carnum},
 				success:function(data){
+					alert(data);
 					mydata="<tr><th>주차장 번호</th><th>ID</th><th>차량 번호</th><th>입차 시간</th><th>출차 시간</th></tr>";
 					if(data.length==0){
 						mydata = mydata + "<tr><td colspan='6' style='padding:10px; color:gray;'>조회된 차량이 없습니다.</td><tr>";
@@ -153,10 +156,16 @@
 					$("#usertable").append(mydata);
 					$("#startdate").val("");
 					$("#enddate").val("");
-					$(".imgbtn").each(function(){
+					$("#inImg").each(function(){
 						$(this).click(function(){
 							img = $(this).val();
-							window.open("/Finalweb/CarInImg.mc?inImg="+img, "", "width=600, height=400, left=500, top=200");
+							window.open("/Finalweb/CarInImg.mc?in_photo="+img, "", "width=600, height=400, left=500, top=200");
+						});
+					});
+					$("#outImg").each(function(){
+						$(this).click(function(){
+							img = $(this).val();
+							window.open("/Finalweb/CarOutImg.mc?out_photo="+img, "", "width=600, height=400, left=500, top=200");
 						});
 					});
 					
@@ -197,10 +206,16 @@
 					$(".numText").val("");
 					$("#startdate").val("");
 					$("#enddate").val("");
-					$(".imgbtn").each(function(){
+					$("#inImg").each(function(){
 						$(this).click(function(){
 							img = $(this).val();
-							window.open("/Finalweb/CarInImg.mc?inImg="+img, "", "width=600, height=400, left=500, top=200");
+							window.open("/Finalweb/CarInImg.mc?in_photo="+img, "", "width=600, height=400, left=500, top=200");
+						});
+					});
+					$("#outImg").each(function(){
+						$(this).click(function(){
+							img = $(this).val();
+							window.open("/Finalweb/CarOutImg.mc?out_photo="+img, "", "width=600, height=400, left=500, top=200");
 						});
 					});
 				}
@@ -244,10 +259,16 @@
 								$("#usertable").empty();
 								$("#usertable").append(mydata);
 								$(".numText").val("");
-								$(".imgbtn").each(function(){
+								$("#inImg").each(function(){
 									$(this).click(function(){
 										img = $(this).val();
-										window.open("/Finalweb/CarInImg.mc?inImg="+img, "", "width=600, height=400, left=500, top=200");
+										window.open("/Finalweb/CarInImg.mc?in_photo="+img, "", "width=600, height=400, left=500, top=200");
+									});
+								});
+								$("#outImg").each(function(){
+									$(this).click(function(){
+										img = $(this).val();
+										window.open("/Finalweb/CarOutImg.mc?out_photo="+img, "", "width=600, height=400, left=500, top=200");
 									});
 								});
 							}
@@ -297,7 +318,9 @@
 		int size = pkuserList.size();
 
 	%>
-	
+		
+		
+		
 		<div class="breadcrumbs" >
             <div class="col-sm-4">
                 <div class="page-header float-left">
