@@ -1,6 +1,9 @@
 <div align=center><h2>IoT 통신 활용 및 빅데이터 분석을 통한 주차 정보 관리 시스템</h2></div>
 <div align=center><a href="https://github.com/4rangKim/FinalProject"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2F4rangKim%2FFinalProject&count_bg=%23434343&title_bg=%23F7C873&icon=&icon_color=%23FFFFFF&title=hits&edge_flat=false"/></a></div>
 
+#### 🎬 **YouTube**
+[![Video Label](http://img.youtube.com/vi/5tHslKBJ8xk/0.jpg)](https://youtu.be/5tHslKBJ8xk)
+
 ---
 ### 📌 목차
 1️⃣ [프로젝트 소개](#프로젝트-소개)
@@ -40,10 +43,6 @@
  - 따라서 복잡한 교통 상황 및 주차문제로 인해 발생하는 사회적 혼란과 갈등을 해소할 수 있으며, 좀 더 쾌적한 도시 환경을 구축할 수 있음
  - 시스템 원격제어 및 자동화로 사회적 관리 비용을 절감할 수 있으며, 보다 효율적이고 체계적으로 주차장 및 도시 시스템을 관리 할 수 있음.
  - IoT 주차장을 통해 쌓인 데이터들은 추후 발생할 수 있는 또라는 교통 문제 해결 방안에 활용할 수 있음.
-
-#### 🎬 **YouTube**
-
-<iframe width="560" height="315" src="https://youtu.be/5tHslKBJ8xk" frameborder="0" allowfullscreen></iframe>
 
 #### 📆 **Plan (2021-11-22 ~ 2021-12-24, 33 Day)**
 
