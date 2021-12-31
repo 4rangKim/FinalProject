@@ -3,8 +3,7 @@
 
 #### 🎬 **YouTube**
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/5tHslKBJ8xk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+<div align=center><a href="https://youtu.be/5tHslKBJ8xk?t=0s"><img src="http://img.youtube.com/vi/5tHslKBJ8xk/0.jpg" width="300" height="300"></a></div>
 ---
 ### 📌 목차
 1️⃣ [프로젝트 소개](#프로젝트-소개)
