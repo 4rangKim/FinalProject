@@ -2,7 +2,7 @@
 <div align=center><a href="https://github.com/4rangKim/FinalProject"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2F4rangKim%2FFinalProject&count_bg=%23434343&title_bg=%23F7C873&icon=&icon_color=%23FFFFFF&title=hits&edge_flat=false"/></a></div>
 
 #### 🎬 **YouTube**
-<div align=center>[![Video Label](http://img.youtube.com/vi/5tHslKBJ8xk/0.jpg)](https://youtu.be/5tHslKBJ8xk)</div>
+<center>[![Video Label](http://img.youtube.com/vi/5tHslKBJ8xk/0.jpg)](https://youtu.be/5tHslKBJ8xk)</center>
 
 ---
 ### 📌 목차
