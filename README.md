@@ -43,6 +43,8 @@
 
 #### 🎬 **YouTube**
 
+<iframe width="560" height="315" src="https://youtu.be/5tHslKBJ8xk" frameborder="0" allowfullscreen></iframe>
+
 #### 📆 **Plan (2021-11-22 ~ 2021-12-24, 33 Day)**
 
 |               **Week**               | **일정** |
